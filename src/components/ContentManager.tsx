@@ -30,7 +30,16 @@ export default function ContentManager({
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
-    setContent(initialContent || getDefaultContent(section, subsection));
+    const defaultContent = getDefaultContent(section, subsection);
+    const finalContent = initialContent || defaultContent;
+    console.log('🔍 ContentManager useEffect:', { 
+      section, 
+      subsection, 
+      initialContent, 
+      defaultContent, 
+      finalContent 
+    });
+    setContent(finalContent);
   }, [section, subsection, initialContent]);
 
   function getDefaultContent(section: string, subsection?: string) {
@@ -270,9 +279,30 @@ export default function ContentManager({
 
   const handleSave = async () => {
     setIsSaving(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    onSave(content);
-    setIsSaving(false);
+    try {
+      const response = await fetch(`/api/site-content/${section}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content,
+          subsection
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error al guardar el contenido: ${response.status} - ${errorText}`);
+      }
+      
+      onSave(content);
+    } catch (error) {
+      console.error('Error saving content:', error);
+      alert(`Error al guardar el contenido: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const renderInput = (field: string, label: string, type: string = 'text', placeholder?: string) => {

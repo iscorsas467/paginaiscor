@@ -33,14 +33,14 @@ export default function ContentEditor({
   }, [initialData]);
 
   const handleInputChange = (field: string, value: any) => {
-    setFormData(prev => ({
+    setFormData((prev: any) => ({
       ...prev,
       [field]: value
     }));
   };
 
   const handleArrayChange = (field: string, index: number, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev: any) => ({
       ...prev,
       [field]: prev[field].map((item: any, i: number) => 
         i === index ? value : item
@@ -49,14 +49,14 @@ export default function ContentEditor({
   };
 
   const addArrayItem = (field: string) => {
-    setFormData(prev => ({
+    setFormData((prev: any) => ({
       ...prev,
       [field]: [...prev[field], '']
     }));
   };
 
   const removeArrayItem = (field: string, index: number) => {
-    setFormData(prev => ({
+    setFormData((prev: any) => ({
       ...prev,
       [field]: prev[field].filter((_: any, i: number) => i !== index)
     }));
@@ -217,7 +217,7 @@ export default function ContentEditor({
       }
     };
 
-    return sectionData[section as keyof typeof sectionData]?.[subsection as any] || {};
+    return (sectionData[section as keyof typeof sectionData] as any)?.[subsection] || {};
   };
 
   const currentData = getSectionData();

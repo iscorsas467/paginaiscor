@@ -48,18 +48,8 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Login Buttons */}
-        <div className="hidden lg:flex items-center space-x-6 ml-auto">
-          <Link
-            href="/empresa/login"
-            className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors duration-200 relative group"
-          >
-            <span className="relative">
-              Acceso Empresarial
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-slate-700 group-hover:w-full transition-all duration-300"></span>
-            </span>
-          </Link>
-          <div className="w-px h-4 bg-gray-300"></div>
+        {/* Desktop Login Button */}
+        <div className="hidden lg:flex items-center ml-auto">
           <Link
             href="/login"
             className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200 relative group"
@@ -136,15 +126,7 @@ export default function Navbar() {
                       </Link>
                     ))}
                   </div>
-                  <div className="py-6 space-y-4">
-                    <Link
-                      href="/empresa/login"
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors duration-200"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Acceso Empresarial
-                    </Link>
-                    <div className="w-full h-px bg-gray-200"></div>
+                  <div className="py-6">
                     <Link
                       href="/login"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-colors duration-200"

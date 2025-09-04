@@ -1,0 +1,495 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model HomeHero {
+  id         String          @id @default(cuid())
+  badge      String
+  title      String
+  subtitle   String
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  ctaButtons HomeCtaButtons?
+  stats      HomeStats?
+
+  @@map("home_hero")
+}
+
+model HomeStats {
+  id             String   @id @default(cuid())
+  experience     String
+  companies      String
+  certifications String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  heroId         String   @unique
+  hero           HomeHero @relation(fields: [heroId], references: [id], onDelete: Cascade)
+
+  @@map("home_stats")
+}
+
+model HomeCtaButtons {
+  id            String   @id @default(cuid())
+  primaryText   String
+  primaryLink   String
+  secondaryText String
+  secondaryLink String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  heroId        String   @unique
+  hero          HomeHero @relation(fields: [heroId], references: [id], onDelete: Cascade)
+
+  @@map("home_cta_buttons")
+}
+
+model HomeServices {
+  id          String            @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  items       HomeServiceItem[]
+
+  @@map("home_services")
+}
+
+model HomeServiceItem {
+  id          String       @id @default(cuid())
+  name        String
+  description String
+  icon        String
+  gradient    String
+  order       Int          @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  servicesId  String
+  services    HomeServices @relation(fields: [servicesId], references: [id], onDelete: Cascade)
+
+  @@map("home_service_items")
+}
+
+model HomeFeatures {
+  id          String            @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  items       HomeFeatureItem[]
+
+  @@map("home_features")
+}
+
+model HomeFeatureItem {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  icon        String
+  color       String
+  order       Int          @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  featuresId  String
+  features    HomeFeatures @relation(fields: [featuresId], references: [id], onDelete: Cascade)
+
+  @@map("home_feature_items")
+}
+
+model HomeTestimonials {
+  id          String                @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+  items       HomeTestimonialItem[]
+
+  @@map("home_testimonials")
+}
+
+model HomeTestimonialItem {
+  id             String           @id @default(cuid())
+  name           String
+  position       String
+  company        String
+  content        String
+  rating         Int              @default(5)
+  order          Int              @default(0)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  testimonialsId String
+  testimonials   HomeTestimonials @relation(fields: [testimonialsId], references: [id], onDelete: Cascade)
+
+  @@map("home_testimonial_items")
+}
+
+model CompanyHero {
+  id          String   @id @default(cuid())
+  title       String
+  subtitle    String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("company_hero")
+}
+
+model CompanyAbout {
+  id             String                 @id @default(cuid())
+  title          String
+  description    String
+  experience     String
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  certifications CompanyCertification[]
+  services       CompanyService[]
+
+  @@map("company_about")
+}
+
+model CompanyService {
+  id        String       @id @default(cuid())
+  name      String
+  order     Int          @default(0)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  aboutId   String
+  about     CompanyAbout @relation(fields: [aboutId], references: [id], onDelete: Cascade)
+
+  @@map("company_services")
+}
+
+model CompanyCertification {
+  id        String       @id @default(cuid())
+  name      String
+  order     Int          @default(0)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  aboutId   String
+  about     CompanyAbout @relation(fields: [aboutId], references: [id], onDelete: Cascade)
+
+  @@map("company_certifications")
+}
+
+model CompanyMission {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("company_mission")
+}
+
+model CompanyVision {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("company_vision")
+}
+
+model CompanyStrengths {
+  id          String                @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+  items       CompanyStrengthItem[]
+
+  @@map("company_strengths")
+}
+
+model CompanyStrengthItem {
+  id          String           @id @default(cuid())
+  title       String
+  description String
+  icon        String
+  gradient    String
+  order       Int              @default(0)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  strengthsId String
+  strengths   CompanyStrengths @relation(fields: [strengthsId], references: [id], onDelete: Cascade)
+
+  @@map("company_strength_items")
+}
+
+model CompanyValues {
+  id          String             @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  items       CompanyValueItem[]
+
+  @@map("company_values")
+}
+
+model CompanyValueItem {
+  id          String        @id @default(cuid())
+  title       String
+  description String
+  icon        String
+  gradient    String
+  order       Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  valuesId    String
+  values      CompanyValues @relation(fields: [valuesId], references: [id], onDelete: Cascade)
+
+  @@map("company_value_items")
+}
+
+model TeamHero {
+  id          String     @id @default(cuid())
+  title       String
+  subtitle    String
+  description String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  stats       TeamStats?
+
+  @@map("team_hero")
+}
+
+model TeamStats {
+  id          String   @id @default(cuid())
+  members     String
+  departments String
+  experience  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  heroId      String   @unique
+  hero        TeamHero @relation(fields: [heroId], references: [id], onDelete: Cascade)
+
+  @@map("team_stats")
+}
+
+model TeamLeadership {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  members     TeamMember[]
+
+  @@map("team_leadership")
+}
+
+model TeamDepartments {
+  id          String               @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+  items       TeamDepartmentItem[]
+
+  @@map("team_departments")
+}
+
+model TeamDepartmentItem {
+  id            String          @id @default(cuid())
+  name          String
+  description   String
+  members       Int
+  icon          String
+  gradient      String
+  order         Int             @default(0)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  departmentsId String
+  departments   TeamDepartments @relation(fields: [departmentsId], references: [id], onDelete: Cascade)
+
+  @@map("team_department_items")
+}
+
+model TeamFullTeam {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  members     TeamMember[]
+
+  @@map("team_full_team")
+}
+
+model TeamMember {
+  id           String          @id @default(cuid())
+  name         String
+  position     String
+  bio          String
+  phone        String
+  email        String
+  linkedin     String
+  image        String
+  gradient     String
+  order        Int             @default(0)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  leadershipId String?
+  fullTeamId   String?
+  fullTeam     TeamFullTeam?   @relation(fields: [fullTeamId], references: [id], onDelete: Cascade)
+  leadership   TeamLeadership? @relation(fields: [leadershipId], references: [id], onDelete: Cascade)
+
+  @@map("team_members")
+}
+
+model ContactHero {
+  id          String        @id @default(cuid())
+  title       String
+  subtitle    String
+  description String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  stats       ContactStats?
+
+  @@map("contact_hero")
+}
+
+model ContactStats {
+  id        String      @id @default(cuid())
+  phone     String
+  email     String
+  location  String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  heroId    String      @unique
+  hero      ContactHero @relation(fields: [heroId], references: [id], onDelete: Cascade)
+
+  @@map("contact_stats")
+}
+
+model ContactForm {
+  id          String             @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  fields      ContactFormField[]
+
+  @@map("contact_form")
+}
+
+model ContactFormField {
+  id          String      @id @default(cuid())
+  name        String
+  type        String
+  placeholder String
+  required    Boolean     @default(false)
+  order       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  formId      String
+  form        ContactForm @relation(fields: [formId], references: [id], onDelete: Cascade)
+
+  @@map("contact_form_fields")
+}
+
+model ContactInfo {
+  id          String            @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  items       ContactInfoItem[]
+
+  @@map("contact_info")
+}
+
+model ContactInfoItem {
+  id          String      @id @default(cuid())
+  title       String
+  description String
+  icon        String
+  gradient    String
+  order       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  infoId      String
+  info        ContactInfo @relation(fields: [infoId], references: [id], onDelete: Cascade)
+
+  @@map("contact_info_items")
+}
+
+model ContactFaq {
+  id          String           @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  items       ContactFaqItem[]
+
+  @@map("contact_faq")
+}
+
+model ContactFaqItem {
+  id        String     @id @default(cuid())
+  question  String
+  answer    String
+  order     Int        @default(0)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  faqId     String
+  faq       ContactFaq @relation(fields: [faqId], references: [id], onDelete: Cascade)
+
+  @@map("contact_faq_items")
+}
+
+model GlobalCompany {
+  id        String   @id @default(cuid())
+  name      String
+  slogan    String
+  logo      String
+  favicon   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("global_company")
+}
+
+model GlobalContact {
+  id        String        @id @default(cuid())
+  phone     String
+  email     String
+  address   String
+  whatsapp  String
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  social    GlobalSocial?
+
+  @@map("global_contact")
+}
+
+model GlobalSocial {
+  id        String        @id @default(cuid())
+  facebook  String
+  instagram String
+  linkedin  String
+  twitter   String
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  contactId String        @unique
+  contact   GlobalContact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@map("global_social")
+}
+
+model GlobalSeo {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  keywords    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("global_seo")
+}

@@ -27,7 +27,7 @@ import {
   AcademicCapIcon as AcademicCapIconSolid
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface CertificateData {
   nombre: string;
@@ -44,6 +44,7 @@ export default function Home() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchResult, setSearchResult] = useState<CertificateData | null>(null);
   const [error, setError] = useState('');
+  const [contactData, setContactData] = useState<any>(null);
 
   // Datos de ejemplo para simular la búsqueda
   const mockDatabase: Record<string, CertificateData> = {
@@ -88,6 +89,23 @@ export default function Home() {
       setIsSearching(false);
     }, 1500);
   };
+
+  // Cargar datos de contacto desde la API
+  useEffect(() => {
+    const loadContactData = async () => {
+      try {
+        const response = await fetch('/api/site-content/contact');
+        if (response.ok) {
+          const data = await response.json();
+          setContactData(data);
+        }
+      } catch (error) {
+        console.error('Error loading contact data:', error);
+      }
+    };
+
+    loadContactData();
+  }, []);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -174,16 +192,6 @@ export default function Home() {
               </Link>
             </div>
 
-                                  {/* Portal Empresarial Link */}
-                      <div className="mt-8 text-center">
-                        <Link
-                          href="/empresa/login"
-                          className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium rounded-lg hover:bg-white/20 transition-all duration-300"
-                        >
-                          <BuildingOfficeIcon className="h-5 w-5 mr-2" />
-                          Acceso Empresarial
-                        </Link>
-                      </div>
           </div>
         </div>
       </section>
@@ -672,35 +680,49 @@ export default function Home() {
               </p>
 
               <div className="space-y-6">
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                    <PhoneIcon className="h-6 w-6 text-blue-600" />
+                {contactData?.info?.items?.slice(0, 3).map((item: any) => (
+                  <div key={item.id} className="flex items-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                      <span className="text-2xl">{item.icon}</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-slate-900">{item.title}</p>
+                      <p className="text-slate-600">{item.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-semibold text-slate-900">Teléfono</p>
-                    <p className="text-slate-600">+57 300 123 4567</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
-                    <EnvelopeIcon className="h-6 w-6 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-900">Email</p>
-                    <p className="text-slate-600">contacto@iscor.com.co</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
-                    <MapPinIcon className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-900">Oficina Principal</p>
-                    <p className="text-slate-600">Bogotá, Colombia</p>
-                  </div>
-                </div>
+                )) || (
+                  <>
+                    <div className="flex items-center">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                        <PhoneIcon className="h-6 w-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-slate-900">Teléfono</p>
+                        <p className="text-slate-600">+57 300 123 4567</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                        <EnvelopeIcon className="h-6 w-6 text-green-600" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-slate-900">Email</p>
+                        <p className="text-slate-600">contacto@iscor.com.co</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+                        <MapPinIcon className="h-6 w-6 text-purple-600" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-slate-900">Oficina Principal</p>
+                        <p className="text-slate-600">Bogotá, Colombia</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 

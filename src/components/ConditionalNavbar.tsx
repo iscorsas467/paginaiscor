@@ -6,8 +6,8 @@ import Navbar from './Navbar';
 export default function ConditionalNavbar() {
   const pathname = usePathname();
   
-  // No mostrar el Navbar en la página de administración ni en el portal empresarial
-  if (pathname?.startsWith('/admin') || pathname?.startsWith('/empresa')) {
+  // No mostrar el Navbar en la página de administración
+  if (pathname?.startsWith('/admin')) {
     return null;
   }
   
