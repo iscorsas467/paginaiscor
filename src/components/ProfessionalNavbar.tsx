@@ -3,18 +3,18 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const navigation = [
-  { name: 'HOME', href: '/' },
-  { name: 'ABOUT', href: '/la-empresa' },
-  { name: 'SERVICES', href: '/portafolio' },
-  { name: 'CONTACT', href: '/contacto' },
-  { name: 'TEAM', href: '/nuestro-equipo' },
+  { name: 'Inicio', href: '/' },
+  { name: 'Servicios', href: '/portafolio' },
+  { name: 'Nosotros', href: '/la-empresa' },
+  { name: 'Equipo', href: '/nuestro-equipo' },
+  { name: 'Contacto', href: '/contacto' },
 ];
 
-export default function Navbar() {
+export default function ProfessionalNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -33,64 +33,72 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/10 backdrop-blur-md border-b border-white/20' 
+          ? 'bg-white/95 backdrop-blur-md border-b border-blue-200/20 shadow-lg' 
           : 'bg-transparent'
       }`}
     >
-      <nav className="mx-auto flex w-full items-center py-4 px-6 lg:px-8" aria-label="Global">
-        <div className="flex items-center">
-          <Link href="/" className="-m-1.5 p-1.5 group">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded"></div>
-              </div>
-              <span className="text-white font-bold text-xl tracking-wide">ISCOR</span>
+      <nav className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex items-center justify-between py-4">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="w-6 h-6 bg-white rounded-sm"></div>
             </div>
+            <span className={`text-2xl font-bold transition-colors duration-300 ${
+              scrolled ? 'text-slate-900' : 'text-white'
+            }`}>
+              ISCOR
+            </span>
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:gap-x-8 ml-12">
+          <div className="hidden lg:flex lg:space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-semibold leading-6 transition-all duration-300 relative group ${
+                className={`relative text-sm font-semibold transition-colors duration-300 ${
                   pathname === item.href
-                    ? 'text-white'
-                    : 'text-white/80 hover:text-white'
+                    ? scrolled ? 'text-blue-600' : 'text-white'
+                    : scrolled ? 'text-slate-700 hover:text-blue-600' : 'text-white/80 hover:text-white'
                 }`}
               >
-                <span className="relative">
-                  {item.name}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${
-                    pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`}></span>
-                </span>
+                {item.name}
+                {pathname === item.href && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
               </Link>
             ))}
           </div>
-        </div>
 
-        {/* Desktop CTA Button */}
-        <div className="hidden lg:flex items-center ml-auto">
-          <Link
-            href="/login"
-            className="px-6 py-2 bg-white text-slate-900 font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
-            SIGN UP
-          </Link>
-        </div>
+          {/* CTA Button */}
+          <div className="hidden lg:flex">
+            <Link
+              href="/contacto"
+              className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Contactar
+            </Link>
+          </div>
 
-        {/* Mobile menu button */}
-        <div className="flex lg:hidden ml-auto">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white hover:text-white/80 transition-colors duration-200"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Abrir menú principal</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
+          {/* Mobile menu button */}
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors duration-200 ${
+                scrolled ? 'text-slate-700 hover:text-slate-900' : 'text-white hover:text-white/80'
+              }`}
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Abrir menú principal</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -109,14 +117,14 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/95 backdrop-blur-md px-6 py-6 sm:max-w-sm border-l border-white/20"
+              className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm"
             >
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                    <div className="w-4 h-4 bg-white rounded"></div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                    <div className="w-4 h-4 bg-white rounded-sm"></div>
                   </div>
-                  <span className="text-slate-900 font-bold text-lg">ISCOR</span>
+                  <span className="text-xl font-bold text-slate-900">ISCOR</span>
                 </div>
                 <button
                   type="button"
@@ -146,11 +154,11 @@ export default function Navbar() {
                 </div>
                 <div className="mt-8 pt-6 border-t border-slate-200">
                   <Link
-                    href="/login"
-                    className="block w-full px-4 py-3 text-center text-base font-semibold leading-7 text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-200"
+                    href="/contacto"
+                    className="block w-full px-4 py-3 text-center text-base font-semibold leading-7 text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    SIGN UP
+                    Contactar
                   </Link>
                 </div>
               </div>

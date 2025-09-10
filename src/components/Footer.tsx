@@ -79,8 +79,8 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900">
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
+    <footer className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden">
+      <div className="relative mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
           {navigation.main.map((item) => (
             <div key={item.name} className="pb-6">
