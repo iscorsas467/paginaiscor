@@ -1,6 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { 
   BuildingOfficeIcon,
   CogIcon,
@@ -205,7 +208,62 @@ const courses = [
   }
 ];
 
+// Función para obtener la imagen correspondiente al curso
+const getCourseImage = (courseName: string) => {
+  const imageMap: { [key: string]: string } = {
+    'Trabajo en Alturas': '/alturas.png',
+    'Espacios Confinados': '/Espacios_confinados.png',
+    'Control y Extinción de Incendios': '/fuego.png',
+    'Primeros Auxilios Básicos y Avanzados': '/primeros_auxilios.png',
+    'Materiales y Mercancías Peligrosas': '/materiales_peligrosos.png',
+    'Operación Segura de Montacargas': '/montacargas .png',
+    'LOTO - Bloqueo y Etiquetado': '/Lockout_tagout.png',
+    'Brigadas de Emergencia': '/brigada_de_emergencia.png',
+    'Buceo Scuba Diver': '/buceo.png',
+    'Sistema de Gestión ISO 9001': '/control_de_calidad.png'
+  };
+  return imageMap[courseName] || null;
+};
+
+// Función para convertir nombres de cursos a slugs válidos
+const getCourseSlug = (courseName: string) => {
+  const slugMap: { [key: string]: string } = {
+    'Trabajo en Alturas': 'trabajo-en-alturas',
+    'Espacios Confinados': 'espacios-confinados',
+    'Control y Extinción de Incendios': 'control-extincion-incendios',
+    'Primeros Auxilios Básicos y Avanzados': 'primeros-auxilios-basicos-avanzados',
+    'Materiales y Mercancías Peligrosas': 'materiales-mercancias-peligrosas',
+    'Operación Segura de Montacargas': 'operacion-segura-montacargas',
+    'LOTO - Bloqueo y Etiquetado': 'loto-bloqueo-etiquetado',
+    'Brigadas de Emergencia': 'brigadas-emergencia',
+    'Seguridad en Trabajos en Caliente': 'control-extincion-incendios',
+    'Sistema de Gestión ISO 9001': 'sistema-gestion-iso-9001',
+    'Seguridad en el Izaje de Cargas': 'trabajo-en-alturas',
+    'Buceo Scuba Diver': 'buceo-scuba-diver',
+    'Rescate y Salvamento Acuático': 'primeros-auxilios-basicos-avanzados',
+    'Sistema de Gestión ISO 14001': 'sistema-gestion-iso-9001',
+    'Seguridad Alimentaria ISO 22000': 'sistema-gestion-iso-9001',
+    'Supervivencia Básico y Avanzado': 'brigadas-emergencia'
+  };
+  return slugMap[courseName] || null;
+};
+
 export default function ElegantCourses() {
+  const router = useRouter();
+  console.log('ElegantCourses se está ejecutando');
+  
+  const handleCourseClick = (courseName: string) => {
+    console.log('Botón clickeado para:', courseName);
+    const slug = getCourseSlug(courseName);
+    console.log('Slug encontrado:', slug);
+    if (slug) {
+      console.log('Navegando a:', `/servicios/${slug}`);
+      router.push(`/servicios/${slug}`);
+    } else {
+      alert('Información detallada de ' + courseName + ' próximamente disponible');
+    }
+  };
+
   return (
     <section className="py-24 bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -274,60 +332,74 @@ export default function ElegantCourses() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
           {courses.map((course, index) => (
-            <motion.div 
+            <div 
               key={course.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
-              whileHover={{ y: -5 }}
-              className="group bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:border-blue-200 transition-all duration-300"
+              className="group bg-white rounded-2xl border-4 border-blue-900 p-6 hover:shadow-2xl hover:border-yellow-500 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden flex flex-col h-full"
             >
-              {/* Category Badge */}
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium mb-4">
-                {course.category}
-              </div>
-
+              
               {/* Icon */}
-              <div className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r ${course.gradient} rounded-xl mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                <course.icon className="h-7 w-7 text-white" />
-              </div>
+              {getCourseImage(course.name) ? (
+                <div className="flex items-center justify-center w-24 h-24 mb-3 group-hover:scale-110 transition-transform duration-300 mx-auto">
+                  <Image
+                    src={getCourseImage(course.name)!}
+                    alt={course.name}
+                    width={96}
+                    height={96}
+                    className="object-contain rounded-xl"
+                  />
+                </div>
+              ) : (
+                <div className={`flex items-center justify-center w-24 h-24 bg-gradient-to-r ${course.gradient} rounded-xl mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg mx-auto`}>
+                  <course.icon className="h-12 w-12 text-white" />
+                </div>
+              )}
               
               {/* Title */}
-              <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+              <h3 className="text-lg font-bold text-blue-900 mb-2 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
                 {course.name}
               </h3>
               
               {/* Description */}
-              <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">
+              <p className="text-blue-900 text-sm leading-relaxed mb-4 line-clamp-3">
                 {course.description}
               </p>
 
               {/* Details */}
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center justify-between text-xs text-slate-500">
+              <div className="space-y-2 mb-4 flex-grow">
+                <div className="flex items-center justify-between text-xs text-blue-900">
                   <span className="flex items-center">
-                    <ClockIcon className="h-4 w-4 mr-1" />
+                    <ClockIcon className="h-4 w-4 mr-1 text-blue-900" />
                     {course.duration}
                   </span>
                   <span className="flex items-center">
-                    <AcademicCapIcon className="h-4 w-4 mr-1" />
+                    <AcademicCapIcon className="h-4 w-4 mr-1 text-blue-900" />
                     {course.certification}
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-xs text-slate-500">
-                  <span className="font-medium">{course.students.toLocaleString()}+ estudiantes</span>
-                  <span className="flex items-center font-medium">
+                <div className="flex items-center justify-between text-xs text-blue-900">
+                  <span className="font-medium">{course.students.toLocaleString('en-US')}+ estudiantes</span>
+                  <span className="flex items-center font-medium text-blue-900">
                     ⭐ {course.rating}
                   </span>
                 </div>
               </div>
 
-              {/* CTA */}
-              <button className="w-full flex items-center justify-center px-4 py-3 text-sm font-semibold text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl transition-all duration-200 group-hover:shadow-md">
-                Más información
-                <ArrowRightIcon className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+              {/* Botón Ver Más Información */}
+              <button 
+                onClick={() => {
+                  const slug = getCourseSlug(course.name);
+                  if (slug) {
+                    router.push(`/cursos/${slug}`);
+                  } else {
+                    alert('Información detallada de ' + course.name + ' próximamente disponible');
+                  }
+                }}
+                className="w-3/4 py-2 px-3 bg-blue-600 hover:bg-white hover:text-blue-600 text-white text-sm font-semibold rounded-md cursor-pointer mt-auto transition-all duration-200 border-2 border-blue-600 hover:border-blue-600 mx-auto block"
+              >
+                Ver más información
               </button>
-            </motion.div>
+
+            </div>
           ))}
         </motion.div>
 
@@ -360,3 +432,4 @@ export default function ElegantCourses() {
     </section>
   );
 }
+

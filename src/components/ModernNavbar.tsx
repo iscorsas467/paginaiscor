@@ -36,7 +36,7 @@ const navigation = [
 export default function ModernNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const [hoveredSubmenu, setHoveredSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -47,8 +47,12 @@ export default function ModernNavbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSubmenuToggle = (itemName: string) => {
-    setActiveSubmenu(activeSubmenu === itemName ? null : itemName);
+  const handleSubmenuHover = (itemName: string) => {
+    setHoveredSubmenu(itemName);
+  };
+
+  const handleSubmenuLeave = () => {
+    setHoveredSubmenu(null);
   };
 
   return (
@@ -99,21 +103,26 @@ export default function ModernNavbar() {
             {navigation.map((item) => (
               <div key={item.name} className="relative">
                 {item.submenu ? (
-                  <div className="relative">
+                  <div 
+                    className="relative"
+                    onMouseEnter={() => handleSubmenuHover(item.name)}
+                    onMouseLeave={handleSubmenuLeave}
+                  >
                     <button
-                      onClick={() => handleSubmenuToggle(item.name)}
-                      className={`flex items-center px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg ${
+                      className={`flex items-center px-4 py-2 text-base font-medium transition-all duration-200 rounded-lg ${
                         pathname === item.href
                           ? 'text-blue-600 bg-blue-50'
                           : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
                       }`}
                     >
                       {item.name}
-                      <ChevronDownIcon className="ml-1 h-3 w-3" />
+                      <ChevronDownIcon className={`ml-1 h-4 w-4 transition-transform duration-200 ${
+                        hoveredSubmenu === item.name ? 'rotate-180' : 'rotate-0'
+                      }`} />
                     </button>
                     
                     <AnimatePresence>
-                      {activeSubmenu === item.name && (
+                      {hoveredSubmenu === item.name && (
                         <motion.div
                           initial={{ opacity: 0, y: 8, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -137,7 +146,7 @@ export default function ModernNavbar() {
                 ) : (
                   <Link
                     href={item.href}
-                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg ${
+                    className={`relative px-4 py-2 text-base font-medium transition-all duration-200 rounded-lg ${
                       pathname === item.href
                         ? 'text-blue-600 bg-blue-50'
                         : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
@@ -162,14 +171,14 @@ export default function ModernNavbar() {
           <div className="hidden lg:flex lg:items-center lg:space-x-3">
             <Link
               href="/certificados"
-              className="flex items-center px-3 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200"
+              className="flex items-center px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200"
             >
               <ShieldCheckIcon className="h-4 w-4 mr-2" />
               Certificados
             </Link>
             <Link
               href="/contacto"
-              className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow-md"
+              className="px-4 py-2 bg-blue-600 text-white text-base font-medium rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow-md"
             >
               Contactar
             </Link>

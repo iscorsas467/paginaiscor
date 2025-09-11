@@ -1,24 +1,25 @@
 'use client';
 
+import Link from 'next/link';
 import { 
-  BuildingOfficeIcon, 
-  FlagIcon, 
-  EyeIcon, 
+  BuildingOffice2Icon,
+  CogIcon,
   ShieldCheckIcon,
+  TrophyIcon,
+  FlagIcon,
+  EyeIcon,
+  ChartBarIcon,
   UserGroupIcon,
-  CheckBadgeIcon,
-  PhoneIcon,
-  CalendarIcon,
   StarIcon,
   HeartIcon,
   LightBulbIcon,
-  ArrowRightIcon,
-  TrophyIcon,
-  GlobeAltIcon,
   ClockIcon,
-  UsersIcon
+  BuildingOfficeIcon,
+  DocumentCheckIcon,
+  AcademicCapIcon,
+  PhoneIcon,
+  CalendarIcon
 } from '@heroicons/react/24/outline';
-import Link from 'next/link';
 
 export default function LaEmpresa() {
   return (
@@ -46,39 +47,33 @@ export default function LaEmpresa() {
         
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32">
           <div className="mx-auto max-w-4xl text-center">
-            {/* Badge - Estilo Cisco */}
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-8">
-              <BuildingOfficeIcon className="h-5 w-5 mr-3" />
-              Nuestra Empresa
-            </div>
             
             {/* Main Heading - Estilo IBM */}
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-8">
-              <span className="text-white">¿Quiénes</span>
-              <br />
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-0">
+              <span className="text-white">¿Quiénes </span>
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Somos?</span>
             </h1>
 
             {/* Logo */}
-            <div className="mt-8 flex justify-center mb-8">
+            <div className="flex justify-center mb-4 -mt-40">
               <img
-                src="/iscor_texto_colores.svg"
+                src="/iscor-logo-completo.png"
                 alt="ISCOR S.A.S"
-                className="h-16 sm:h-20 lg:h-24 w-auto"
+                className="h-96 sm:h-128 lg:h-160 w-auto"
               />
             </div>
             
             {/* Subtitle - Estilo Siemens */}
-            <p className="text-xl md:text-2xl text-blue-300 font-semibold italic">
+            <p className="text-xl md:text-2xl text-blue-300 font-semibold italic -mt-56">
               "Ingeniería de Seguridad y Control de Riesgos S.A.S"
             </p>
           </div>
         </div>
       </section>
 
-      {/* About Section - Estilo GE Profesional */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
-        {/* Background Pattern - Estilo IBM */}
+      {/* About Section - Estilo Moderno y Dinámico */}
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/svg%3E")`,
@@ -87,43 +82,63 @@ export default function LaEmpresa() {
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl">
-            <div className="relative bg-white rounded-3xl shadow-2xl border border-slate-200 p-8 lg:p-12">
-              {/* Background gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white to-blue-100/30 rounded-3xl"></div>
-              
-              <div className="relative z-10 space-y-8">
-                {/* Descripción General */}
-                <div className="border-l-4 border-blue-600 pl-6">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Descripción General</h3>
-                  <p className="text-xl text-slate-700 leading-relaxed">
-                    ISCOR S.A.S "Ingeniería de Seguridad y Control de Riesgos S.A.S" es una empresa creada para atender y ayudar a diferentes compañías en Seguridad Industrial y atención de emergencias y para contribuir con la divulgación de una cultura de seguridad, autocuidado y desarrollo del hombre en su entorno de trabajo.
-                  </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            {/* Columna Izquierda */}
+            <div className="space-y-8">
+              {/* Descripción General */}
+              <div className="group bg-white rounded-2xl shadow-xl border border-slate-200 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className="flex items-center mb-6">
+                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl shadow-lg mr-6 group-hover:scale-110 transition-transform duration-300">
+                    <BuildingOffice2Icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">Descripción General</h3>
                 </div>
-                
-                {/* Servicios Principales */}
-                <div className="border-l-4 border-blue-600 pl-6">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Servicios Principales</h3>
-                  <p className="text-xl text-slate-700 leading-relaxed">
-                    Diseñamos, Implementamos y auditamos sus Sistemas de Gestión para la Seguridad y Salud de los Trabajadores SGSST y proveemos todos los complementos exigidos por la ley.
-                  </p>
+                <p className="text-lg text-slate-700 leading-relaxed">
+                  ISCOR S.A.S "Ingeniería de Seguridad y Control de Riesgos S.A.S" es una empresa creada para atender y ayudar a diferentes compañías en Seguridad Industrial y atención de emergencias y para contribuir con la divulgación de una cultura de seguridad, autocuidado y desarrollo del hombre en su entorno de trabajo.
+                </p>
+              </div>
+
+              {/* Servicios Principales */}
+              <div className="group bg-white rounded-2xl shadow-xl border border-slate-200 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className="flex items-center mb-6">
+                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl shadow-lg mr-6 group-hover:scale-110 transition-transform duration-300">
+                    <CogIcon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 group-hover:text-green-600 transition-colors duration-300">Servicios Principales</h3>
                 </div>
-                
-                {/* Certificaciones */}
-                <div className="border-l-4 border-blue-600 pl-6">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Certificaciones y Membresías</h3>
-                  <p className="text-xl text-slate-700 leading-relaxed">
-                    ISCOR es miembro del CCS – Consejo Colombiano de Seguridad y NFPA – National Fire Protection Association, organización internacional líder en todo lo referente con la protección y la seguridad.
-                  </p>
+                <p className="text-lg text-slate-700 leading-relaxed">
+                  Diseñamos, Implementamos y auditamos sus Sistemas de Gestión para la Seguridad y Salud de los Trabajadores SGSST y proveemos todos los complementos exigidos por la ley.
+                </p>
+              </div>
+            </div>
+
+            {/* Columna Derecha */}
+            <div className="space-y-8">
+              {/* Certificaciones */}
+              <div className="group bg-white rounded-2xl shadow-xl border border-slate-200 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className="flex items-center mb-6">
+                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-600 to-violet-600 rounded-2xl shadow-lg mr-6 group-hover:scale-110 transition-transform duration-300">
+                    <ShieldCheckIcon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 group-hover:text-purple-600 transition-colors duration-300">Certificaciones y Membresías</h3>
                 </div>
-                
-                {/* Experiencia */}
-                <div className="border-l-4 border-blue-600 pl-6">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Experiencia y Posicionamiento</h3>
-                  <p className="text-xl text-slate-700 leading-relaxed">
-                    Nuestra experiencia de más de 18 años en control de tareas de alto riesgo, nos ha posicionado con las mejores empresas de nuestro país.
-                  </p>
+                <p className="text-lg text-slate-700 leading-relaxed">
+                  ISCOR es miembro del CCS – Consejo Colombiano de Seguridad y NFPA – National Fire Protection Association, organización internacional líder en todo lo referente con la protección y la seguridad.
+                </p>
+              </div>
+
+              {/* Experiencia */}
+              <div className="group bg-white rounded-2xl shadow-xl border border-slate-200 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className="flex items-center mb-6">
+                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl shadow-lg mr-6 group-hover:scale-110 transition-transform duration-300">
+                    <TrophyIcon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors duration-300">Experiencia y Posicionamiento</h3>
                 </div>
+                <p className="text-lg text-slate-700 leading-relaxed">
+                  Nuestra experiencia de más de 18 años en control de tareas de alto riesgo, nos ha posicionado con las mejores empresas de nuestro país.
+                </p>
               </div>
             </div>
           </div>
@@ -135,7 +150,6 @@ export default function LaEmpresa() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-20">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8">
-              <FlagIcon className="h-5 w-5 mr-3" />
               Nuestro Propósito
             </div>
             
@@ -195,7 +209,6 @@ export default function LaEmpresa() {
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-20">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-8">
-              <ShieldCheckIcon className="h-5 w-5 mr-3" />
               Nuestras Fortalezas
             </div>
             
@@ -213,20 +226,20 @@ export default function LaEmpresa() {
               {
                 name: 'Sistemas de Gestión',
                 description: 'Diseñamos, Implementamos y auditamos sus Sistemas de Gestión para la Seguridad y Salud de los Trabajadores SGSST.',
-                icon: ShieldCheckIcon,
-                gradient: 'from-blue-600 to-cyan-600'
+                gradient: 'from-blue-600 to-cyan-600',
+                icon: ChartBarIcon
               },
               {
                 name: 'Miembro del CCS',
                 description: 'Miembro del CCS – Consejo Colombiano de Seguridad y NFPA – National Fire Protection Association.',
-                icon: UserGroupIcon,
-                gradient: 'from-green-600 to-emerald-600'
+                gradient: 'from-green-600 to-emerald-600',
+                icon: UserGroupIcon
               },
               {
                 name: '18+ Años de Experiencia',
                 description: 'Más de 18 años en control de tareas de alto riesgo, posicionándonos con las mejores empresas del país.',
-                icon: CheckBadgeIcon,
-                gradient: 'from-purple-600 to-violet-600'
+                gradient: 'from-purple-600 to-violet-600',
+                icon: TrophyIcon
               },
             ].map((feature, index) => (
               <div 
@@ -255,7 +268,6 @@ export default function LaEmpresa() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-20">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-8">
-              <StarIcon className="h-5 w-5 mr-3" />
               Nuestros Valores
             </div>
             
@@ -273,20 +285,20 @@ export default function LaEmpresa() {
               {
                 name: 'Excelencia',
                 description: 'Nos esforzamos por la perfección en cada proyecto y en cada interacción con nuestros clientes.',
-                icon: StarIcon,
-                gradient: 'from-yellow-600 to-orange-600'
+                gradient: 'from-yellow-600 to-orange-600',
+                icon: StarIcon
               },
               {
                 name: 'Compromiso',
                 description: 'Nos dedicamos completamente a cada proyecto hasta alcanzar los objetivos establecidos.',
-                icon: HeartIcon,
-                gradient: 'from-red-600 to-pink-600'
+                gradient: 'from-red-600 to-pink-600',
+                icon: HeartIcon
               },
               {
                 name: 'Innovación',
                 description: 'Buscamos constantemente nuevas formas de resolver desafíos y mejorar nuestros servicios.',
-                icon: LightBulbIcon,
-                gradient: 'from-blue-600 to-cyan-600'
+                gradient: 'from-blue-600 to-cyan-600',
+                icon: LightBulbIcon
               },
             ].map((value, index) => (
               <div
@@ -317,8 +329,8 @@ export default function LaEmpresa() {
             {[
               { number: '18+', label: 'Años de Experiencia', icon: ClockIcon },
               { number: '500+', label: 'Empresas Atendidas', icon: BuildingOfficeIcon },
-              { number: '10,000+', label: 'Certificaciones Emitidas', icon: TrophyIcon },
-              { number: '50+', label: 'Instructores Certificados', icon: UsersIcon }
+              { number: '10,000+', label: 'Certificaciones Emitidas', icon: DocumentCheckIcon },
+              { number: '50+', label: 'Instructores Certificados', icon: AcademicCapIcon }
             ].map((stat, index) => (
               <div key={stat.label} className="text-center">
                 <div className="flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 mx-auto mb-4">
@@ -337,7 +349,6 @@ export default function LaEmpresa() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8">
-              <PhoneIcon className="h-5 w-5 mr-3" />
               Contáctanos
             </div>
             
@@ -383,7 +394,6 @@ export default function LaEmpresa() {
             >
               <span className="flex items-center text-lg">
                 Contactar Ahora
-                <ArrowRightIcon className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform duration-200" />
               </span>
             </Link>
           </div>
