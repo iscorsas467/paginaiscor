@@ -25,27 +25,44 @@ export default function Contacto() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [contactData, setContactData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  // Cargar datos de contacto desde la API
-  useEffect(() => {
-    const loadContactData = async () => {
-      try {
-        const response = await fetch('/api/site-content/contact');
-        if (response.ok) {
-          const data = await response.json();
-          setContactData(data);
-        }
-      } catch (error) {
-        console.error('Error loading contact data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadContactData();
-  }, []);
+  // Datos de contacto estáticos (antes estaban en ContactSection)
+  const contactInfo = [
+    {
+      id: 1,
+      title: 'Línea Nacional',
+      description: '314 807 08 53',
+      icon: '📞',
+      gradient: 'from-blue-500 to-blue-600'
+    },
+    {
+      id: 2,
+      title: 'Bogotá',
+      description: 'Cl. 95 #20-28 Torre 1 Of. 702',
+      icon: '📍',
+      gradient: 'from-green-500 to-green-600'
+    },
+    {
+      id: 3,
+      title: 'Cali',
+      description: 'Cl. 58 norte #5 BN 75 Torre 7 Of. 503',
+      icon: '📍',
+      gradient: 'from-purple-500 to-purple-600'
+    },
+    {
+      id: 4,
+      title: 'Correo Electrónico',
+      description: 'iscr@iscrcolombia.com.co',
+      icon: '✉️',
+      gradient: 'from-orange-500 to-orange-600'
+    },
+    {
+      id: 5,
+      title: 'Sitio Web',
+      description: 'www.iscrcolombia.com.co',
+      icon: '🌐',
+      gradient: 'from-cyan-500 to-cyan-600'
+    }
+  ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -74,8 +91,12 @@ export default function Contacto() {
     }, 3000);
   };
 
-  // Datos de contacto dinámicos desde Supabase
-  const contactInfo = contactData?.info?.items || [];
+  // Horarios de atención
+  const businessHours = [
+    { day: 'Lunes a Viernes', hours: '8:00 AM - 6:00 PM' },
+    { day: 'Sábados', hours: '8:00 AM - 12:00 PM' },
+    { day: 'Emergencias', hours: '24/7' }
+  ];
 
   const services = [
     'Montacargas',
@@ -145,11 +166,11 @@ export default function Contacto() {
                 <div className="text-sm text-gray-300 font-medium">Respuesta Garantizada</div>
               </div>
               <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                <div className="text-4xl font-bold text-blue-400 mb-2">100%</div>
-                <div className="text-sm text-gray-300 font-medium">Cumplimiento Normativo</div>
+                <div className="text-4xl font-bold text-blue-400 mb-2">29</div>
+                <div className="text-sm text-gray-300 font-medium">Cursos Especializados</div>
               </div>
               <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                <div className="text-4xl font-bold text-blue-400 mb-2">18+</div>
+                <div className="text-4xl font-bold text-blue-400 mb-2">20+</div>
                 <div className="text-sm text-gray-300 font-medium">Años de Experiencia</div>
               </div>
             </div>
@@ -313,29 +334,40 @@ export default function Contacto() {
                 </div>
 
                 <div className="space-y-6">
-                  {loading ? (
-                    <div className="text-center py-8">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-                      <p className="text-slate-600 mt-2">Cargando información de contacto...</p>
-                    </div>
-                  ) : (
-                    contactInfo.map((item: any) => (
-                      <div 
-                        key={item.id} 
-                        className="group flex items-start p-6 rounded-2xl bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-slate-100"
-                      >
-                        <div className="flex-shrink-0">
-                          <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-r ${item.gradient} rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                            <span className="text-2xl">{item.icon}</span>
-                          </div>
-                        </div>
-                        <div className="ml-4">
-                          <h3 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h3>
-                          <p className="text-sm text-slate-600 font-medium">{item.description}</p>
+                  {contactInfo.map((item) => (
+                    <div 
+                      key={item.id} 
+                      className="group flex items-start p-6 rounded-2xl bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-slate-100"
+                    >
+                      <div className="flex-shrink-0">
+                        <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-r ${item.gradient} rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                          <span className="text-2xl">{item.icon}</span>
                         </div>
                       </div>
-                    ))
-                  )}
+                      <div className="ml-4">
+                        <h3 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h3>
+                        <p className="text-sm text-slate-600 font-medium">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Horarios de Atención */}
+                <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-slate-200">
+                  <div className="flex items-center mb-4">
+                    <ClockIcon className="h-6 w-6 text-blue-600 mr-3" />
+                    <h4 className="text-lg font-semibold text-slate-900">
+                      Horarios de Atención
+                    </h4>
+                  </div>
+                  <div className="space-y-2">
+                    {businessHours.map((schedule, index) => (
+                      <div key={index} className="flex justify-between items-center">
+                        <span className="font-medium text-slate-700">{schedule.day}:</span>
+                        <span className="text-slate-600">{schedule.hours}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Map Placeholder */}
@@ -479,7 +511,7 @@ export default function Contacto() {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
               <a
-                href="tel:+573001234567"
+                href="tel:+573148070853"
                 className="group px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-xl hover:shadow-2xl"
               >
                 <span className="flex items-center text-lg">
@@ -489,7 +521,7 @@ export default function Contacto() {
               </a>
               
               <a
-                href="mailto:info@iscor.com.co"
+                href="mailto:iscr@iscrcolombia.com.co"
                 className="px-10 py-5 border-2 border-white/30 text-white font-semibold rounded-xl hover:border-white/50 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm text-lg"
               >
                 Enviar Email

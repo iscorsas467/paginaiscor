@@ -30,7 +30,6 @@ import LoginModal from '@/components/LoginModal';
 import MinimalHero from '@/components/MinimalHero';
 import AboutSection from '@/components/AboutSection';
 import ServicesSection from '@/components/ServicesSection';
-import ContactSection from '@/components/ContactSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 
 export default function Home() {
@@ -65,9 +64,6 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <TestimonialsSection />
-
-      {/* Contact Section */}
-      <ContactSection />
 
       {/* Login Modal */}
       <LoginModal
