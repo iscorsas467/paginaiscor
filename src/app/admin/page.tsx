@@ -50,21 +50,40 @@ export default function AdminPage() {
   const handleLogout = async () => {
     try {
       // Llamar al endpoint de logout para limpiar la sesión del servidor
-      await fetch('/api/auth/logout', {
+      const response = await fetch('/api/auth/logout', {
         method: 'POST',
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
       
-      // Limpiar cookies del cliente
-      document.cookie = 'admin-auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      document.cookie = 'session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      if (!response.ok) {
+        throw new Error('Error en el servidor');
+      }
       
-      // Redirigir a la página principal
-      router.push('/');
+      // Limpiar todas las cookies del cliente de forma más agresiva
+      const cookies = ['admin-auth', 'session', 'auth-token'];
+      cookies.forEach(cookieName => {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
+      });
+      
+      // Limpiar localStorage y sessionStorage
+      localStorage.clear();
+      sessionStorage.clear();
+      
+      // Forzar recarga de la página para limpiar cualquier estado
+      window.location.href = '/';
+      
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
+      // Limpiar cookies de todas formas
+      document.cookie = 'admin-auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      document.cookie = 'session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
       // Redirigir de todas formas
-      router.push('/');
+      window.location.href = '/';
     }
   };
 

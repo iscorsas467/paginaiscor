@@ -7,12 +7,21 @@ export async function POST() {
       message: 'Sesión cerrada exitosamente'
     })
 
-    // Eliminar cookie
-    response.cookies.set('auth-token', '', {
+    // Eliminar cookies de autenticación
+    response.cookies.set('admin-auth', '', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
-      maxAge: 0
+      maxAge: 0,
+      path: '/'
+    })
+    
+    response.cookies.set('session', '', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 0,
+      path: '/'
     })
 
     return response
