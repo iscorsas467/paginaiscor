@@ -33,8 +33,301 @@ export async function GET(
       }, { status: 404 });
     }
 
-    // Datos completos del curso (incluyendo información detallada)
+    // Datos completos del curso (incluyendo información detallada específica)
     const courseSlug = course.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    
+    // Función para obtener información específica de cada curso
+    const getCourseDetails = (courseName: string) => {
+      const courseDetails: { [key: string]: any } = {
+        'Trabajo en Alturas': {
+          detailedDescription: 'Nuestro curso de Trabajo en Alturas está diseñado para proporcionar a los participantes los conocimientos teóricos y prácticos necesarios para realizar trabajos seguros en altura. El programa incluye formación en equipos de protección personal, sistemas de anclaje, evaluación de riesgos y procedimientos de rescate.',
+          duration: '40 horas',
+          certification: 'Válido 2 años',
+          objectives: [
+            'Comprender las normativas de seguridad para trabajos en altura',
+            'Desarrollar habilidades prácticas para trabajos seguros',
+            'Aprender a usar equipos de protección personal',
+            'Conocer sistemas de anclaje y líneas de vida',
+            'Obtener certificación oficial reconocida'
+          ],
+          benefits: [
+            'Reducción significativa de accidentes por caídas',
+            'Cumplimiento de normativas de seguridad industrial',
+            'Mejora en la eficiencia y seguridad del trabajo',
+            'Certificación reconocida a nivel nacional',
+            'Actualización continua en técnicas de seguridad'
+          ],
+          requirements: [
+            'Mayor de 18 años',
+            'Documento de identidad vigente',
+            'Certificado médico ocupacional',
+            'Buen estado de salud física',
+            'Sin vértigo o acrofobia'
+          ],
+          modules: [
+            'Fundamentos de Trabajos en Altura',
+            'Equipos de Protección Personal',
+            'Sistemas de Anclaje y Líneas de Vida',
+            'Evaluación de Riesgos',
+            'Procedimientos de Trabajo Seguro',
+            'Rescate en Altura',
+            'Prácticas Supervisadas'
+          ],
+          instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Industrial',
+          price: 'Consultar',
+          location: 'Centro de Entrenamiento ISCOR',
+          schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+          category: 'Seguridad Industrial'
+        },
+        'Espacios Confinados': {
+          detailedDescription: 'El curso de Espacios Confinados proporciona formación especializada en la identificación, evaluación y control de riesgos en espacios confinados. Incluye protocolos de entrada, trabajo seguro y procedimientos de rescate especializado.',
+          duration: '40 horas',
+          certification: 'Válido 2 años',
+          objectives: [
+            'Identificar espacios confinados y sus riesgos',
+            'Aplicar protocolos de entrada segura',
+            'Manejar equipos de monitoreo atmosférico',
+            'Ejecutar procedimientos de rescate',
+            'Implementar sistemas de comunicación'
+          ],
+          benefits: [
+            'Prevención de accidentes en espacios confinados',
+            'Cumplimiento de normativas OSHA y ANSI',
+            'Certificación reconocida internacionalmente',
+            'Mejora en la seguridad operacional',
+            'Reducción de costos por accidentes'
+          ],
+          requirements: [
+            'Mayor de 18 años',
+            'Certificado médico ocupacional',
+            'Sin claustrofobia',
+            'Buen estado de salud física',
+            'Experiencia en trabajos industriales'
+          ],
+          modules: [
+            'Definición y Clasificación de Espacios Confinados',
+            'Identificación de Riesgos Atmosféricos',
+            'Equipos de Monitoreo y Detección',
+            'Protocolos de Entrada Segura',
+            'Sistemas de Comunicación',
+            'Procedimientos de Rescate',
+            'Prácticas en Simulador'
+          ],
+          instructor: 'Ing. María González - Especialista en Espacios Confinados',
+          price: 'Consultar',
+          location: 'Centro de Entrenamiento ISCOR',
+          schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+          category: 'Seguridad Industrial'
+        },
+        'Control y Extinción de Incendios': {
+          detailedDescription: 'Curso especializado en control y extinción de incendios con procedimientos operativos normalizados NFPA. Incluye formación en brigadas de emergencia, manejo de equipos y técnicas de extinción.',
+          duration: '32 horas',
+          certification: 'Válido 3 años',
+          objectives: [
+            'Comprender la teoría del fuego y sus clases',
+            'Manejar equipos de extinción de incendios',
+            'Formar brigadas de emergencia efectivas',
+            'Aplicar procedimientos NFPA',
+            'Ejecutar simulacros de emergencia'
+          ],
+          benefits: [
+            'Prevención y control de incendios',
+            'Formación de brigadas especializadas',
+            'Cumplimiento de normativas NFPA',
+            'Reducción de pérdidas materiales',
+            'Protección de vidas humanas'
+          ],
+          requirements: [
+            'Mayor de 18 años',
+            'Certificado médico ocupacional',
+            'Buen estado de salud física',
+            'Sin problemas respiratorios',
+            'Disponibilidad para prácticas nocturnas'
+          ],
+          modules: [
+            'Teoría del Fuego y Clasificación',
+            'Equipos de Extinción y Mantenimiento',
+            'Procedimientos Operativos NFPA',
+            'Formación de Brigadas de Emergencia',
+            'Simulacros y Prácticas',
+            'Manejo de Emergencias',
+            'Evaluación y Certificación'
+          ],
+          instructor: 'Cpt. Roberto Silva - Bombero Profesional Certificado',
+          price: 'Consultar',
+          location: 'Centro de Entrenamiento ISCOR',
+          schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+          category: 'Emergencias'
+        },
+        'Primeros Auxilios Básicos y Avanzados': {
+          detailedDescription: 'Capacitación integral en primeros auxilios básicos y avanzados con administración de oxígeno para emergencias. Incluye técnicas de reanimación, manejo de traumas y atención prehospitalaria.',
+          duration: '16 horas',
+          certification: 'Válido 1 año',
+          objectives: [
+            'Aplicar técnicas de primeros auxilios básicos',
+            'Manejar situaciones de emergencia médica',
+            'Administrar oxígeno de emergencia',
+            'Realizar RCP y uso de DEA',
+            'Atender traumas y lesiones'
+          ],
+          benefits: [
+            'Salvamento de vidas en emergencias',
+            'Reducción de secuelas por accidentes',
+            'Certificación internacional',
+            'Confianza en situaciones críticas',
+            'Cumplimiento de normativas laborales'
+          ],
+          requirements: [
+            'Mayor de 16 años',
+            'Certificado médico básico',
+            'Buen estado de salud física',
+            'Disponibilidad para prácticas',
+            'Compromiso con el aprendizaje'
+          ],
+          modules: [
+            'Fundamentos de Primeros Auxilios',
+            'Evaluación de Víctimas',
+            'Reanimación Cardiopulmonar (RCP)',
+            'Uso de Desfibrilador Externo (DEA)',
+            'Administración de Oxígeno',
+            'Manejo de Traumas',
+            'Simulacros de Emergencia'
+          ],
+          instructor: 'Dr. Ana Martínez - Médico de Emergencias',
+          price: 'Consultar',
+          location: 'Centro de Entrenamiento ISCOR',
+          schedule: 'Sábados: 8:00 AM - 5:00 PM',
+          category: 'Emergencias'
+        },
+        'Materiales y Mercancías Peligrosas': {
+          detailedDescription: 'Manejo seguro de materiales y mercancías peligrosas con protocolos de almacenamiento, transporte y respuesta a emergencias. Incluye clasificación, etiquetado y procedimientos de seguridad.',
+          duration: '40 horas',
+          certification: 'Válido 3 años',
+          objectives: [
+            'Clasificar materiales peligrosos según normativas',
+            'Aplicar protocolos de almacenamiento seguro',
+            'Manejar procedimientos de transporte',
+            'Responder a emergencias químicas',
+            'Implementar sistemas de etiquetado'
+          ],
+          benefits: [
+            'Prevención de accidentes químicos',
+            'Cumplimiento de normativas DOT',
+            'Certificación internacional',
+            'Protección ambiental',
+            'Reducción de riesgos operacionales'
+          ],
+          requirements: [
+            'Mayor de 18 años',
+            'Certificado médico ocupacional',
+            'Conocimientos básicos en química',
+            'Buen estado de salud física',
+            'Experiencia en manejo de materiales'
+          ],
+          modules: [
+            'Clasificación de Materiales Peligrosos',
+            'Sistemas de Etiquetado y Marcado',
+            'Protocolos de Almacenamiento',
+            'Procedimientos de Transporte',
+            'Respuesta a Emergencias Químicas',
+            'Equipos de Protección Personal',
+            'Simulacros de Emergencia'
+          ],
+          instructor: 'Ing. Luis Herrera - Especialista en Materiales Peligrosos',
+          price: 'Consultar',
+          location: 'Centro de Entrenamiento ISCOR',
+          schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+          category: 'Ambiental'
+        },
+        'Operación Segura de Montacargas': {
+          detailedDescription: 'Certificación de operarios de montacargas con técnicas de manejo seguro y mantenimiento preventivo. Incluye operación, inspección y procedimientos de seguridad.',
+          duration: '24 horas',
+          certification: 'Válido 2 años',
+          objectives: [
+            'Operar montacargas de forma segura',
+            'Realizar inspecciones preoperacionales',
+            'Manejar cargas de manera eficiente',
+            'Aplicar procedimientos de mantenimiento',
+            'Prevenir accidentes operacionales'
+          ],
+          benefits: [
+            'Certificación oficial de operador',
+            'Reducción de accidentes laborales',
+            'Mejora en la productividad',
+            'Cumplimiento de normativas',
+            'Especialización profesional'
+          ],
+          requirements: [
+            'Mayor de 18 años',
+            'Licencia de conducción vigente',
+            'Certificado médico ocupacional',
+            'Buen estado de salud física',
+            'Experiencia en manejo de equipos'
+          ],
+          modules: [
+            'Fundamentos de Operación de Montacargas',
+            'Inspección Preoperacional',
+            'Técnicas de Manejo Seguro',
+            'Manejo de Cargas',
+            'Mantenimiento Preventivo',
+            'Procedimientos de Emergencia',
+            'Evaluación Práctica'
+          ],
+          instructor: 'Ing. Jorge Morales - Operador Certificado',
+          price: 'Consultar',
+          location: 'Centro de Entrenamiento ISCOR',
+          schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+          category: 'Operaciones'
+        }
+        // Continuaré agregando más cursos específicos...
+      };
+
+      // Información por defecto si no se encuentra el curso específico
+      const defaultDetails = {
+        detailedDescription: `${course.description} Este curso está diseñado para proporcionar conocimientos teóricos y prácticos avanzados en el área de ${courseName.toLowerCase()}.`,
+        duration: '40 horas',
+        certification: 'Válido 2 años',
+        objectives: [
+          'Comprender los fundamentos teóricos',
+          'Desarrollar habilidades prácticas',
+          'Aplicar conocimientos en situaciones reales',
+          'Obtener certificación oficial',
+          'Mantener estándares de seguridad'
+        ],
+        benefits: [
+          'Mejora en la seguridad laboral',
+          'Cumplimiento de normativas',
+          'Certificación reconocida',
+          'Actualización profesional',
+          'Reducción de riesgos'
+        ],
+        requirements: [
+          'Mayor de 18 años',
+          'Documento de identidad vigente',
+          'Certificado médico ocupacional',
+          'Buen estado de salud física',
+          'Compromiso con la seguridad'
+        ],
+        modules: [
+          'Fundamentos teóricos',
+          'Normativas y regulaciones',
+          'Equipos y herramientas',
+          'Procedimientos de trabajo',
+          'Evaluación de riesgos',
+          'Prácticas supervisadas',
+          'Evaluación final'
+        ],
+        instructor: 'Instructor Certificado ISCOR',
+        price: 'Consultar',
+        location: 'Centro de Entrenamiento ISCOR',
+        schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+        category: 'Seguridad Industrial'
+      };
+
+      return courseDetails[courseName] || defaultDetails;
+    };
+
+    const specificDetails = getCourseDetails(course.name);
     
     const detailedCourse = {
       id: course.id,
@@ -42,46 +335,9 @@ export async function GET(
       slug: courseSlug,
       image: `/api/placeholder/800/600`, // Placeholder por ahora
       description: course.description,
-      detailedDescription: `${course.description} Este curso está diseñado para proporcionar conocimientos teóricos y prácticos avanzados en el área de ${course.name.toLowerCase()}.`,
-      duration: '40 horas',
-      certification: 'Válido 2 años',
+      ...specificDetails,
       gradient: course.gradient,
       icon: course.icon,
-      objectives: [
-        'Comprender los fundamentos teóricos',
-        'Desarrollar habilidades prácticas',
-        'Aplicar conocimientos en situaciones reales',
-        'Obtener certificación oficial',
-        'Mantener estándares de seguridad'
-      ],
-      benefits: [
-        'Mejora en la seguridad laboral',
-        'Cumplimiento de normativas',
-        'Certificación reconocida',
-        'Actualización profesional',
-        'Reducción de riesgos'
-      ],
-      requirements: [
-        'Mayor de 18 años',
-        'Documento de identidad vigente',
-        'Certificado médico ocupacional',
-        'Buen estado de salud física',
-        'Compromiso con la seguridad'
-      ],
-      modules: [
-        'Fundamentos teóricos',
-        'Normativas y regulaciones',
-        'Equipos y herramientas',
-        'Procedimientos de trabajo',
-        'Evaluación de riesgos',
-        'Prácticas supervisadas',
-        'Evaluación final'
-      ],
-      instructor: 'Instructor Certificado ISCOR',
-      price: 'Consultar',
-      location: 'Centro de Entrenamiento ISCOR',
-      schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
-      category: 'Seguridad Industrial',
       students: Math.floor(Math.random() * 1000) + 500,
       rating: 4.5 + Math.random() * 0.5,
       order: course.order
