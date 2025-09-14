@@ -5,6 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+
+// Helper function to render icons
+const renderIcon = (icon: any, className: string = "h-6 w-6") => {
+  if (typeof icon === 'string') {
+    return <span className="text-2xl">{icon}</span>;
+  }
+  const IconComponent = icon;
+  return <IconComponent className={className} />;
+};
 import { 
   BuildingOfficeIcon,
   CogIcon,
@@ -634,7 +643,7 @@ export default function ServiciosPage() {
                   {!courseImage && (
                     <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${course.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                       <span className="text-2xl">
-                        {typeof course.icon === 'string' ? course.icon : <course.icon className="h-6 w-6" />}
+                        {renderIcon(course.icon, "h-6 w-6")}
                       </span>
                     </div>
                   )}

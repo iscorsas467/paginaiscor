@@ -15,7 +15,7 @@ async function checkUsersTable() {
       })
     }
     
-  } catch (error) {
+  } catch (error: any) {
     if (error.code === 'P2021') {
       console.log('❌ La tabla de usuarios no existe en la base de datos')
       console.log('Necesitamos crearla...')

@@ -18,9 +18,9 @@ async function testSimpleAuth() {
     })
 
     console.log('Login status:', loginResponse.status)
-    const loginData = await loginResponse.json()
+    const loginData: any = await loginResponse.json()
     console.log('Login response:', loginData)
-    
+
     if (loginData.success) {
       console.log('✅ Login exitoso')
       
@@ -58,7 +58,7 @@ async function testSimpleAuth() {
       console.log('❌ Error en login:', loginData.error)
     }
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('❌ Error:', error.message)
   }
 }

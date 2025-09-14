@@ -34,7 +34,7 @@ async function checkCoursesData() {
     if (homeServices.length > 0) {
       homeServices.forEach((service, index) => {
         console.log(`${index + 1}. ${service.title}`);
-        console.log(`   Subtítulo: ${service.subtitle}`);
+        console.log(`   Descripción: ${service.description}`);
         console.log('');
       });
     }

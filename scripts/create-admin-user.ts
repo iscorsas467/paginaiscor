@@ -25,7 +25,7 @@ async function createAdminUser() {
     console.log(`   Role: ${adminUser.role}`)
     console.log(`   ID: ${adminUser.id}`)
     
-  } catch (error) {
+  } catch (error: any) {
     if (error.code === 'P2002') {
       console.log('⚠️  El usuario administrador ya existe en la base de datos')
     } else {

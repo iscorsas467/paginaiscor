@@ -68,7 +68,9 @@ export async function POST(request: NextRequest) {
         description,
         icon,
         gradient,
-        order: nextOrder
+        order: nextOrder,
+        servicesId: 'services-1', // ID del servicio principal
+        updatedAt: new Date()
       }
     });
 
@@ -98,7 +100,8 @@ export async function PUT(request: NextRequest) {
         description,
         icon,
         gradient,
-        order: order || 0
+        order: order || 0,
+        updatedAt: new Date()
       }
     });
 

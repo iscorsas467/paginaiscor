@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
+import * as THREE from 'three';
 
 function FloatingSphere({ position, color, size = 1, speed = 1 }: { 
   position: [number, number, number], 

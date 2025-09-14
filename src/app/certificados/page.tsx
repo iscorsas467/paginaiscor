@@ -18,7 +18,8 @@ import {
   ExclamationTriangleIcon,
   LockClosedIcon,
   EyeIcon,
-  InformationCircleIcon
+  InformationCircleIcon,
+  ClockIcon
 } from '@heroicons/react/24/outline';
 import ThreeJSBackground from '@/components/ThreeJSBackground';
 

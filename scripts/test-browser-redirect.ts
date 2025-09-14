@@ -18,9 +18,9 @@ async function testBrowserRedirect() {
     })
 
     console.log('Login status:', loginResponse.status)
-    const loginData = await loginResponse.json()
+    const loginData: any = await loginResponse.json()
     console.log('Login success:', loginData.success)
-    
+
     if (loginData.success) {
       console.log('✅ Login exitoso, redirigiendo inmediatamente...')
       
@@ -42,7 +42,7 @@ async function testBrowserRedirect() {
       }
     }
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('❌ Error:', error.message)
   }
 }

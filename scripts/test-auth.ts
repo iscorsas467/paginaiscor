@@ -15,7 +15,7 @@ async function testAuth() {
       })
     })
 
-    const data = await response.json()
+    const data: any = await response.json()
     
     if (response.ok) {
       console.log('✅ Autenticación exitosa!')
@@ -25,7 +25,7 @@ async function testAuth() {
       console.log('❌ Error en autenticación:', data.error)
     }
     
-  } catch (error) {
+  } catch (error: any) {
     console.log('❌ Error de conexión:', error.message)
     console.log('Asegúrate de que el servidor esté ejecutándose en http://localhost:3000')
   }

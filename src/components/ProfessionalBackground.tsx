@@ -22,8 +22,6 @@ export default function ProfessionalBackground() {
       {/* Partículas con líneas blancas elegantes */}
       <Particles
         id="tsparticles"
-        init={particlesInit}
-        loaded={particlesLoaded}
         options={{
           background: {
             color: {
@@ -41,7 +39,9 @@ export default function ProfessionalBackground() {
                 enable: true,
                 mode: "repulse",
               },
-              resize: true,
+              resize: {
+                enable: true,
+              },
             },
             modes: {
               push: {
@@ -77,32 +77,17 @@ export default function ProfessionalBackground() {
             number: {
               density: {
                 enable: true,
-                area: 800,
               },
               value: 80,
             },
             opacity: {
               value: 0.4,
-              random: true,
-              anim: {
-                enable: true,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false,
-              },
             },
             shape: {
               type: "circle",
             },
             size: {
-              value: { min: 1, max: 3 },
-              random: true,
-              anim: {
-                enable: true,
-                speed: 2,
-                size_min: 0.1,
-                sync: false,
-              },
+              value: 3,
             },
           },
           detectRetina: true,

@@ -1,6 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+
+// Helper function to render icons
+const renderIcon = (icon: any, className: string = "h-6 w-6") => {
+  if (typeof icon === 'string') {
+    return <span className="text-2xl">{icon}</span>;
+  }
+  const IconComponent = icon;
+  return <IconComponent className={className} />;
+};
 import { 
   PencilIcon, 
   TrashIcon, 
@@ -281,7 +290,7 @@ export default function CourseManager() {
                     <div className="flex items-center space-x-4">
                       <div className={`w-12 h-12 bg-gradient-to-r ${course.gradient} rounded-lg flex items-center justify-center`}>
                         <span className="text-2xl">
-                          {typeof course.icon === 'string' ? course.icon : <course.icon className="h-6 w-6" />}
+                          {renderIcon(course.icon, "h-6 w-6")}
                         </span>
                       </div>
                       <div>

@@ -2,6 +2,15 @@
 
 import Image from 'next/image';
 import { useState, use, useEffect } from 'react';
+
+// Helper function to render icons
+const renderIcon = (icon: any, className: string = "h-5 w-5") => {
+  if (typeof icon === 'string') {
+    return <span className="text-lg">{icon}</span>;
+  }
+  const IconComponent = icon;
+  return <IconComponent className={className} />;
+};
 import { 
   ShieldCheckIcon, 
   ArrowRightIcon, 
@@ -1727,7 +1736,7 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
             <div className="text-center">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-8">
                 <span className="text-lg mr-3">
-                  {typeof course.icon === 'string' ? course.icon : <course.icon className="h-5 w-5" />}
+                  {renderIcon(course.icon, "h-5 w-5")}
                 </span>
                 {course.category}
               </div>
@@ -1789,7 +1798,7 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
               <div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">Objetivos del Curso</h3>
                 <ul className="space-y-3">
-                  {course.objectives.map((objective, index) => (
+                  {course.objectives.map((objective: string, index: number) => (
                     <li key={index} className="flex items-start">
                       <CheckCircleIcon className="h-6 w-6 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-600">{objective}</span>
@@ -1801,7 +1810,7 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
               <div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">Beneficios</h3>
                 <ul className="space-y-3">
-                  {course.benefits.map((benefit, index) => (
+                  {course.benefits.map((benefit: string, index: number) => (
                     <li key={index} className="flex items-start">
                       <StarIcon className="h-6 w-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-600">{benefit}</span>
@@ -1827,7 +1836,7 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {course.modules.map((module, index) => (
+            {course.modules.map((module: any, index: number) => (
               <div
                 key={index}
                 className="group bg-white rounded-2xl shadow-xl border border-slate-200 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
@@ -1854,7 +1863,7 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
             <div>
               <h2 className="text-4xl font-bold text-white mb-8">Requisitos de Admisión</h2>
               <ul className="space-y-4">
-                {course.requirements.map((requirement, index) => (
+                {course.requirements.map((requirement: string, index: number) => (
                   <li key={index} className="flex items-start">
                     <CheckCircleIcon className="h-6 w-6 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-300">{requirement}</span>

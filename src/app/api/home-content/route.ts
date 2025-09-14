@@ -146,13 +146,15 @@ export async function POST(request: NextRequest) {
         update: {
           badge: data.badge,
           title: data.title,
-          subtitle: data.subtitle
+          subtitle: data.subtitle,
+          updatedAt: new Date()
         },
         create: {
           id: data.id || `hero-${Date.now()}`,
           badge: data.badge,
           title: data.title,
-          subtitle: data.subtitle
+          subtitle: data.subtitle,
+          updatedAt: new Date()
         }
       });
     } else if (section === 'stats') {
@@ -163,14 +165,16 @@ export async function POST(request: NextRequest) {
           experience: data.experience,
           companies: data.companies,
           certifications: data.certifications,
-          heroId: data.heroId
+          heroId: data.heroId,
+          updatedAt: new Date()
         },
         create: {
           id: data.id || `stats-${Date.now()}`,
           experience: data.experience,
           companies: data.companies,
           certifications: data.certifications,
-          heroId: data.heroId || 'default-hero'
+          heroId: data.heroId || 'default-hero',
+          updatedAt: new Date()
         }
       });
     }

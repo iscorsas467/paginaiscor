@@ -16,7 +16,7 @@ async function testRedirect() {
       })
     })
 
-    const loginData = await loginResponse.json()
+    const loginData: any = await loginResponse.json()
     
     if (loginResponse.ok) {
       console.log('✅ Login exitoso')
@@ -39,7 +39,7 @@ async function testRedirect() {
       console.log('❌ Error en login:', loginData.error)
     }
     
-  } catch (error) {
+  } catch (error: any) {
     console.log('❌ Error de conexión:', error.message)
   }
 }

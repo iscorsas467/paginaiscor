@@ -44,7 +44,8 @@ export async function POST(request: NextRequest) {
         experience,
         companies,
         certifications,
-        heroId
+        heroId,
+        updatedAt: new Date()
       }
     });
 

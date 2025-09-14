@@ -39,14 +39,12 @@ function MathematicalLines() {
           const points = createMathematicalCurve(i * 0.5, 2 + i * 0.3, 1 + i * 0.2);
           const geometry = new THREE.BufferGeometry().setFromPoints(points);
           return (
-            <line key={i} geometry={geometry}>
-              <lineBasicMaterial 
-                color={new THREE.Color().setHSL(0.6 + i * 0.05, 0.8, 0.6 + i * 0.1)} 
-                transparent 
-                opacity={0.6 - i * 0.05}
-                linewidth={2}
-              />
-            </line>
+            <primitive key={i} object={new THREE.Line(geometry, new THREE.LineBasicMaterial({ 
+              color: new THREE.Color().setHSL(0.6 + i * 0.05, 0.8, 0.6 + i * 0.1),
+              transparent: true,
+              opacity: 0.6 - i * 0.05,
+              linewidth: 2
+            }))} />
           );
         })}
       </group>
@@ -56,14 +54,12 @@ function MathematicalLines() {
         const points = createMathematicalCurve(i * 0.2, 1 + i * 0.1, 2 + i * 0.1);
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
         return (
-          <line key={`secondary-${i}`} geometry={geometry}>
-            <lineBasicMaterial 
-              color={new THREE.Color().setHSL(0.55 + i * 0.02, 0.6, 0.5 + i * 0.02)} 
-              transparent 
-              opacity={0.3 - i * 0.01}
-              linewidth={1}
-            />
-          </line>
+          <primitive key={`secondary-${i}`} object={new THREE.Line(geometry, new THREE.LineBasicMaterial({ 
+            color: new THREE.Color().setHSL(0.55 + i * 0.02, 0.6, 0.5 + i * 0.02),
+            transparent: true,
+            opacity: 0.3 - i * 0.01,
+            linewidth: 1
+          }))} />
         );
       })}
 

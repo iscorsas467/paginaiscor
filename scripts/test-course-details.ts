@@ -42,7 +42,7 @@ async function testCourseDetails() {
         } else {
           console.log(`❌ ${course.name}: Error HTTP ${response.status}`);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.log(`❌ ${course.name}: Error de conexión - ${error.message}`);
         console.log('   (Esto es normal si el servidor no está corriendo)');
       }

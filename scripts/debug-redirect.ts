@@ -48,7 +48,7 @@ async function debugRedirect() {
     const verifyData = await verifyResponse.json()
     console.log('Verify response:', verifyData)
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('❌ Error:', error.message)
   }
 }

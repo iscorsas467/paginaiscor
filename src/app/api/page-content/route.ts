@@ -128,7 +128,8 @@ export async function POST(request: NextRequest) {
           id: `hero-${Date.now()}`,
           badge: data.badge,
           title: data.title,
-          subtitle: data.subtitle
+          subtitle: data.subtitle,
+          updatedAt: new Date()
         }
       });
     } else if (page === 'home' && section === 'stats') {
@@ -138,7 +139,8 @@ export async function POST(request: NextRequest) {
           experience: data.experience,
           companies: data.companies,
           certifications: data.certifications,
-          heroId: data.heroId
+          heroId: data.heroId,
+          updatedAt: new Date()
         }
       });
     }

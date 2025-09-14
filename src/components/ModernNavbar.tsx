@@ -199,20 +199,6 @@ export default function ModernNavbar() {
                       >
                         {item.name}
                       </Link>
-                      {item.submenu && (
-                        <div className="ml-3 space-y-0.5">
-                          {item.submenu.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              href={subItem.href}
-                              className="block px-3 py-2 text-xs text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-md transition-all duration-200"
-                              onClick={() => setMobileMenuOpen(false)}
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
                     </div>
                   ))}
                 </div>

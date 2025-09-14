@@ -5,6 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+
+// Helper function to render icons
+const renderIcon = (icon: any, className: string = "h-8 w-8") => {
+  if (typeof icon === 'string') {
+    return <span className="text-4xl">{icon}</span>;
+  }
+  const IconComponent = icon;
+  return <IconComponent className={className} />;
+};
 import { 
   BuildingOfficeIcon,
   CogIcon,
@@ -430,7 +439,7 @@ export default function ElegantCourses() {
               ) : (
                 <div className={`flex items-center justify-center w-24 h-24 bg-gradient-to-r ${course.gradient} rounded-xl mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg mx-auto`}>
                   <span className="text-4xl">
-                    {typeof course.icon === 'string' ? course.icon : <course.icon className="h-8 w-8" />}
+                    {renderIcon(course.icon, "h-8 w-8")}
                   </span>
                 </div>
               )}
