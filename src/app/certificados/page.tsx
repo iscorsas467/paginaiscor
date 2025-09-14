@@ -37,18 +37,7 @@ export default function CertificadosPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchResult, setSearchResult] = useState<CertificateData | null>(null);
   const [error, setError] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
-
-  // Verificar autenticación al cargar la página
-  useEffect(() => {
-    const authStatus = sessionStorage.getItem('iscor_authenticated');
-    if (authStatus === 'true') {
-      setIsAuthenticated(true);
-    } else {
-      router.push('/');
-    }
-  }, [router]);
 
   // Datos de ejemplo para simular la búsqueda
   const mockDatabase: Record<string, CertificateData> = {
@@ -99,21 +88,6 @@ export default function CertificadosPage() {
     }
   };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('iscor_authenticated');
-    router.push('/');
-  };
-
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-slate-600">Verificando acceso...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
@@ -162,12 +136,6 @@ export default function CertificadosPage() {
                 <ShieldCheckIcon className="h-4 w-4 mr-2" />
                 <span className="text-sm font-medium">Sistema Seguro</span>
               </div>
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200"
-              >
-                Cerrar Sesión
-              </button>
             </div>
           </div>
         </div>
