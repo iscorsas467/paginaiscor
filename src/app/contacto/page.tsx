@@ -25,44 +25,27 @@ export default function Contacto() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  // Datos de contacto estáticos (antes estaban en ContactSection)
-  const contactInfo = [
-    {
-      id: 1,
-      title: 'Línea Nacional',
-      description: '314 807 08 53',
-      icon: '📞',
-      gradient: 'from-blue-500 to-blue-600'
-    },
-    {
-      id: 2,
-      title: 'Bogotá',
-      description: 'Cl. 95 #20-28 Torre 1 Of. 702',
-      icon: '📍',
-      gradient: 'from-green-500 to-green-600'
-    },
-    {
-      id: 3,
-      title: 'Cali',
-      description: 'Cl. 58 norte #5 BN 75 Torre 7 Of. 503',
-      icon: '📍',
-      gradient: 'from-purple-500 to-purple-600'
-    },
-    {
-      id: 4,
-      title: 'Correo Electrónico',
-      description: 'iscr@iscrcolombia.com.co',
-      icon: '✉️',
-      gradient: 'from-orange-500 to-orange-600'
-    },
-    {
-      id: 5,
-      title: 'Sitio Web',
-      description: 'www.iscrcolombia.com.co',
-      icon: '🌐',
-      gradient: 'from-cyan-500 to-cyan-600'
-    }
-  ];
+  const [contactData, setContactData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Cargar datos de contacto desde la API
+  useEffect(() => {
+    const loadContactData = async () => {
+      try {
+        const response = await fetch('/api/page-content?page=contact');
+        if (response.ok) {
+          const data = await response.json();
+          setContactData(data.data);
+        }
+      } catch (error) {
+        console.error('Error loading contact data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadContactData();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -334,22 +317,83 @@ export default function Contacto() {
                 </div>
 
                 <div className="space-y-6">
-                  {contactInfo.map((item) => (
-                    <div 
-                      key={item.id} 
-                      className="group flex items-start p-6 rounded-2xl bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-slate-100"
-                    >
-                      <div className="flex-shrink-0">
-                        <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-r ${item.gradient} rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                          <span className="text-2xl">{item.icon}</span>
+                  {loading ? (
+                    <div className="text-center py-8">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                      <p className="text-slate-600 mt-2">Cargando información de contacto...</p>
+                    </div>
+                  ) : contactData?.contactInfo?.contact_info_items ? (
+                    contactData.contactInfo.contact_info_items.map((item: any) => (
+                      <div 
+                        key={item.id} 
+                        className="group flex items-start p-6 rounded-2xl bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-slate-100"
+                      >
+                        <div className="flex-shrink-0">
+                          <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-r ${item.gradient} rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                            <span className="text-2xl">{item.icon}</span>
+                          </div>
+                        </div>
+                        <div className="ml-4">
+                          <h3 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h3>
+                          <p className="text-sm text-slate-600 font-medium">{item.description}</p>
                         </div>
                       </div>
-                      <div className="ml-4">
-                        <h3 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h3>
-                        <p className="text-sm text-slate-600 font-medium">{item.description}</p>
+                    ))
+                  ) : (
+                    // Fallback con datos estáticos si no hay datos en BD
+                    [
+                      {
+                        id: 1,
+                        title: 'Línea Nacional',
+                        description: '314 807 08 53',
+                        icon: '📞',
+                        gradient: 'from-blue-500 to-blue-600'
+                      },
+                      {
+                        id: 2,
+                        title: 'Bogotá',
+                        description: 'Cl. 95 #20-28 Torre 1 Of. 702',
+                        icon: '📍',
+                        gradient: 'from-green-500 to-green-600'
+                      },
+                      {
+                        id: 3,
+                        title: 'Cali',
+                        description: 'Cl. 58 norte #5 BN 75 Torre 7 Of. 503',
+                        icon: '📍',
+                        gradient: 'from-purple-500 to-purple-600'
+                      },
+                      {
+                        id: 4,
+                        title: 'Correo Electrónico',
+                        description: 'iscr@iscrcolombia.com.co',
+                        icon: '✉️',
+                        gradient: 'from-orange-500 to-orange-600'
+                      },
+                      {
+                        id: 5,
+                        title: 'Sitio Web',
+                        description: 'www.iscrcolombia.com.co',
+                        icon: '🌐',
+                        gradient: 'from-cyan-500 to-cyan-600'
+                      }
+                    ].map((item) => (
+                      <div 
+                        key={item.id} 
+                        className="group flex items-start p-6 rounded-2xl bg-slate-50 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-slate-100"
+                      >
+                        <div className="flex-shrink-0">
+                          <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-r ${item.gradient} rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                            <span className="text-2xl">{item.icon}</span>
+                          </div>
+                        </div>
+                        <div className="ml-4">
+                          <h3 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h3>
+                          <p className="text-sm text-slate-600 font-medium">{item.description}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  )}
                 </div>
 
                 {/* Horarios de Atención */}

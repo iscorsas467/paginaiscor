@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
-  ChartBarIcon, 
-  UsersIcon, 
-  DocumentTextIcon, 
+  ChartBarIcon,
+  UsersIcon,
+  DocumentTextIcon,
   CogIcon,
   BellIcon,
   UserCircleIcon,
@@ -16,6 +16,7 @@ import {
   PhotoIcon,
   GlobeAltIcon
 } from '@heroicons/react/24/outline';
+import ContentManager from '@/components/ContentManager';
 
 export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +36,7 @@ export default function AdminPage() {
         setUser(data.user);
         setIsLoading(false);
       } catch (error) {
-        router.push('/login');
+    router.push('/login');
       }
     };
 
@@ -48,13 +49,13 @@ export default function AdminPage() {
   };
 
   if (isLoading) {
-    return (
+  return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Cargando panel de administración...</p>
-        </div>
-      </div>
+                    </div>
+                    </div>
     );
   }
 
@@ -93,10 +94,10 @@ export default function AdminPage() {
               {stats.map((stat) => (
                 <div key={stat.name} className="bg-white overflow-hidden shadow rounded-lg">
                   <div className="p-5">
-                    <div className="flex items-center">
+                          <div className="flex items-center">
                       <div className="flex-shrink-0">
                         <ChartBarIcon className="h-6 w-6 text-gray-400" />
-                      </div>
+                            </div>
                       <div className="ml-5 w-0 flex-1">
                         <dl>
                           <dt className="text-sm font-medium text-gray-500 truncate">
@@ -110,15 +111,15 @@ export default function AdminPage() {
                               stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
                             }`}>
                               {stat.change}
-                            </div>
+                          </div>
                           </dd>
                         </dl>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                            </div>
+                            </div>
+                          </div>
+                            </div>
               ))}
-            </div>
+                    </div>
 
             {/* Actividad Reciente */}
             <div className="bg-white shadow rounded-lg">
@@ -138,30 +139,30 @@ export default function AdminPage() {
                             />
                           ) : null}
                           <div className="relative flex space-x-3">
-                            <div>
+                              <div>
                               <span className="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white">
                                 <BellIcon className="h-4 w-4 text-white" />
                               </span>
-                            </div>
+                              </div>
                             <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                              <div>
+                                <div>
                                 <p className="text-sm text-gray-500">
                                   {activity.action} por <span className="font-medium text-gray-900">{activity.user}</span>
                                 </p>
-                              </div>
+                                </div>
                               <div className="text-right text-sm whitespace-nowrap text-gray-500">
                                 {activity.time}
                               </div>
-                            </div>
-                          </div>
-                        </div>
+                                </div>
+                              </div>
+                                </div>
                       </li>
                     ))}
                   </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+                              </div>
+                        </div>
+                      </div>
+                          </div>
         );
 
       case 'courses':
@@ -180,34 +181,20 @@ export default function AdminPage() {
                 <div className="mt-6">
                   <button className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
                     Agregar Nuevo Curso
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+                        </button>
+                          </div>
+                          </div>
+                          </div>
+                      </div>
         );
 
       case 'content':
         return (
           <div className="bg-white shadow rounded-lg">
             <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                Contenido del Sitio
-              </h3>
-              <div className="text-center py-12">
-                <DocumentTextIcon className="mx-auto h-12 w-12 text-gray-400" />
-                <h3 className="mt-2 text-sm font-medium text-gray-900">Gestión de Contenido</h3>
-                <p className="mt-1 text-sm text-gray-500">
-                  Administra el contenido de todas las páginas del sitio web.
-                </p>
-                <div className="mt-6">
-                  <button className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
-                    Editar Contenido
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+              <ContentManager />
+                        </div>
+                        </div>
         );
 
       default:
@@ -223,9 +210,9 @@ export default function AdminPage() {
                 <p className="mt-1 text-sm text-gray-500">
                   Esta sección está en desarrollo y estará disponible próximamente.
                 </p>
-              </div>
-            </div>
-          </div>
+                        </div>
+                        </div>
+                      </div>
         );
     }
   };
@@ -236,29 +223,29 @@ export default function AdminPage() {
       <header className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
+                          <div className="flex items-center">
               <div className="flex-shrink-0">
                 <h1 className="text-2xl font-bold text-gray-900">Panel de Administración</h1>
-              </div>
-            </div>
+                          </div>
+                          </div>
             <div className="flex items-center space-x-4">
               <button className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 <BellIcon className="h-6 w-6" />
-              </button>
+                        </button>
               <div className="flex items-center space-x-3">
                 <UserCircleIcon className="h-8 w-8 text-gray-400" />
                 <span className="text-sm font-medium text-gray-700">{user?.email}</span>
-              </div>
-              <button
+                          </div>
+                        <button
                 onClick={handleLogout}
                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
               >
                 <ArrowRightOnRectangleIcon className="h-4 w-4 mr-2" />
                 Cerrar Sesión
-              </button>
-            </div>
-          </div>
-        </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -268,7 +255,7 @@ export default function AdminPage() {
             <nav className="mt-5 px-2">
               <div className="space-y-1">
                 {navigation.map((item) => (
-                  <button
+                    <button
                     key={item.name}
                     onClick={() => setActiveTab(item.id)}
                     className={`${
@@ -283,18 +270,18 @@ export default function AdminPage() {
                       } mr-3 flex-shrink-0 h-6 w-6`}
                     />
                     {item.name}
-                  </button>
-                ))}
-              </div>
+                            </button>
+                    ))}
+                  </div>
             </nav>
-          </div>
+                </div>
 
           {/* Main Content */}
           <div className="flex-1">
             {renderContent()}
-          </div>
-        </div>
-      </div>
-    </div>
+                        </div>
+                      </div>
+                    </div>
+                        </div>
   );
 }
