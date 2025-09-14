@@ -322,18 +322,14 @@ export default function CertificadosPage() {
                       <CalendarIcon className="h-8 w-8 text-slate-400 mr-6" />
                       <div>
                         <p className="text-sm text-slate-500 font-medium uppercase tracking-wide">Fecha de Certificación</p>
-                        <p className="font-bold text-slate-900 text-xl">
-                          {new Date(searchResult.fechaCertificacion).toLocaleDateString('es-ES')}
-                        </p>
+                        <p className="font-bold text-slate-900 text-xl">{searchResult.fechaCertificacion}</p>
                       </div>
                     </div>
                     <div className="flex items-center p-6 bg-white rounded-2xl border border-green-100 shadow-sm">
                       <CalendarIcon className="h-8 w-8 text-slate-400 mr-6" />
                       <div>
                         <p className="text-sm text-slate-500 font-medium uppercase tracking-wide">Fecha de Vencimiento</p>
-                        <p className="font-bold text-slate-900 text-xl">
-                          {new Date(searchResult.fechaVencimiento).toLocaleDateString('es-ES')}
-                        </p>
+                        <p className="font-bold text-slate-900 text-xl">{searchResult.fechaVencimiento}</p>
                       </div>
                     </div>
                     <div className="flex items-center p-6 bg-white rounded-2xl border border-green-100 shadow-sm">
