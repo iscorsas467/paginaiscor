@@ -339,7 +339,7 @@ export async function GET(
       gradient: course.gradient,
       icon: course.icon,
       students: Math.floor(Math.random() * 1000) + 500,
-      rating: 4.5 + Math.random() * 0.5,
+      rating: Math.round((4.5 + Math.random() * 0.5) * 10) / 10,
       order: course.order
     };
 

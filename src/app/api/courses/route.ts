@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
       duration: '40 horas', // Valor por defecto
       certification: 'Válido 2 años', // Valor por defecto
       students: Math.floor(Math.random() * 1000) + 500, // Valor aleatorio
-      rating: 4.5 + Math.random() * 0.5, // Valor aleatorio entre 4.5 y 5
+      rating: Math.round((4.5 + Math.random() * 0.5) * 10) / 10, // Valor aleatorio entre 4.5 y 5 con un decimal
       category: 'Seguridad Industrial', // Valor por defecto
       order: course.order,
       isActive: true
