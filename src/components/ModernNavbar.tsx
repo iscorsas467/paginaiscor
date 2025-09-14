@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Bars3Icon, 
   XMarkIcon, 
-  ChevronDownIcon,
   ShieldCheckIcon,
   UserIcon,
   LockClosedIcon
@@ -16,18 +15,7 @@ import {
 
 const navigation = [
   { name: 'Inicio', href: '/' },
-  { 
-    name: 'Servicios', 
-    href: '/portafolio',
-    submenu: [
-      { name: 'Trabajo en Alturas', href: '/servicios/trabajo-en-alturas' },
-      { name: 'Espacios Confinados', href: '/servicios/espacios-confinados' },
-      { name: 'Control de Incendios', href: '/servicios/control-incendios' },
-      { name: 'Primeros Auxilios', href: '/servicios/primeros-auxilios' },
-      { name: 'Materiales Peligrosos', href: '/servicios/materiales-peligrosos' },
-      { name: 'Gestión de Calidad', href: '/servicios/gestion-calidad' }
-    ]
-  },
+  { name: 'Servicios', href: '/servicios' },
   { name: 'Nosotros', href: '/la-empresa' },
   { name: 'Equipo', href: '/nuestro-equipo' },
   { name: 'Contacto', href: '/contacto' },
@@ -36,7 +24,6 @@ const navigation = [
 export default function ModernNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hoveredSubmenu, setHoveredSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -46,14 +33,6 @@ export default function ModernNavbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleSubmenuHover = (itemName: string) => {
-    setHoveredSubmenu(itemName);
-  };
-
-  const handleSubmenuLeave = () => {
-    setHoveredSubmenu(null);
-  };
 
   return (
     <motion.header 
@@ -101,69 +80,25 @@ export default function ModernNavbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex lg:items-center lg:space-x-1">
             {navigation.map((item) => (
-              <div key={item.name} className="relative">
-                {item.submenu ? (
-                  <div 
-                    className="relative"
-                    onMouseEnter={() => handleSubmenuHover(item.name)}
-                    onMouseLeave={handleSubmenuLeave}
-                  >
-                    <button
-                      className={`flex items-center px-4 py-2 text-base font-medium transition-all duration-200 rounded-lg ${
-                        pathname === item.href
-                          ? 'text-blue-600 bg-blue-50'
-                          : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
-                      }`}
-                    >
-                      {item.name}
-                      <ChevronDownIcon className={`ml-1 h-4 w-4 transition-transform duration-200 ${
-                        hoveredSubmenu === item.name ? 'rotate-180' : 'rotate-0'
-                      }`} />
-                    </button>
-                    
-                    <AnimatePresence>
-                      {hoveredSubmenu === item.name && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-slate-200/60 py-1 backdrop-blur-sm"
-                        >
-                          {item.submenu.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              href={subItem.href}
-                              className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-150 rounded-md mx-1"
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={`relative px-4 py-2 text-base font-medium transition-all duration-200 rounded-lg ${
-                      pathname === item.href
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
-                    }`}
-                  >
-                    {item.name}
-                    {pathname === item.href && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 rounded-full"
-                        initial={false}
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      />
-                    )}
-                  </Link>
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`relative px-4 py-2 text-base font-medium transition-all duration-200 rounded-lg ${
+                  pathname === item.href
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
+                }`}
+              >
+                {item.name}
+                {pathname === item.href && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 rounded-full"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
                 )}
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -175,6 +110,13 @@ export default function ModernNavbar() {
             >
               <ShieldCheckIcon className="h-4 w-4 mr-2" />
               Certificados
+            </Link>
+            <Link
+              href="/admin"
+              className="flex items-center px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200"
+            >
+              <LockClosedIcon className="h-4 w-4 mr-2" />
+              Admin
             </Link>
             <Link
               href="/contacto"
@@ -282,6 +224,14 @@ export default function ModernNavbar() {
                   >
                     <ShieldCheckIcon className="h-4 w-4 mr-2" />
                     Certificados
+                  </Link>
+                  <Link
+                    href="/admin"
+                    className="flex items-center w-full px-3 py-2.5 text-sm font-medium text-slate-700 bg-slate-50 rounded-lg hover:bg-slate-100 transition-all duration-200"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <LockClosedIcon className="h-4 w-4 mr-2" />
+                    Admin
                   </Link>
                   <Link
                     href="/contacto"
