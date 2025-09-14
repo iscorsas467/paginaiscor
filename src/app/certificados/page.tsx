@@ -30,6 +30,7 @@ interface CertificateData {
   fechaVencimiento: string;
   estado: string;
   instructor: string;
+  horas?: string;
 }
 
 export default function CertificadosPage() {
@@ -38,28 +39,6 @@ export default function CertificadosPage() {
   const [searchResult, setSearchResult] = useState<CertificateData | null>(null);
   const [error, setError] = useState('');
   const router = useRouter();
-
-  // Datos de ejemplo para simular la búsqueda
-  const mockDatabase: Record<string, CertificateData> = {
-    '1234567890': {
-      nombre: 'Juan Carlos Pérez',
-      cedula: '1234567890',
-      curso: 'Trabajo en Alturas',
-      fechaCertificacion: '2024-01-15',
-      fechaVencimiento: '2025-01-15',
-      estado: 'Vigente',
-      instructor: 'Ing. María González'
-    },
-    '9876543210': {
-      nombre: 'Ana María Rodríguez',
-      cedula: '9876543210',
-      curso: 'Espacios Confinados',
-      fechaCertificacion: '2023-11-20',
-      fechaVencimiento: '2024-11-20',
-      estado: 'Vigente',
-      instructor: 'Ing. Carlos Mendoza'
-    }
-  };
 
   const handleSearch = async () => {
     if (!cedula.trim()) {
@@ -71,15 +50,32 @@ export default function CertificadosPage() {
     setError('');
     setSearchResult(null);
 
-    setTimeout(() => {
-      const result = mockDatabase[cedula];
-      if (result) {
-        setSearchResult(result);
+    try {
+      const response = await fetch(`/api/certificados/${cedula}`);
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Transformar los datos de la API al formato esperado por el componente
+        const certificado = data.data;
+        setSearchResult({
+          nombre: certificado.nombre,
+          cedula: certificado.cedula,
+          curso: certificado.capacitacion,
+          fechaCertificacion: certificado.fecha_realizacion,
+          fechaVencimiento: certificado.fecha_vencimiento,
+          estado: certificado.estado,
+          instructor: certificado.instructor,
+          horas: certificado.horas
+        });
       } else {
-        setError('No se encontró ningún certificado asociado a esta cédula');
+        setError(data.error || 'No se encontró ningún certificado asociado a esta cédula');
       }
+    } catch (error) {
+      console.error('Error buscando certificado:', error);
+      setError('Error al buscar el certificado. Por favor intente nuevamente.');
+    } finally {
       setIsSearching(false);
-    }, 1500);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -308,8 +304,15 @@ export default function CertificadosPage() {
                     <div className="flex items-center p-6 bg-white rounded-2xl border border-green-100 shadow-sm">
                       <AcademicCapIcon className="h-8 w-8 text-slate-400 mr-6" />
                       <div>
-                        <p className="text-sm text-slate-500 font-medium uppercase tracking-wide">Curso Certificado</p>
+                        <p className="text-sm text-slate-500 font-medium uppercase tracking-wide">Capacitación</p>
                         <p className="font-bold text-slate-900 text-xl">{searchResult.curso}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center p-6 bg-white rounded-2xl border border-green-100 shadow-sm">
+                      <ClockIcon className="h-8 w-8 text-slate-400 mr-6" />
+                      <div>
+                        <p className="text-sm text-slate-500 font-medium uppercase tracking-wide">Horas de Capacitación</p>
+                        <p className="font-bold text-slate-900 text-xl">{searchResult.horas || 'No especificado'}</p>
                       </div>
                     </div>
                   </div>

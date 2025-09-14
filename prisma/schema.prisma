@@ -432,3 +432,19 @@ model team_stats {
   heroId      String    @unique
   team_hero   team_hero @relation(fields: [heroId], references: [id], onDelete: Cascade)
 }
+
+model certificados {
+  id                Int      @id @default(autoincrement())
+  numero_certificado String
+  nombre            String
+  cedula            BigInt
+  capacitacion      String
+  horas             String
+  fecha_realizacion String
+  fecha_vencimiento String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("certificados")
+  @@index([cedula])
+}
