@@ -16,107 +16,36 @@ import {
   CogIcon,
   CheckCircleIcon
 } from '@heroicons/react/24/outline';
+import InstructorPrincipal from '@/components/InstructorPrincipal';
 
-const team = [
-  {
-    name: 'Carlos Rodríguez',
-    role: 'CEO & Fundador',
-    image: '/api/placeholder/400/400',
-    bio: 'Más de 18 años de experiencia en seguridad industrial. Ingeniero especializado en control de riesgos y gestión de seguridad empresarial.',
-    email: 'carlos.rodriguez@iscor.com',
-    phone: '+57 300 123 4567',
-    linkedin: 'https://linkedin.com/in/carlos-rodriguez',
-    twitter: 'https://twitter.com/carlosrodriguez',
-    github: 'https://github.com/carlosrodriguez',
-    gradient: 'from-blue-600 to-cyan-600'
-  },
-  {
-    name: 'Ana Martínez',
-    role: 'Directora de Seguridad Industrial',
-    image: '/api/placeholder/400/400',
-    bio: 'Experta en sistemas de gestión de seguridad y salud ocupacional. Lidera la implementación de protocolos de seguridad avanzados.',
-    email: 'ana.martinez@iscor.com',
-    phone: '+57 300 123 4568',
-    linkedin: 'https://linkedin.com/in/ana-martinez',
-    twitter: 'https://twitter.com/anamartinez',
-    github: 'https://github.com/anamartinez',
-    gradient: 'from-green-600 to-emerald-600'
-  },
-  {
-    name: 'David García',
-    role: 'Director de Capacitación',
-    image: '/api/placeholder/400/400',
-    bio: 'Especialista en formación profesional y certificaciones de seguridad. Asegura la excelencia en todos nuestros programas de capacitación.',
-    email: 'david.garcia@iscor.com',
-    phone: '+57 300 123 4569',
-    linkedin: 'https://linkedin.com/in/david-garcia',
-    twitter: 'https://twitter.com/davidgarcia',
-    github: 'https://github.com/davidgarcia',
-    gradient: 'from-purple-600 to-indigo-600'
-  },
-  {
-    name: 'María López',
-    role: 'Coordinadora de Certificaciones',
-    image: '/api/placeholder/400/400',
-    bio: 'Responsable de la gestión y validación de certificaciones de seguridad industrial. Garantiza el cumplimiento de estándares internacionales.',
-    email: 'maria.lopez@iscor.com',
-    phone: '+57 300 123 4570',
-    linkedin: 'https://linkedin.com/in/maria-lopez',
-    twitter: 'https://twitter.com/marialopez',
-    github: 'https://github.com/marialopez',
-    gradient: 'from-orange-600 to-red-600'
-  },
-  {
-    name: 'Roberto Silva',
-    role: 'Supervisor de Operaciones',
-    image: '/api/placeholder/400/400',
-    bio: 'Experto en supervisión de trabajos de alto riesgo y control de operaciones seguras. Implementa las mejores prácticas de seguridad.',
-    email: 'roberto.silva@iscor.com',
-    phone: '+57 300 123 4571',
-    linkedin: 'https://linkedin.com/in/roberto-silva',
-    twitter: 'https://twitter.com/robertosilva',
-    github: 'https://github.com/robertosilva',
-    gradient: 'from-yellow-600 to-orange-600'
-  },
-  {
-    name: 'Laura Fernández',
-    role: 'Consultora de Seguridad',
-    image: '/api/placeholder/400/400',
-    bio: 'Especialista en auditorías de seguridad y evaluación de riesgos industriales. Desarrolla estrategias de prevención personalizadas.',
-    email: 'laura.fernandez@iscor.com',
-    phone: '+57 300 123 4572',
-    linkedin: 'https://linkedin.com/in/laura-fernandez',
-    twitter: 'https://twitter.com/laurafernandez',
-    github: 'https://github.com/laurafernandez',
-    gradient: 'from-pink-600 to-rose-600'
-  },
-];
+// Equipo real - se agregará información real cuando esté disponible
+const team = [];
 
 const departments = [
   {
     name: 'Capacitación',
-    description: 'Equipo de instructores certificados en seguridad industrial',
-    members: 25,
+    description: '29 cursos especializados en seguridad industrial',
+    members: 29,
     icon: AcademicCapIcon,
     gradient: 'from-blue-600 to-cyan-600'
   },
   {
     name: 'Certificaciones',
-    description: 'Especialistas en gestión y validación de certificados',
-    members: 12,
+    description: 'Certificaciones internacionales y reconocimientos',
+    members: 4,
     icon: TrophyIcon,
     gradient: 'from-green-600 to-emerald-600'
   },
   {
     name: 'Consultoría',
-    description: 'Expertos en auditorías y evaluación de riesgos',
-    members: 18,
+    description: 'Experiencia en múltiples sectores industriales',
+    members: 20,
     icon: ShieldCheckIcon,
     gradient: 'from-purple-600 to-indigo-600'
   },
   {
     name: 'Operaciones',
-    description: 'Supervisores de trabajos de alto riesgo',
+    description: 'Supervisión de trabajos de alto riesgo',
     members: 15,
     icon: CogIcon,
     gradient: 'from-orange-600 to-red-600'
@@ -170,12 +99,12 @@ export default function NuestroEquipo() {
             {/* Stats - Estilo Boeing */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                <div className="text-4xl font-bold text-blue-400 mb-2">50+</div>
-                <div className="text-sm text-gray-300 font-medium">Profesionales Certificados</div>
+                <div className="text-4xl font-bold text-blue-400 mb-2">20+</div>
+                <div className="text-sm text-gray-300 font-medium">Años de Experiencia</div>
               </div>
               <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                <div className="text-4xl font-bold text-blue-400 mb-2">18+</div>
-                <div className="text-sm text-gray-300 font-medium">Años de Experiencia</div>
+                <div className="text-4xl font-bold text-blue-400 mb-2">29</div>
+                <div className="text-sm text-gray-300 font-medium">Cursos Especializados</div>
               </div>
               <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
                 <div className="text-4xl font-bold text-blue-400 mb-2">100%</div>
@@ -186,7 +115,10 @@ export default function NuestroEquipo() {
         </div>
       </section>
 
-      {/* Leadership Team - Estilo Siemens Profesional */}
+      {/* Instructor Principal */}
+      <InstructorPrincipal />
+
+      {/* Próximamente - Equipo Directivo */}
       <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-20">
@@ -196,80 +128,25 @@ export default function NuestroEquipo() {
             </div>
             
             <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-8">
-              Liderazgo Experto
+              Próximamente
             </h2>
             
             <p className="text-xl text-slate-600 leading-relaxed">
-              Nuestros líderes combinan experiencia técnica con visión estratégica para garantizar la excelencia en seguridad industrial.
+              Estamos construyendo un equipo de líderes expertos en seguridad industrial. 
+              Pronto compartiremos información sobre nuestro equipo directivo.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
-            {team.slice(0, 3).map((member, index) => (
-              <div
-                key={member.name}
-                className="group bg-white rounded-2xl shadow-xl border border-slate-200 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-              >
-                {/* Profile Image */}
-                <div className="mx-auto h-48 w-48 overflow-hidden rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 mb-8 flex items-center justify-center">
-                  <div className={`w-20 h-20 bg-gradient-to-r ${member.gradient} rounded-2xl flex items-center justify-center shadow-lg`}>
-                    <UserGroupIcon className="h-10 w-10 text-white" />
-                  </div>
-                </div>
-
-                {/* Member Info */}
-                <h3 className="text-2xl font-bold text-slate-900 mb-2 text-center">{member.name}</h3>
-                <p className="text-blue-600 font-semibold mb-4 text-center">{member.role}</p>
-                <p className="text-slate-600 leading-relaxed text-center mb-6">{member.bio}</p>
-
-                {/* Contact Info */}
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center justify-center text-sm text-slate-500">
-                    <EnvelopeIcon className="h-4 w-4 mr-2" />
-                    <a href={`mailto:${member.email}`} className="hover:text-blue-600 transition-colors">
-                      {member.email}
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-center text-sm text-slate-500">
-                    <PhoneIcon className="h-4 w-4 mr-2" />
-                    <a href={`tel:${member.phone}`} className="hover:text-blue-600 transition-colors">
-                      {member.phone}
-                    </a>
-                  </div>
-                </div>
-
-                {/* Social Links */}
-                <div className="flex justify-center space-x-3">
-                  <a
-                    href={member.linkedin}
-                    className="text-slate-400 hover:text-blue-600 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="LinkedIn"
-                  >
-                    <LinkIcon className="h-5 w-5" />
-                  </a>
-                  <a
-                    href={member.twitter}
-                    className="text-slate-400 hover:text-blue-600 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Twitter"
-                  >
-                    <GlobeAltIcon className="h-5 w-5" />
-                  </a>
-                  <a
-                    href={member.github}
-                    className="text-slate-400 hover:text-blue-600 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="GitHub"
-                  >
-                    <CommandLineIcon className="h-5 w-5" />
-                  </a>
-                </div>
+          <div className="text-center">
+            <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-12 max-w-md mx-auto">
+              <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <UserGroupIcon className="h-12 w-12 text-white" />
               </div>
-            ))}
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Equipo en Construcción</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Estamos seleccionando cuidadosamente a los mejores profesionales para formar parte de nuestro equipo directivo.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -319,92 +196,42 @@ export default function NuestroEquipo() {
         </div>
       </section>
 
-      {/* Full Team - Estilo GE Profesional */}
+      {/* Contacto para unirse al equipo */}
       <section className="py-24 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-20">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-green-100 text-green-800 text-sm font-medium mb-8">
               <CheckCircleIcon className="h-5 w-5 mr-3" />
-              Equipo Completo
+              Únete a Nuestro Equipo
             </div>
             
             <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-8">
-              Profesionales Dedicados
+              ¿Quieres ser parte de ISCOR?
             </h2>
             
             <p className="text-xl text-slate-600 leading-relaxed">
-              Nuestro equipo completo de expertos en seguridad industrial comprometidos con la excelencia.
+              Estamos buscando profesionales apasionados por la seguridad industrial que quieran formar parte de nuestro equipo en crecimiento.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {team.map((member, index) => (
-              <div
-                key={member.name}
-                className="group bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-              >
-                {/* Profile Image */}
-                <div className="aspect-square overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
-                  <div className={`w-24 h-24 bg-gradient-to-r ${member.gradient} rounded-2xl flex items-center justify-center shadow-lg`}>
-                    <UserGroupIcon className="h-12 w-12 text-white" />
-                  </div>
-                </div>
-
-                {/* Member Info */}
-                <div className="p-8">
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">{member.name}</h3>
-                  <p className="text-blue-600 font-semibold mb-4">{member.role}</p>
-                  <p className="text-slate-600 leading-relaxed mb-6">{member.bio}</p>
-
-                  {/* Contact Info */}
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center text-sm text-slate-500">
-                      <EnvelopeIcon className="h-4 w-4 mr-3 flex-shrink-0" />
-                      <a href={`mailto:${member.email}`} className="hover:text-blue-600 transition-colors truncate">
-                        {member.email}
-                      </a>
-                    </div>
-                    <div className="flex items-center text-sm text-slate-500">
-                      <PhoneIcon className="h-4 w-4 mr-3 flex-shrink-0" />
-                      <a href={`tel:${member.phone}`} className="hover:text-blue-600 transition-colors">
-                        {member.phone}
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Social Links */}
-                  <div className="flex space-x-3">
-                    <a
-                      href={member.linkedin}
-                      className="text-slate-400 hover:text-blue-600 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="LinkedIn"
-                    >
-                      <LinkIcon className="h-5 w-5" />
-                    </a>
-                    <a
-                      href={member.twitter}
-                      className="text-slate-400 hover:text-blue-600 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Twitter"
-                    >
-                      <GlobeAltIcon className="h-5 w-5" />
-                    </a>
-                    <a
-                      href={member.github}
-                      className="text-slate-400 hover:text-blue-600 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="GitHub"
-                    >
-                      <CommandLineIcon className="h-5 w-5" />
-                    </a>
-                  </div>
-                </div>
+          <div className="text-center">
+            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl shadow-xl border border-slate-200 p-12 max-w-2xl mx-auto">
+              <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <UserGroupIcon className="h-12 w-12 text-white" />
               </div>
-            ))}
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Oportunidades Disponibles</h3>
+              <p className="text-slate-600 leading-relaxed mb-8">
+                Si tienes experiencia en seguridad industrial, capacitación o gestión de riesgos, 
+                nos encantaría conocerte y explorar oportunidades de colaboración.
+              </p>
+              <a
+                href="/contacto"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <span>Contactar</span>
+                <ArrowRightIcon className="ml-3 h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
       </section>

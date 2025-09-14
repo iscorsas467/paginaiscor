@@ -55,7 +55,28 @@ const experience = [
   }
 ];
 
-export default function InstructorSection() {
+const affiliations = [
+  {
+    name: 'CCS',
+    fullName: 'Consejo Colombiano de Seguridad',
+    icon: ShieldCheckIcon,
+    gradient: 'from-blue-500 to-blue-600'
+  },
+  {
+    name: 'NFPA',
+    fullName: 'National Fire Protection Association',
+    icon: FireIcon,
+    gradient: 'from-red-500 to-red-600'
+  },
+  {
+    name: 'NAUI',
+    fullName: 'National Association of Underwater Instructors',
+    icon: GlobeAltIcon,
+    gradient: 'from-cyan-500 to-blue-500'
+  }
+];
+
+export default function InstructorPrincipal() {
   return (
     <section className="py-24 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -215,27 +236,15 @@ export default function InstructorSection() {
               Afiliaciones y Reconocimientos
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <ShieldCheckIcon className="h-8 w-8 text-white" />
+              {affiliations.map((affiliation, index) => (
+                <div key={affiliation.name} className="text-center">
+                  <div className={`w-16 h-16 bg-gradient-to-r ${affiliation.gradient} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                    <affiliation.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-slate-900 mb-2">{affiliation.name}</h4>
+                  <p className="text-sm text-slate-600">{affiliation.fullName}</p>
                 </div>
-                <h4 className="font-semibold text-slate-900 mb-2">CCS</h4>
-                <p className="text-sm text-slate-600">Consejo Colombiano de Seguridad</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FireIcon className="h-8 w-8 text-white" />
-                </div>
-                <h4 className="font-semibold text-slate-900 mb-2">NFPA</h4>
-                <p className="text-sm text-slate-600">National Fire Protection Association</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <GlobeAltIcon className="h-8 w-8 text-white" />
-                </div>
-                <h4 className="font-semibold text-slate-900 mb-2">NAUI</h4>
-                <p className="text-sm text-slate-600">National Association of Underwater Instructors</p>
-              </div>
+              ))}
             </div>
           </div>
         </motion.div>

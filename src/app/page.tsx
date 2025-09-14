@@ -29,7 +29,6 @@ import ThreeJSBackground from '@/components/ThreeJSBackground';
 import LoginModal from '@/components/LoginModal';
 import MinimalHero from '@/components/MinimalHero';
 import AboutSection from '@/components/AboutSection';
-import InstructorSection from '@/components/InstructorSection';
 import ServicesSection from '@/components/ServicesSection';
 import ContactSection from '@/components/ContactSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -60,9 +59,6 @@ export default function Home() {
 
       {/* About Section */}
       <AboutSection />
-
-      {/* Instructor Section */}
-      <InstructorSection />
 
       {/* Services Section */}
       <ServicesSection />
