@@ -223,7 +223,7 @@ export default function CertificadosPage() {
                   value={cedula}
                   onChange={(e) => setCedula(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ej: 1234567890"
+                  placeholder="Escribe la cédula sin puntos ni espacios"
                   className="block w-full pl-16 pr-6 py-6 border-2 border-slate-300 rounded-2xl text-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 bg-slate-50 font-medium"
                 />
               </div>
