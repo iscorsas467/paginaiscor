@@ -23,7 +23,7 @@ interface Course {
   id: number;
   title: string;
   description: string;
-  icon: any;
+  icon: string;
   gradient: string;
   duration: string;
   certification: string;
@@ -33,6 +33,50 @@ interface Course {
   badge?: string;
   features: string[];
 }
+
+// Datos de fallback
+const fallbackCourses: Course[] = [
+  {
+    id: 1,
+    title: 'Trabajo en Alturas',
+    description: 'Certificación completa para trabajos en altura con equipos de protección personal certificados y protocolos de seguridad avanzados.',
+    icon: '🏗️',
+    gradient: 'from-orange-500 via-red-500 to-pink-500',
+    duration: '40 horas',
+    certification: 'Válido 2 años',
+    students: 1250,
+    rating: 4.9,
+    nextDate: '15 Mar 2024',
+    badge: 'Más Popular',
+    features: ['Equipos certificados', 'Protocolos avanzados', 'Instructores expertos']
+  },
+  {
+    id: 2,
+    title: 'Espacios Confinados',
+    description: 'Entrenamiento especializado para trabajos en espacios confinados con protocolos de seguridad y equipos certificados.',
+    icon: '⚙️',
+    gradient: 'from-purple-500 via-indigo-500 to-blue-500',
+    duration: '40 horas',
+    certification: 'Válido 2 años',
+    students: 980,
+    rating: 4.8,
+    nextDate: '22 Mar 2024',
+    features: ['Simuladores reales', 'Técnicas especializadas', 'Certificación internacional']
+  },
+  {
+    id: 3,
+    title: 'Control de Incendios',
+    description: 'Sistemas de prevención, detección y extinción de incendios con equipos certificados y técnicas avanzadas.',
+    icon: '🔥',
+    gradient: 'from-red-500 via-orange-500 to-yellow-500',
+    duration: '32 horas',
+    certification: 'Válido 3 años',
+    students: 1100,
+    rating: 4.9,
+    nextDate: '28 Mar 2024',
+    features: ['Equipos modernos', 'Técnicas actualizadas', 'Práctica real']
+  }
+];
 
 const courses: Course[] = [
   {
@@ -121,23 +165,58 @@ export default function HeroCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [coursesData, setCoursesData] = useState<Course[]>(fallbackCourses);
+
+  useEffect(() => {
+    loadCourses();
+  }, []);
+
+  const loadCourses = async () => {
+    try {
+      const response = await fetch('/api/courses');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.data.length > 0) {
+          // Transformar datos de la API al formato esperado
+          const transformedCourses = data.data.slice(0, 6).map((course: any, index: number) => ({
+            id: index + 1,
+            title: course.name,
+            description: course.description,
+            icon: course.icon,
+            gradient: course.gradient,
+            duration: course.duration,
+            certification: course.certification,
+            students: course.students,
+            rating: course.rating,
+            nextDate: 'Próximamente',
+            badge: index === 0 ? 'Más Popular' : undefined,
+            features: ['Certificación oficial', 'Instructores expertos', 'Material actualizado']
+          }));
+          setCoursesData(transformedCourses);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading courses:', error);
+      // Mantener fallback courses en caso de error
+    }
+  };
 
   // Auto-play functionality
   useEffect(() => {
     if (isPlaying && !isHovered) {
       const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % courses.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % coursesData.length);
       }, 5000);
       return () => clearInterval(interval);
     }
-  }, [isPlaying, isHovered]);
+  }, [isPlaying, isHovered, coursesData.length]);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % courses.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % coursesData.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + courses.length) % courses.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + coursesData.length) % coursesData.length);
   };
 
   const goToSlide = (index: number) => {
@@ -148,7 +227,7 @@ export default function HeroCarousel() {
     setIsPlaying(!isPlaying);
   };
 
-  const currentCourse = courses[currentIndex];
+  const currentCourse = coursesData[currentIndex];
 
   return (
     <div className="relative w-full h-full">
@@ -197,7 +276,7 @@ export default function HeroCarousel() {
                     transition={{ delay: 0.3 }}
                     className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${currentCourse.gradient} rounded-2xl shadow-2xl mb-8`}
                   >
-                    <currentCourse.icon className="h-10 w-10 text-white" />
+                    <span className="text-3xl">{currentCourse.icon}</span>
                   </motion.div>
                   
                   {/* Title */}
@@ -331,7 +410,7 @@ export default function HeroCarousel() {
       
       {/* Dots Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
-        {courses.map((_, index) => (
+        {coursesData.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
@@ -348,7 +427,7 @@ export default function HeroCarousel() {
       <div className="absolute top-4 left-4">
         <div className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
           <span className="text-white text-sm font-medium">
-            {currentIndex + 1} / {courses.length}
+            {currentIndex + 1} / {coursesData.length}
           </span>
         </div>
       </div>

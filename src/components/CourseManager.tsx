@@ -1,648 +1,373 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { 
   PencilIcon, 
-  EyeIcon, 
-  XMarkIcon,
+  TrashIcon, 
   PlusIcon,
-  TrashIcon,
-  PhotoIcon,
-  CheckCircleIcon,
-  ClockIcon,
-  UserIcon,
-  MapPinIcon,
-  CurrencyDollarIcon,
-  AcademicCapIcon,
-  ArrowRightIcon,
-  CheckIcon
+  CheckIcon,
+  XMarkIcon,
+  AcademicCapIcon
 } from '@heroicons/react/24/outline';
 
 interface Course {
   id: string;
   name: string;
   slug: string;
-  image: string;
   description: string;
+  icon: string;
+  gradient: string;
   duration: string;
   certification: string;
-  gradient: string;
-  detailedDescription: string;
-  objectives: string[];
-  benefits: string[];
-  requirements: string[];
-  modules: string[];
-  instructor: string;
-  price: string;
-  location: string;
-  schedule: string;
-  icon: string;
+  students: number;
+  rating: number;
+  category: string;
+  order: number;
 }
 
-interface CourseManagerProps {
-  onClose: () => void;
-  onSave: (course: Course) => void;
-  initialCourse?: Course;
-}
+export default function CourseManager() {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState<string | null>(null);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    icon: '🏗️',
+    gradient: 'from-blue-500 to-blue-600',
+    duration: '40 horas',
+    certification: 'Válido 2 años',
+    category: 'Seguridad Industrial'
+  });
 
-const defaultCourse: Course = {
-  id: '',
-  name: '',
-  slug: '',
-  image: '/montacargas .png',
-  description: '',
-  duration: '',
-  certification: '',
-  gradient: 'from-blue-600 to-cyan-600',
-  detailedDescription: '',
-  objectives: [''],
-  benefits: [''],
-  requirements: [''],
-  modules: [''],
-  instructor: '',
-  price: '',
-  location: '',
-  schedule: '',
-  icon: 'CogIcon'
-};
+  useEffect(() => {
+    loadCourses();
+  }, []);
 
-const availableImages = [
-  '/montacargas .png',
-  '/fuego.png',
-  '/plandeemergencia.png',
-  '/brigada_de_emergencia.png',
-  '/materiales_peligrosos.png',
-  '/tareas_de_alto_riesgo.png',
-  '/seguridad_acuatica.png',
-  '/seguridad_fisica.png',
-  '/primeros_auxilios.png',
-  '/control_de_calidad.png',
-  '/inspecciones_certificadas.png',
-  '/reintegro_laboral.png',
-  '/alturas.png',
-  '/Lockout_tagout.png',
-  '/Espacios_confinados.png',
-  '/buceo.png'
-];
-
-const gradients = [
-  'from-blue-600 to-cyan-600',
-  'from-green-600 to-emerald-600',
-  'from-purple-600 to-pink-600',
-  'from-orange-600 to-red-600',
-  'from-indigo-600 to-purple-600',
-  'from-yellow-600 to-orange-600',
-  'from-red-600 to-pink-600',
-  'from-gray-600 to-slate-600',
-  'from-teal-600 to-cyan-600'
-];
-
-export default function CourseManager({ onClose, onSave, initialCourse }: CourseManagerProps) {
-  const [course, setCourse] = useState<Course>(initialCourse || defaultCourse);
-  const [showPreview, setShowPreview] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
-
-  const handleInputChange = (field: keyof Course, value: any) => {
-    setCourse(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
-  const handleArrayChange = (field: keyof Course, index: number, value: string) => {
-    setCourse(prev => ({
-      ...prev,
-      [field]: (prev[field] as string[]).map((item: string, i: number) => 
-        i === index ? value : item
-      )
-    }));
-  };
-
-  const addArrayItem = (field: keyof Course) => {
-    setCourse(prev => ({
-      ...prev,
-      [field]: [...(prev[field] as string[]), '']
-    }));
-  };
-
-  const removeArrayItem = (field: keyof Course, index: number) => {
-    setCourse(prev => ({
-      ...prev,
-      [field]: (prev[field] as string[]).filter((_: string, i: number) => i !== index)
-    }));
+  const loadCourses = async () => {
+    try {
+      const response = await fetch('/api/courses');
+      if (response.ok) {
+        const data = await response.json();
+        setCourses(data.data || []);
+      }
+    } catch (error) {
+      console.error('Error loading courses:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSave = async () => {
-    setIsSaving(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    onSave(course);
-    setIsSaving(false);
+    try {
+      const response = await fetch('/api/courses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        await loadCourses();
+        setShowAddForm(false);
+        resetForm();
+        alert('Curso creado exitosamente');
+      } else {
+        alert('Error al crear el curso');
+      }
+    } catch (error) {
+      console.error('Error saving course:', error);
+      alert('Error al crear el curso');
+    }
   };
 
-  const generateSlug = (name: string) => {
-    return name
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .trim();
+  const handleUpdate = async (courseId: string) => {
+    try {
+      const course = courses.find(c => c.id === courseId);
+      if (!course) return;
+
+      const response = await fetch('/api/courses', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: courseId,
+          name: course.name,
+          description: course.description,
+          icon: course.icon,
+          gradient: course.gradient,
+          order: course.order
+        }),
+      });
+
+      if (response.ok) {
+        setEditing(null);
+        alert('Curso actualizado exitosamente');
+      } else {
+        alert('Error al actualizar el curso');
+      }
+    } catch (error) {
+      console.error('Error updating course:', error);
+      alert('Error al actualizar el curso');
+    }
   };
 
-  const renderPreview = () => (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-      <h4 className="text-lg font-semibold text-slate-900 mb-4 flex items-center">
-        <EyeIcon className="h-5 w-5 mr-2 text-blue-600" />
-        Vista Previa del Curso
-      </h4>
-      
-      <div className="space-y-6">
-        {/* Hero Card */}
-        <div className={`bg-gradient-to-r ${course.gradient} rounded-xl p-6 text-white`}>
-          <div className="flex items-center space-x-4">
-            <Image
-              src={course.image}
-              alt={course.name}
-              width={80}
-              height={80}
-              className="w-20 h-20 object-cover rounded-lg"
-            />
-            <div>
-              <h3 className="text-2xl font-bold">{course.name || 'Nombre del Curso'}</h3>
-              <p className="text-white/80">{course.description || 'Descripción del curso'}</p>
-            </div>
-          </div>
-        </div>
+  const handleDelete = async (courseId: string) => {
+    if (!confirm('¿Estás seguro de que quieres eliminar este curso?')) return;
 
-        {/* Course Details */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
-            <ClockIcon className="h-5 w-5 text-slate-600" />
-            <span className="text-sm text-slate-700">{course.duration || 'Duración'}</span>
-          </div>
-          <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
-            <CheckCircleIcon className="h-5 w-5 text-slate-600" />
-            <span className="text-sm text-slate-700">{course.certification || 'Certificación'}</span>
-          </div>
-          <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
-            <UserIcon className="h-5 w-5 text-slate-600" />
-            <span className="text-sm text-slate-700">{course.instructor || 'Instructor'}</span>
-          </div>
-          <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
-            <CurrencyDollarIcon className="h-5 w-5 text-slate-600" />
-            <span className="text-sm text-slate-700">{course.price || 'Precio'}</span>
-          </div>
-        </div>
+    try {
+      const response = await fetch(`/api/courses?id=${courseId}`, {
+        method: 'DELETE',
+      });
 
-        {/* Detailed Description */}
-        {course.detailedDescription && (
-          <div>
-            <h5 className="font-semibold text-slate-900 mb-2">Descripción Detallada</h5>
-            <p className="text-slate-600 text-sm">{course.detailedDescription}</p>
-          </div>
-        )}
+      if (response.ok) {
+        await loadCourses();
+        alert('Curso eliminado exitosamente');
+      } else {
+        alert('Error al eliminar el curso');
+      }
+    } catch (error) {
+      console.error('Error deleting course:', error);
+      alert('Error al eliminar el curso');
+    }
+  };
 
-        {/* Objectives */}
-        {course.objectives.length > 0 && course.objectives[0] && (
-          <div>
-            <h5 className="font-semibold text-slate-900 mb-2">Objetivos</h5>
-            <ul className="space-y-1">
-              {course.objectives.map((objective, index) => (
-                <li key={index} className="flex items-start space-x-2 text-sm text-slate-600">
-                  <CheckCircleIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>{objective}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      description: '',
+      icon: '🏗️',
+      gradient: 'from-blue-500 to-blue-600',
+      duration: '40 horas',
+      certification: 'Válido 2 años',
+      category: 'Seguridad Industrial'
+    });
+  };
 
-        {/* Modules */}
-        {course.modules.length > 0 && course.modules[0] && (
-          <div>
-            <h5 className="font-semibold text-slate-900 mb-2">Módulos del Curso</h5>
-            <div className="grid grid-cols-1 gap-2">
-              {course.modules.map((module, index) => (
-                <div key={index} className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                  <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
-                    {index + 1}
-                  </div>
-                  <span className="text-sm text-slate-700">{module}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+  const updateCourseField = (courseId: string, field: keyof Course, value: string | number) => {
+    setCourses(prev => prev.map(course => 
+      course.id === courseId ? { ...course, [field]: value } : course
+    ));
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <span className="ml-2 text-gray-600">Cargando cursos...</span>
       </div>
-    </div>
-  );
+    );
+  }
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-hidden">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-slate-200">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
-              <AcademicCapIcon className="h-5 w-5 text-white" />
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-medium text-gray-900">Gestión de Cursos</h3>
+        <button
+          onClick={() => setShowAddForm(true)}
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+        >
+          <PlusIcon className="h-4 w-4 mr-2" />
+          Agregar Curso
+        </button>
+      </div>
+
+      {/* Formulario para agregar curso */}
+      {showAddForm && (
+        <div className="bg-white shadow rounded-lg p-6">
+          <h4 className="text-lg font-medium text-gray-900 mb-4">Agregar Nuevo Curso</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Nombre del Curso
+              </label>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Ej: Trabajo en Alturas"
+              />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                {initialCourse ? 'Editar Curso' : 'Crear Nuevo Curso'}
-              </h3>
-              <p className="text-sm text-slate-600">Gestiona la información del curso con vista previa en tiempo real</p>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Icono
+              </label>
+              <input
+                type="text"
+                value={formData.icon}
+                onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="🏗️"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Descripción
+              </label>
+              <textarea
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                rows={3}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Descripción del curso..."
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Gradiente
+              </label>
+              <select
+                value={formData.gradient}
+                onChange={(e) => setFormData({ ...formData, gradient: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="from-blue-500 to-blue-600">Azul</option>
+                <option value="from-green-500 to-green-600">Verde</option>
+                <option value="from-red-500 to-red-600">Rojo</option>
+                <option value="from-purple-500 to-purple-600">Púrpura</option>
+                <option value="from-orange-500 to-orange-600">Naranja</option>
+                <option value="from-yellow-500 to-yellow-600">Amarillo</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Categoría
+              </label>
+              <input
+                type="text"
+                value={formData.category}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Seguridad Industrial"
+              />
             </div>
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex justify-end space-x-3 mt-4">
             <button
-              onClick={() => setShowPreview(!showPreview)}
-              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
-                showPreview 
-                  ? 'bg-blue-100 text-blue-700' 
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
+              onClick={() => {
+                setShowAddForm(false);
+                resetForm();
+              }}
+              className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
             >
-              <EyeIcon className="h-4 w-4 mr-2 inline" />
-              {showPreview ? 'Ocultar Vista Previa' : 'Mostrar Vista Previa'}
+              <XMarkIcon className="h-4 w-4 mr-2" />
+              Cancelar
             </button>
             <button
               onClick={handleSave}
-              disabled={isSaving}
-              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 disabled:opacity-50"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
             >
-              {isSaving ? 'Guardando...' : 'Guardar Curso'}
-            </button>
-            <button
-              onClick={onClose}
-              className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors duration-200"
-            >
-              <XMarkIcon className="h-6 w-6" />
+              <CheckIcon className="h-4 w-4 mr-2" />
+              Guardar
             </button>
           </div>
         </div>
+      )}
 
-        {/* Content */}
-        <div className="flex h-[calc(90vh-120px)]">
-          {/* Editor Panel */}
-          <div className={`${showPreview ? 'w-1/2' : 'w-full'} p-6 overflow-y-auto border-r border-slate-200`}>
-            <div className="space-y-6">
-              {/* Basic Information */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-slate-900">Información Básica</h4>
-                
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Nombre del Curso *
-                  </label>
-                  <input
-                    type="text"
-                    value={course.name}
-                    onChange={(e) => {
-                      handleInputChange('name', e.target.value);
-                      handleInputChange('slug', generateSlug(e.target.value));
-                    }}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Ej: Montacargas"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Slug (URL)
-                  </label>
-                  <input
-                    type="text"
-                    value={course.slug}
-                    onChange={(e) => handleInputChange('slug', e.target.value)}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="montacargas"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Descripción Corta
-                  </label>
-                  <textarea
-                    value={course.description}
-                    onChange={(e) => handleInputChange('description', e.target.value)}
-                    rows={3}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Descripción breve del curso"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Descripción Detallada
-                  </label>
-                  <textarea
-                    value={course.detailedDescription}
-                    onChange={(e) => handleInputChange('detailedDescription', e.target.value)}
-                    rows={4}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Descripción completa del curso"
-                  />
-                </div>
-              </div>
-
-              {/* Course Details */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-slate-900">Detalles del Curso</h4>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Duración
-                    </label>
-                    <input
-                      type="text"
-                      value={course.duration}
-                      onChange={(e) => handleInputChange('duration', e.target.value)}
-                      className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Ej: 40 horas"
-                    />
+      {/* Lista de cursos */}
+      <div className="bg-white shadow rounded-lg overflow-hidden">
+        <div className="px-4 py-5 sm:p-6">
+          <h4 className="text-lg font-medium text-gray-900 mb-4">Cursos Actuales</h4>
+          <div className="space-y-4">
+            {courses.length === 0 ? (
+              <p className="text-gray-500 italic text-center py-8">No hay cursos configurados</p>
+            ) : (
+              courses.map((course) => (
+                <div key={course.id} className="border border-gray-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${course.gradient} rounded-lg flex items-center justify-center`}>
+                        <span className="text-2xl">{course.icon}</span>
+                      </div>
+                      <div>
+                        <h5 className="font-medium text-gray-900">{course.name}</h5>
+                        <p className="text-sm text-gray-600">{course.description}</p>
+                        <div className="flex items-center space-x-4 text-xs text-gray-500 mt-1">
+                          <span>👥 {course.students} estudiantes</span>
+                          <span>⭐ {course.rating.toFixed(1)}</span>
+                          <span>📅 {course.duration}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      {editing === course.id ? (
+                        <>
+                          <button
+                            onClick={() => handleUpdate(course.id)}
+                            className="text-green-600 hover:text-green-800"
+                          >
+                            <CheckIcon className="h-5 w-5" />
+                          </button>
+                          <button
+                            onClick={() => setEditing(null)}
+                            className="text-gray-600 hover:text-gray-800"
+                          >
+                            <XMarkIcon className="h-5 w-5" />
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => setEditing(course.id)}
+                            className="text-blue-600 hover:text-blue-800"
+                          >
+                            <PencilIcon className="h-5 w-5" />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(course.id)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            <TrashIcon className="h-5 w-5" />
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Certificación
-                    </label>
-                    <input
-                      type="text"
-                      value={course.certification}
-                      onChange={(e) => handleInputChange('certification', e.target.value)}
-                      className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Ej: Certificado válido por 2 años"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Instructor
-                    </label>
-                    <input
-                      type="text"
-                      value={course.instructor}
-                      onChange={(e) => handleInputChange('instructor', e.target.value)}
-                      className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Ej: Ing. Carlos Mendoza"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Precio
-                    </label>
-                    <input
-                      type="text"
-                      value={course.price}
-                      onChange={(e) => handleInputChange('price', e.target.value)}
-                      className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Ej: $450.000 COP"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Ubicación
-                    </label>
-                    <input
-                      type="text"
-                      value={course.location}
-                      onChange={(e) => handleInputChange('location', e.target.value)}
-                      className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Ej: Bogotá, Colombia"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Horario
-                    </label>
-                    <input
-                      type="text"
-                      value={course.schedule}
-                      onChange={(e) => handleInputChange('schedule', e.target.value)}
-                      className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Ej: Lunes a Viernes 8:00 AM - 5:00 PM"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Visual Settings */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-slate-900">Configuración Visual</h4>
-                
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Imagen del Curso
-                  </label>
-                  <div className="grid grid-cols-4 gap-2">
-                    {availableImages.map((image) => (
-                      <button
-                        key={image}
-                        onClick={() => handleInputChange('image', image)}
-                        className={`p-2 border-2 rounded-lg transition-colors duration-200 ${
-                          course.image === image 
-                            ? 'border-blue-500 bg-blue-50' 
-                            : 'border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        <Image
-                          src={image}
-                          alt="Course"
-                          width={48}
-                          height={48}
-                          className="w-full h-12 object-cover rounded"
+                  
+                  {editing === course.id && (
+                    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Nombre
+                        </label>
+                        <input
+                          type="text"
+                          value={course.name}
+                          onChange={(e) => updateCourseField(course.id, 'name', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Gradiente de Color
-                  </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {gradients.map((gradient) => (
-                      <button
-                        key={gradient}
-                        onClick={() => handleInputChange('gradient', gradient)}
-                        className={`h-12 rounded-lg transition-all duration-200 ${
-                          course.gradient === gradient 
-                            ? 'ring-2 ring-blue-500 ring-offset-2' 
-                            : 'hover:scale-105'
-                        } bg-gradient-to-r ${gradient}`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Arrays */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-slate-900">Contenido del Curso</h4>
-                
-                {/* Objectives */}
-                <div className="space-y-3">
-                  <label className="block text-sm font-medium text-slate-700">
-                    Objetivos del Curso
-                  </label>
-                  {course.objectives.map((objective, index) => (
-                    <div key={index} className="flex space-x-2">
-                      <input
-                        type="text"
-                        value={objective}
-                        onChange={(e) => handleArrayChange('objectives', index, e.target.value)}
-                        className="flex-1 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder={`Objetivo ${index + 1}`}
-                      />
-                      <button
-                        onClick={() => removeArrayItem('objectives', index)}
-                        className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                      >
-                        <TrashIcon className="h-4 w-4" />
-                      </button>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Icono
+                        </label>
+                        <input
+                          type="text"
+                          value={course.icon}
+                          onChange={(e) => updateCourseField(course.id, 'icon', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Descripción
+                        </label>
+                        <textarea
+                          value={course.description}
+                          onChange={(e) => updateCourseField(course.id, 'description', e.target.value)}
+                          rows={2}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
                     </div>
-                  ))}
-                  <button
-                    onClick={() => addArrayItem('objectives')}
-                    className="flex items-center px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                  >
-                    <PlusIcon className="h-4 w-4 mr-2" />
-                    Agregar Objetivo
-                  </button>
+                  )}
                 </div>
-
-                {/* Modules */}
-                <div className="space-y-3">
-                  <label className="block text-sm font-medium text-slate-700">
-                    Módulos del Curso
-                  </label>
-                  {course.modules.map((module, index) => (
-                    <div key={index} className="flex space-x-2">
-                      <input
-                        type="text"
-                        value={module}
-                        onChange={(e) => handleArrayChange('modules', index, e.target.value)}
-                        className="flex-1 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder={`Módulo ${index + 1}`}
-                      />
-                      <button
-                        onClick={() => removeArrayItem('modules', index)}
-                        className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                      >
-                        <TrashIcon className="h-4 w-4" />
-                      </button>
-                    </div>
-                  ))}
-                  <button
-                    onClick={() => addArrayItem('modules')}
-                    className="flex items-center px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                  >
-                    <PlusIcon className="h-4 w-4 mr-2" />
-                    Agregar Módulo
-                  </button>
-                </div>
-
-                {/* Benefits */}
-                <div className="space-y-3">
-                  <label className="block text-sm font-medium text-slate-700">
-                    Beneficios del Curso
-                  </label>
-                  {course.benefits.map((benefit, index) => (
-                    <div key={index} className="flex space-x-2">
-                      <input
-                        type="text"
-                        value={benefit}
-                        onChange={(e) => handleArrayChange('benefits', index, e.target.value)}
-                        className="flex-1 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder={`Beneficio ${index + 1}`}
-                      />
-                      <button
-                        onClick={() => removeArrayItem('benefits', index)}
-                        className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                      >
-                        <TrashIcon className="h-4 w-4" />
-                      </button>
-                    </div>
-                  ))}
-                  <button
-                    onClick={() => addArrayItem('benefits')}
-                    className="flex items-center px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                  >
-                    <PlusIcon className="h-4 w-4 mr-2" />
-                    Agregar Beneficio
-                  </button>
-                </div>
-
-                {/* Requirements */}
-                <div className="space-y-3">
-                  <label className="block text-sm font-medium text-slate-700">
-                    Requisitos del Curso
-                  </label>
-                  {course.requirements.map((requirement, index) => (
-                    <div key={index} className="flex space-x-2">
-                      <input
-                        type="text"
-                        value={requirement}
-                        onChange={(e) => handleArrayChange('requirements', index, e.target.value)}
-                        className="flex-1 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder={`Requisito ${index + 1}`}
-                      />
-                      <button
-                        onClick={() => removeArrayItem('requirements', index)}
-                        className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                      >
-                        <TrashIcon className="h-4 w-4" />
-                      </button>
-                    </div>
-                  ))}
-                  <button
-                    onClick={() => addArrayItem('requirements')}
-                    className="flex items-center px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                  >
-                    <PlusIcon className="h-4 w-4 mr-2" />
-                    Agregar Requisito
-                  </button>
-                </div>
-
-                {/* Save Button */}
-                <div className="pt-6 border-t border-slate-200">
-                  <button
-                    onClick={handleSave}
-                    disabled={isSaving}
-                    className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 disabled:opacity-50 flex items-center justify-center"
-                  >
-                    {isSaving ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Guardando...
-                      </>
-                    ) : (
-                      <>
-                        <CheckIcon className="h-4 w-4 mr-2" />
-                        Guardar Cambios
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-            </div>
+              ))
+            )}
           </div>
-
-          {/* Preview Panel */}
-          {showPreview && (
-            <div className="w-1/2 p-6 overflow-y-auto bg-slate-50">
-              {renderPreview()}
-            </div>
-          )}
         </div>
       </div>
     </div>

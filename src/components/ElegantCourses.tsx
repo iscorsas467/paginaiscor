@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { 
   BuildingOfficeIcon,
   CogIcon,
@@ -28,6 +29,65 @@ import {
   HeartIcon,
   LockClosedIcon
 } from '@heroicons/react/24/outline';
+
+// Datos de fallback en caso de que no se puedan cargar desde la BD
+const fallbackCourses = [
+  {
+    name: 'Trabajo en Alturas',
+    description: 'Certificación en protección contra caídas en trabajos en alturas según normativas nacionales e internacionales.',
+    icon: '🏗️',
+    gradient: 'from-orange-500 to-red-500',
+    duration: '40 horas',
+    certification: 'Válido 2 años',
+    students: 1250,
+    rating: 4.9,
+    category: 'Seguridad Industrial'
+  },
+  {
+    name: 'Espacios Confinados',
+    description: 'Seguridad en espacios confinados con protocolos de entrada, trabajo y rescate especializado.',
+    icon: '⚙️',
+    gradient: 'from-purple-500 to-indigo-500',
+    duration: '40 horas',
+    certification: 'Válido 2 años',
+    students: 980,
+    rating: 4.8,
+    category: 'Seguridad Industrial'
+  },
+  {
+    name: 'Control y Extinción de Incendios',
+    description: 'Control y extinción de incendios con procedimientos operativos normalizados NFPA y brigadas de emergencia.',
+    icon: '🔥',
+    gradient: 'from-red-500 to-orange-500',
+    duration: '32 horas',
+    certification: 'Válido 3 años',
+    students: 1100,
+    rating: 4.9,
+    category: 'Emergencias'
+  },
+  {
+    name: 'Primeros Auxilios Básicos y Avanzados',
+    description: 'Capacitación en primeros auxilios básicos y avanzados con administración de oxígeno para emergencias.',
+    icon: '❤️',
+    gradient: 'from-green-500 to-emerald-500',
+    duration: '16 horas',
+    certification: 'Válido 1 año',
+    students: 2100,
+    rating: 4.9,
+    category: 'Emergencias'
+  },
+  {
+    name: 'Materiales y Mercancías Peligrosas',
+    description: 'Manejo seguro de materiales y mercancías peligrosas con protocolos de almacenamiento y transporte.',
+    icon: '⚠️',
+    gradient: 'from-yellow-500 to-orange-500',
+    duration: '32 horas',
+    certification: 'Válido 2 años',
+    students: 850,
+    rating: 4.7,
+    category: 'Seguridad Industrial'
+  }
+];
 
 const courses = [
   {
@@ -250,14 +310,33 @@ const getCourseSlug = (courseName: string) => {
 
 export default function ElegantCourses() {
   const router = useRouter();
-  console.log('ElegantCourses se está ejecutando');
+  const [courses, setCourses] = useState(fallbackCourses);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadCourses();
+  }, []);
+
+  const loadCourses = async () => {
+    try {
+      const response = await fetch('/api/courses');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.data.length > 0) {
+          setCourses(data.data);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading courses:', error);
+      // Mantener fallback courses en caso de error
+    } finally {
+      setLoading(false);
+    }
+  };
   
   const handleCourseClick = (courseName: string) => {
-    console.log('Botón clickeado para:', courseName);
     const slug = getCourseSlug(courseName);
-    console.log('Slug encontrado:', slug);
     if (slug) {
-      console.log('Navegando a:', `/servicios/${slug}`);
       router.push(`/servicios/${slug}`);
     } else {
       alert('Información detallada de ' + courseName + ' próximamente disponible');
@@ -350,7 +429,7 @@ export default function ElegantCourses() {
                 </div>
               ) : (
                 <div className={`flex items-center justify-center w-24 h-24 bg-gradient-to-r ${course.gradient} rounded-xl mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg mx-auto`}>
-                  <course.icon className="h-12 w-12 text-white" />
+                  <span className="text-4xl">{course.icon}</span>
                 </div>
               )}
               

@@ -17,6 +17,7 @@ import {
   GlobeAltIcon
 } from '@heroicons/react/24/outline';
 import ContentManager from '@/components/ContentManager';
+import CourseManager from '@/components/CourseManager';
 
 export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -86,6 +87,22 @@ export default function AdminPage() {
 
   const renderContent = () => {
     switch (activeTab) {
+      case 'courses':
+        return (
+          <div className="bg-white shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <CourseManager />
+            </div>
+          </div>
+        );
+      case 'content':
+        return (
+          <div className="bg-white shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <ContentManager />
+            </div>
+          </div>
+        );
       case 'dashboard':
         return (
           <div className="space-y-6">

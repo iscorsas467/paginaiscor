@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, use } from 'react';
+import { useState, use, useEffect } from 'react';
 import { 
   ShieldCheckIcon, 
   ArrowRightIcon, 
@@ -1618,12 +1618,59 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [course, setCourse] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   // Desenvolver los parámetros usando React.use()
   const { slug } = use(params);
-  
-  // Encontrar el curso basado en el slug
-  const course = courses.find(c => c.slug === slug);
+
+  useEffect(() => {
+    loadCourse();
+  }, [slug]);
+
+  const loadCourse = async () => {
+    try {
+      const response = await fetch(`/api/courses/${slug}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.data) {
+          setCourse(data.data);
+        } else {
+          // Buscar en fallback courses
+          const fallbackCourse = courses.find(c => c.slug === slug);
+          if (fallbackCourse) {
+            setCourse(fallbackCourse);
+          }
+        }
+      } else {
+        // Buscar en fallback courses
+        const fallbackCourse = courses.find(c => c.slug === slug);
+        if (fallbackCourse) {
+          setCourse(fallbackCourse);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading course:', error);
+      // Buscar en fallback courses
+      const fallbackCourse = courses.find(c => c.slug === slug);
+      if (fallbackCourse) {
+        setCourse(fallbackCourse);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Cargando información del curso...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!course) {
     return (
@@ -1679,7 +1726,7 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
 
             <div className="text-center">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-8">
-                <course.icon className="h-5 w-5 mr-3" />
+                <span className="text-lg mr-3">{course.icon}</span>
                 {course.category}
               </div>
               
