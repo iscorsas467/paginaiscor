@@ -358,19 +358,6 @@ export default function CertificadosPage() {
               </div>
             )}
 
-            {/* Demo Note */}
-            <div className="mt-10 p-8 bg-slate-50 rounded-2xl border-2 border-slate-200">
-              <div className="text-center">
-                <h4 className="font-bold text-slate-900 text-xl mb-4">Modo de Prueba</h4>
-                <p className="text-slate-600 text-lg">
-                  Para probar el sistema, utilice las siguientes cédulas de ejemplo:
-                </p>
-                <div className="mt-4 flex justify-center space-x-6">
-                  <span className="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg font-mono text-lg font-bold">1234567890</span>
-                  <span className="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg font-mono text-lg font-bold">9876543210</span>
-                </div>
-              </div>
-            </div>
           </motion.div>
 
           {/* Legal Notice */}
