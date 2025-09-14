@@ -118,38 +118,6 @@ export default function NuestroEquipo() {
       {/* Instructor Principal */}
       <InstructorPrincipal />
 
-      {/* Próximamente - Equipo Directivo */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center mb-20">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8">
-              <ShieldCheckIcon className="h-5 w-5 mr-3" />
-              Equipo Directivo
-            </div>
-            
-            <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-8">
-              Próximamente
-            </h2>
-            
-            <p className="text-xl text-slate-600 leading-relaxed">
-              Estamos construyendo un equipo de líderes expertos en seguridad industrial. 
-              Pronto compartiremos información sobre nuestro equipo directivo.
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-12 max-w-md mx-auto">
-              <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <UserGroupIcon className="h-12 w-12 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Equipo en Construcción</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Estamos seleccionando cuidadosamente a los mejores profesionales para formar parte de nuestro equipo directivo.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Departments Section - Estilo Boeing Profesional */}
       <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-hidden">
