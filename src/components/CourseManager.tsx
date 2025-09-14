@@ -280,7 +280,9 @@ export default function CourseManager() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       <div className={`w-12 h-12 bg-gradient-to-r ${course.gradient} rounded-lg flex items-center justify-center`}>
-                        <span className="text-2xl">{course.icon}</span>
+                        <span className="text-2xl">
+                          {typeof course.icon === 'string' ? course.icon : <course.icon className="h-6 w-6" />}
+                        </span>
                       </div>
                       <div>
                         <h5 className="font-medium text-gray-900">{course.name}</h5>

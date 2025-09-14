@@ -1726,7 +1726,9 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
 
             <div className="text-center">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-8">
-                <span className="text-lg mr-3">{course.icon}</span>
+                <span className="text-lg mr-3">
+                  {typeof course.icon === 'string' ? course.icon : <course.icon className="h-5 w-5" />}
+                </span>
                 {course.category}
               </div>
               

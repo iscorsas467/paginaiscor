@@ -429,7 +429,9 @@ export default function ElegantCourses() {
                 </div>
               ) : (
                 <div className={`flex items-center justify-center w-24 h-24 bg-gradient-to-r ${course.gradient} rounded-xl mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg mx-auto`}>
-                  <span className="text-4xl">{course.icon}</span>
+                  <span className="text-4xl">
+                    {typeof course.icon === 'string' ? course.icon : <course.icon className="h-8 w-8" />}
+                  </span>
                 </div>
               )}
               

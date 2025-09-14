@@ -633,7 +633,9 @@ export default function ServiciosPage() {
                   {/* Icon fallback */}
                   {!courseImage && (
                     <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${course.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <span className="text-2xl">{course.icon}</span>
+                      <span className="text-2xl">
+                        {typeof course.icon === 'string' ? course.icon : <course.icon className="h-6 w-6" />}
+                      </span>
                     </div>
                   )}
                   
