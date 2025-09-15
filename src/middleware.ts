@@ -8,7 +8,8 @@ export function middleware(request: NextRequest) {
   if (pathname.startsWith('/admin')) {
     const authCookie = request.cookies.get('admin-auth')?.value;
 
-    if (!authCookie || authCookie !== 'true') {
+    // Verificar que existe la cookie y que no esté vacía
+    if (!authCookie || authCookie.trim() === '') {
       return NextResponse.redirect(new URL('/login', request.url));
     }
   }
