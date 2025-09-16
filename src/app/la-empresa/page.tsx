@@ -49,7 +49,7 @@ function CounterAnimation({ target, suffix = '' }: { target: number; suffix?: st
     return () => clearInterval(timer);
   }, [target]);
 
-  return <span>{count.toLocaleString()}{suffix}</span>;
+  return <span>{count.toLocaleString('en-US')}{suffix}</span>;
 }
 
 export default function LaEmpresa() {

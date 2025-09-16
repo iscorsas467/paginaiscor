@@ -442,16 +442,42 @@ const getCourseImage = (courseName: string) => {
     'Operación Segura de Montacargas': '/montacargas .png',
     'LOTO - Bloqueo y Etiquetado': '/Lockout_tagout.png',
     'Brigadas de Emergencia': '/brigada_de_emergencia.png',
+    'Brigada de Emergencia': '/brigada_de_emergencia.png',
+    'Seguridad en Trabajos en Caliente': '/Seguridad_en_Trabajos _en_Caliente.jpeg',
+    'Sistema de Gestión ISO 9001': '/Sistema_de_Gestión_ISO_9001.jpeg',
+    'Seguridad en el Izaje de Cargas': '/Seguridad_en_el_Izaje_de_Cargas.jpeg',
     'Buceo Scuba Diver': '/buceo.png',
-    'Sistema de Gestión ISO 9001': '/control_de_calidad.png',
+    'Buceo': '/buceo.png',
+    'Rescate y Salvamento Acuático': '/Rescate_y_Salvamento_Acuático.jpeg',
+    'Sistema de Gestión ISO 14001': '/Sistema-de_Gestión_ISO_14001.jpeg',
+    'Seguridad Alimentaria ISO 22000': '/Seguridad_Alimentaria_ISO_22000.jpeg',
+    'Supervivencia Básico y Avanzado': '/Supervivencia_Básico_y_Avanzado.jpeg',
+    'Procedimientos Operativos Normalizados NFPA': '/Procedimientos_Operativos_Normalizados_NFPA.jpeg',
     'Plan de Emergencias': '/plandeemergencia.png',
+    'Análisis de Vulnerabilidad': '/Análisis_de_Vulnerabilidad.jpeg',
+    'Plan de Evacuación': '/plandeemergencia.png',
+    'Plan de Contingencia': '/Plan_de_Contingencia.jpeg',
+    'Continuidad de los Negocios': '/Continuidad_de_los_Negocios.jpeg',
+    'Simulaciones de Emergencias': '/Simulaciones_de_Emergencias.jpeg',
+    'SCI - Sistema Comando de Incidentes': '/Sistema_Comando_de_Incidentes.jpeg',
+    'Control de Emergencias Químicas': '/Control_de_Emergencias_Químicas.jpeg',
+    'Certificación de Conductores que Transportan': '/Certificación_de_Conductores_que_Transportan.jpeg',
+    'Control Derrames, Escapes y Vertimientos Accidentales': '/Control_de_Derrames,_Escapes_y_Vertimientos_Accidentales.jpeg',
     'Certificación de Armado Seguro de Andamios': '/alturas.png',
+    'Curso de Primer Respondiente en Emergencias Médicas': '/Curso_de_Primer_Respondiente_en_Emergencias_Médicas.jpeg',
     'Programa de Seguridad para Piscinas': '/seguridad_acuatica.png',
+    'Curso de Administración de Oxígeno para Emergencias': '/primeros_auxilios.png',
     'Sistemas de Gestión de Seguridad y Salud en el Trabajo': '/control_de_calidad.png',
+    'Control de Calidad': '/control_de_calidad.png',
     'Inspecciones Certificadas': '/inspecciones_certificadas.png',
     'Reintegro Laboral': '/reintegro_laboral.png',
     'Seguridad Física': '/seguridad_fisica.png',
-    'Tareas de Alto Riesgo': '/tareas_de_alto_riesgo.png'
+    'Tareas de Alto Riesgo': '/tareas_de_alto_riesgo.png',
+    'Lockout Tagout': '/Lockout_tagout.png',
+    'Gestión de Riesgos Laborales': '/control_de_calidad.png',
+    'Auditorías de Seguridad': '/control_de_calidad.png',
+    'Planes de Emergencia': '/plandeemergencia.png',
+    'Seguridad Acuática': '/seguridad_acuatica.png'
   };
   return imageMap[courseName] || null;
 };
@@ -503,7 +529,7 @@ const getCourseSlug = (courseName: string) => {
 
 export default function ServiciosPage() {
   const router = useRouter();
-  const [courses, setCourses] = useState(fallbackCourses);
+  const [coursesData, setCoursesData] = useState(courses);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -516,12 +542,12 @@ export default function ServiciosPage() {
       if (response.ok) {
         const data = await response.json();
         if (data.success && data.data.length > 0) {
-          setCourses(data.data);
+          setCoursesData(data.data);
         }
       }
     } catch (error) {
       console.error('Error loading courses:', error);
-      // Mantener fallback courses en caso de error
+      // Mantener courses estáticos en caso de error
     } finally {
       setLoading(false);
     }
@@ -614,7 +640,7 @@ export default function ServiciosPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courses.map((course, index) => {
+            {coursesData.map((course, index) => {
               const courseImage = getCourseImage(course.name);
               
               return (
@@ -681,7 +707,7 @@ export default function ServiciosPage() {
                   <div className="flex items-center justify-between text-sm text-slate-500 mb-6">
                     <span className="flex items-center">
                       <UserGroupIcon className="h-4 w-4 mr-2" />
-                      {course.students.toLocaleString()} estudiantes
+                      {course.students.toLocaleString('en-US')} estudiantes
                     </span>
                     <span className="flex items-center">
                       <TrophyIcon className="h-4 w-4 mr-2" />

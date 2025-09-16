@@ -48,7 +48,7 @@ export default function TrustElements() {
     {
       icon: ShieldCheckIcon,
       title: 'Certificaciones Emitidas',
-      value: certificationCount.toLocaleString(),
+      value: certificationCount.toLocaleString('en-US'),
       suffix: '+',
       color: 'text-blue-400',
       bgColor: 'bg-blue-500/10'
@@ -56,7 +56,7 @@ export default function TrustElements() {
     {
       icon: BuildingOfficeIcon,
       title: 'Empresas Atendidas',
-      value: companyCount.toLocaleString(),
+      value: companyCount.toLocaleString('en-US'),
       suffix: '+',
       color: 'text-green-400',
       bgColor: 'bg-green-500/10'
@@ -64,7 +64,7 @@ export default function TrustElements() {
     {
       icon: UserGroupIcon,
       title: 'Estudiantes Capacitados',
-      value: studentCount.toLocaleString(),
+      value: studentCount.toLocaleString('en-US'),
       suffix: '+',
       color: 'text-purple-400',
       bgColor: 'bg-purple-500/10'

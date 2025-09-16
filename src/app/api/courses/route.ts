@@ -16,25 +16,67 @@ export async function GET(request: NextRequest) {
 
     const courses = await prisma.home_service_items.findMany({
       where: whereClause,
-      orderBy: { order: 'asc' }
+      orderBy: { order: 'asc' },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        icon: true,
+        gradient: true,
+        order: true,
+        createdAt: true,
+        updatedAt: true,
+        servicesId: true,
+        detailedDescription: true,
+        duration: true,
+        certification: true,
+        category: true,
+        students: true,
+        rating: true,
+        price: true,
+        instructor: true,
+        location: true,
+        schedule: true,
+        image: true,
+        objectives: true,
+        benefits: true,
+        requirements: true,
+        modules: true,
+        slug: true
+      }
     });
 
     // Transformar los datos para que coincidan con la estructura esperada
-    const transformedCourses = courses.map(course => ({
-      id: course.id,
-      name: course.name,
-      slug: course.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
-      description: course.description,
-      icon: course.icon,
-      gradient: course.gradient,
-      duration: '40 horas', // Valor por defecto
-      certification: 'Válido 2 años', // Valor por defecto
-      students: Math.floor(Math.random() * 1000) + 500, // Valor aleatorio
-      rating: Math.round((4.5 + Math.random() * 0.5) * 10) / 10, // Valor aleatorio entre 4.5 y 5 con un decimal
-      category: 'Seguridad Industrial', // Valor por defecto
-      order: course.order,
-      isActive: true
-    }));
+    const transformedCourses = courses.map(course => {
+      return {
+        id: course.id,
+        name: course.name,
+        slug: course.slug || course.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+        description: course.description,
+        detailedDescription: course.detailedDescription,
+        icon: course.icon,
+        gradient: course.gradient,
+        duration: course.duration,
+        certification: course.certification,
+        students: course.students,
+        rating: course.rating,
+        category: course.category,
+        price: course.price,
+        instructor: course.instructor,
+        location: course.location,
+        schedule: course.schedule,
+        image: course.image,
+        objectives: course.objectives,
+        benefits: course.benefits,
+        requirements: course.requirements,
+        modules: course.modules,
+        order: course.order,
+        createdAt: course.createdAt,
+        updatedAt: course.updatedAt,
+        servicesId: course.servicesId,
+        isActive: true
+      };
+    });
 
     return NextResponse.json({ 
       success: true, 
@@ -53,7 +95,13 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, description, icon, gradient, category, duration, certification, price, image } = body;
+    const { 
+      name, description, icon, gradient, category, duration, certification, price, image,
+      detailedDescription, students, rating, instructor, location, schedule,
+      objectives, benefits, requirements, modules, slug
+    } = body;
+
+    const useDetailedColumns = process.env.USE_DETAILED_COLUMNS === 'true';
 
     // Obtener el siguiente orden
     const lastCourse = await prisma.home_service_items.findFirst({
@@ -61,17 +109,39 @@ export async function POST(request: NextRequest) {
     });
     const nextOrder = (lastCourse?.order || 0) + 1;
 
+    const courseData: any = {
+      id: `course-${Date.now()}`,
+      name,
+      description,
+      icon,
+      gradient,
+      order: nextOrder,
+      servicesId: 'services-1', // ID del servicio principal
+      updatedAt: new Date()
+    };
+
+    // Agregar campos detallados si el feature flag está activo
+    if (useDetailedColumns) {
+      courseData.detailedDescription = detailedDescription;
+      courseData.duration = duration;
+      courseData.certification = certification;
+      courseData.category = category;
+      courseData.students = students;
+      courseData.rating = rating;
+      courseData.price = price;
+      courseData.instructor = instructor;
+      courseData.location = location;
+      courseData.schedule = schedule;
+      courseData.image = image;
+      courseData.objectives = objectives;
+      courseData.benefits = benefits;
+      courseData.requirements = requirements;
+      courseData.modules = modules;
+      courseData.slug = slug;
+    }
+
     const course = await prisma.home_service_items.create({
-      data: {
-        id: `course-${Date.now()}`,
-        name,
-        description,
-        icon,
-        gradient,
-        order: nextOrder,
-        servicesId: 'services-1', // ID del servicio principal
-        updatedAt: new Date()
-      }
+      data: courseData
     });
 
     return NextResponse.json({ 

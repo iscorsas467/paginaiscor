@@ -513,7 +513,7 @@ const courses: Course[] = [
   {
     name: 'Sistema de Gestión ISO 9001',
     slug: 'sistema-gestion-iso-9001',
-    image: '/control_de_calidad.png',
+    image: '/Sistema_de_Gestión_ISO_9001.jpeg',
     description: 'Sistema de gestión de la calidad ISO 9001 con implementación y auditorías internas.',
     detailedDescription: 'El curso de Sistema de Gestión ISO 9001 proporciona formación en sistemas de gestión de calidad ISO 9001. Los participantes aprenderán sobre implementación, auditorías y mejora continua de procesos.',
     duration: '40 horas',
@@ -561,7 +561,7 @@ const courses: Course[] = [
   {
     name: 'Seguridad en Trabajos en Caliente',
     slug: 'seguridad-trabajos-caliente',
-    image: '/fuego.png',
+    image: '/Seguridad_en_Trabajos _en_Caliente.jpeg',
     description: 'Procedimientos seguros para trabajos en caliente con control de riesgos de incendio.',
     detailedDescription: 'El curso de Seguridad en Trabajos en Caliente proporciona formación en procedimientos seguros para trabajos que generan calor, chispas o llamas. Incluye evaluación de riesgos, permisos de trabajo y medidas de prevención.',
     duration: '16 horas',
@@ -609,7 +609,7 @@ const courses: Course[] = [
   {
     name: 'Seguridad en el Izaje de Cargas',
     slug: 'seguridad-izaje-cargas',
-    image: '/alturas.png',
+    image: '/Seguridad_en_el_Izaje_de_Cargas.jpeg',
     description: 'Operación segura de grúas para izaje de cargas con certificación de operarios especializados.',
     detailedDescription: 'El curso de Seguridad en el Izaje de Cargas proporciona formación especializada en operación segura de grúas y equipos de izaje. Incluye evaluación de cargas, señales de mano y procedimientos de seguridad.',
     duration: '32 horas',
@@ -657,7 +657,7 @@ const courses: Course[] = [
   {
     name: 'Rescate y Salvamento Acuático',
     slug: 'rescate-salvamento-acuatico',
-    image: '/seguridad_acuatica.png',
+    image: '/Rescate_y_Salvamento_Acuático.jpeg',
     description: 'Entrenamiento en rescate y salvamento acuático con programa de seguridad para piscinas.',
     detailedDescription: 'El curso de Rescate y Salvamento Acuático proporciona formación especializada en técnicas de rescate en entornos acuáticos. Incluye primeros auxilios acuáticos, uso de equipos de rescate y protocolos de emergencia.',
     duration: '24 horas',
@@ -705,7 +705,7 @@ const courses: Course[] = [
   {
     name: 'Sistema de Gestión ISO 14001',
     slug: 'sistema-gestion-iso-14001',
-    image: '/control_de_calidad.png',
+    image: '/Sistema-de_Gestión_ISO_14001.jpeg',
     description: 'Sistema de gestión de administración ambiental ISO 14001 con programas de educación ambiental.',
     detailedDescription: 'El curso de Sistema de Gestión ISO 14001 proporciona formación en sistemas de gestión ambiental. Los participantes aprenderán sobre implementación, auditorías y mejora continua de procesos ambientales.',
     duration: '32 horas',
@@ -753,7 +753,7 @@ const courses: Course[] = [
   {
     name: 'Seguridad Alimentaria ISO 22000',
     slug: 'seguridad-alimentaria-iso-22000',
-    image: '/control_de_calidad.png',
+    image: '/Seguridad_Alimentaria_ISO_22000.jpeg',
     description: 'Sistema de gestión seguridad alimentaria ISO 22000 con HACCP y aseguramiento de inocuidad.',
     detailedDescription: 'El curso de Seguridad Alimentaria ISO 22000 proporciona formación en sistemas de gestión de seguridad alimentaria. Incluye implementación de HACCP, análisis de peligros y puntos críticos de control.',
     duration: '24 horas',
@@ -801,7 +801,7 @@ const courses: Course[] = [
   {
     name: 'Supervivencia Básico y Avanzado',
     slug: 'supervivencia-basico-avanzado',
-    image: '/tareas_de_alto_riesgo.png',
+    image: '/Supervivencia_Básico_y_Avanzado.jpeg',
     description: 'Curso de supervivencia básico y avanzado para tripulaciones aéreas de combate y personal especializado.',
     detailedDescription: 'El curso de Supervivencia Básico y Avanzado proporciona formación especializada en técnicas de supervivencia en diferentes entornos. Incluye supervivencia en selva, desierto, montaña y condiciones extremas.',
     duration: '40 horas',
@@ -849,7 +849,7 @@ const courses: Course[] = [
   {
     name: 'Procedimientos Operativos Normalizados NFPA',
     slug: 'procedimientos-operativos-normalizados-nfpa',
-    image: '/fuego.png',
+    image: '/Procedimientos_Operativos_Normalizados_NFPA.jpeg',
     description: 'Implementación de procedimientos operativos normalizados según estándares NFPA para emergencias.',
     detailedDescription: 'El curso de Procedimientos Operativos Normalizados NFPA proporciona formación en la implementación de procedimientos estándar según las normas NFPA. Incluye protocolos de emergencia, procedimientos de respuesta y coordinación de equipos.',
     duration: '24 horas',
@@ -945,7 +945,7 @@ const courses: Course[] = [
   {
     name: 'Análisis de Vulnerabilidad',
     slug: 'analisis-vulnerabilidad',
-    image: '/tareas_de_alto_riesgo.png',
+    image: '/Análisis_de_Vulnerabilidad.jpeg',
     description: 'Evaluación y análisis de vulnerabilidades en instalaciones industriales y comerciales.',
     detailedDescription: 'El curso de Análisis de Vulnerabilidad proporciona formación en la evaluación y análisis de vulnerabilidades en instalaciones. Incluye metodologías de evaluación, identificación de amenazas y desarrollo de medidas de mitigación.',
     duration: '32 horas',
@@ -1041,7 +1041,7 @@ const courses: Course[] = [
   {
     name: 'Plan de Contingencia',
     slug: 'plan-contingencia',
-    image: '/plandeemergencia.png',
+    image: '/Plan_de_Contingencia.jpeg',
     description: 'Desarrollo de planes de contingencia para diferentes escenarios de emergencia.',
     detailedDescription: 'El curso de Plan de Contingencia proporciona formación en el desarrollo de planes de contingencia para diferentes escenarios. Incluye identificación de escenarios, desarrollo de respuestas y coordinación de recursos.',
     duration: '20 horas',
@@ -1089,7 +1089,7 @@ const courses: Course[] = [
   {
     name: 'Continuidad de los Negocios',
     slug: 'continuidad-negocios',
-    image: '/control_de_calidad.png',
+    image: '/Continuidad_de_los_Negocios.jpeg',
     description: 'Planificación para la continuidad de operaciones empresariales durante crisis.',
     detailedDescription: 'El curso de Continuidad de los Negocios proporciona formación en la planificación para mantener operaciones durante crisis. Incluye identificación de procesos críticos, desarrollo de alternativas y recuperación de operaciones.',
     duration: '28 horas',
@@ -1137,7 +1137,7 @@ const courses: Course[] = [
   {
     name: 'Simulaciones de Emergencias',
     slug: 'simulaciones-emergencias',
-    image: '/brigada_de_emergencia.png',
+    image: '/Simulaciones_de_Emergencias.jpeg',
     description: 'Ejecución de simulacros y simulaciones de emergencias para validar procedimientos.',
     detailedDescription: 'El curso de Simulaciones de Emergencias proporciona formación en la ejecución de simulacros y simulaciones. Incluye diseño de escenarios, coordinación de equipos y evaluación de respuestas.',
     duration: '16 horas',
@@ -1185,7 +1185,7 @@ const courses: Course[] = [
   {
     name: 'SCI - Sistema Comando de Incidentes',
     slug: 'sci-sistema-comando-incidentes',
-    image: '/brigada_de_emergencia.png',
+    image: '/Sistema_Comando_de_Incidentes.jpeg',
     description: 'Implementación del Sistema de Comando de Incidentes para gestión de emergencias.',
     detailedDescription: 'El curso de SCI - Sistema Comando de Incidentes proporciona formación en la implementación del sistema de comando unificado. Incluye estructura organizacional, roles y responsabilidades, y coordinación de recursos.',
     duration: '24 horas',
@@ -1233,7 +1233,7 @@ const courses: Course[] = [
   {
     name: 'Control de Emergencias Químicas',
     slug: 'control-emergencias-quimicas',
-    image: '/materiales_peligrosos.png',
+    image: '/Control_de_Emergencias_Químicas.jpeg',
     description: 'Manejo y control de emergencias químicas y derrames de sustancias peligrosas.',
     detailedDescription: 'El curso de Control de Emergencias Químicas proporciona formación especializada en el manejo de emergencias químicas. Incluye identificación de sustancias, procedimientos de contención y descontaminación.',
     duration: '32 horas',
@@ -1281,7 +1281,7 @@ const courses: Course[] = [
   {
     name: 'Certificación de Conductores que Transportan',
     slug: 'certificacion-conductores-transportan',
-    image: '/montacargas .png',
+    image: '/Certificación_de_Conductores_que_Transportan.jpeg',
     description: 'Certificación para conductores que transportan materiales peligrosos.',
     detailedDescription: 'El curso de Certificación de Conductores que Transportan proporciona formación especializada para conductores de vehículos que transportan materiales peligrosos. Incluye normativas de transporte, procedimientos de seguridad y manejo de emergencias.',
     duration: '40 horas',
@@ -1329,7 +1329,7 @@ const courses: Course[] = [
   {
     name: 'Control Derrames, Escapes y Vertimientos Accidentales',
     slug: 'control-derrames-escapes-vertimientos',
-    image: '/materiales_peligrosos.png',
+    image: '/Control_de_Derrames,_Escapes_y_Vertimientos_Accidentales.jpeg',
     description: 'Control y mitigación de derrames, escapes y vertimientos accidentales con químicos.',
     detailedDescription: 'El curso de Control de Derrames, Escapes y Vertimientos proporciona formación en técnicas de contención y limpieza de derrames químicos. Incluye identificación de riesgos, procedimientos de contención y descontaminación.',
     duration: '24 horas',
@@ -1425,7 +1425,7 @@ const courses: Course[] = [
   {
     name: 'Curso de Primer Respondiente en Emergencias Médicas',
     slug: 'primer-respondiente-emergencias-medicas',
-    image: '/primeros_auxilios.png',
+    image: '/Curso_de_Primer_Respondiente_en_Emergencias_Médicas.jpeg',
     description: 'Formación como primer respondiente en emergencias médicas y atención prehospitalaria.',
     detailedDescription: 'El curso de Primer Respondiente en Emergencias Médicas proporciona formación especializada en atención prehospitalaria. Incluye evaluación de pacientes, técnicas de estabilización y coordinación con servicios médicos.',
     duration: '20 horas',

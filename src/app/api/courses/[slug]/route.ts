@@ -338,8 +338,8 @@ export async function GET(
       ...specificDetails,
       gradient: course.gradient,
       icon: course.icon,
-      students: Math.floor(Math.random() * 1000) + 500,
-      rating: Math.round((4.5 + Math.random() * 0.5) * 10) / 10,
+      students: Math.floor((course.id.charCodeAt(0) + course.id.length) * 50) + 500, // Valor determinístico
+      rating: Math.round((4.5 + (course.id.charCodeAt(1) % 5) * 0.1) * 10) / 10, // Valor determinístico entre 4.5 y 5
       order: course.order
     };
 

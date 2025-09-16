@@ -307,6 +307,24 @@ model home_service_items {
   updatedAt     DateTime
   servicesId    String
   home_services home_services @relation(fields: [servicesId], references: [id], onDelete: Cascade)
+  
+  // Campos detallados opcionales (feature flag USE_DETAILED_COLUMNS)
+  detailedDescription String?
+  duration           String?
+  certification      String?
+  category           String?
+  students           Int?
+  rating             Float?
+  price              String?
+  instructor         String?
+  location           String?
+  schedule           String?
+  image              String?
+  objectives         Json?     // Array de strings
+  benefits           Json?     // Array de strings
+  requirements       Json?     // Array de strings
+  modules            Json?     // Array de strings
+  slug               String?
 }
 
 model home_services {
@@ -447,4 +465,18 @@ model certificados {
 
   @@map("certificados")
   @@index([cedula])
+}
+
+// Tabla auxiliar de control para migraciones
+model migration_control {
+  id          String   @id @default(cuid())
+  courseId    String?  // FK opcional a home_service_items
+  step        String   // ADD_COLUMNS, BACKFILL, API_SWITCH, FORM_SWITCH
+  status      String   // PENDING, RUNNING, DONE, ERROR, ROLLED_BACK
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  metricsJson Json?    // Para contar componentes poblados, etc.
+
+  @@map("migration_control")
 }

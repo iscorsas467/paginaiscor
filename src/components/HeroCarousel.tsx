@@ -316,7 +316,7 @@ export default function HeroCarousel() {
                     </div>
                     <div className="flex items-center text-white">
                       <UserGroupIcon className="h-5 w-5 mr-2 text-purple-400" />
-                      <span className="text-sm font-medium">{currentCourse.students.toLocaleString()}+ estudiantes</span>
+                      <span className="text-sm font-medium">{currentCourse.students.toLocaleString('en-US')}+ estudiantes</span>
                     </div>
                     <div className="flex items-center text-white">
                       <StarIcon className="h-5 w-5 mr-2 text-yellow-400" />

@@ -18,7 +18,21 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      "src/generated/**",
+      "**/prisma/**",
+      "**/*.js",
     ],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "react/no-unescaped-entities": "warn",
+      "@next/next/no-img-element": "warn",
+      "react-hooks/exhaustive-deps": "warn",
+      "prefer-const": "warn",
+      "@typescript-eslint/no-unused-expressions": "warn",
+      "@typescript-eslint/no-this-alias": "warn",
+      "@typescript-eslint/no-require-imports": "warn",
+    },
   },
 ];
 
