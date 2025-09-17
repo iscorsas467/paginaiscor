@@ -3,6 +3,40 @@ import { PrismaClient } from '@/generated/prisma';
 
 const prisma = new PrismaClient();
 
+// Función para obtener la imagen correspondiente al curso
+const getCourseImage = (courseName: string) => {
+  const imageMap: { [key: string]: string } = {
+    'Trabajo en Alturas': '/alturas.png',
+    'Espacios Confinados': '/Espacios_confinados.png',
+    'Control y Extinción de Incendios': '/fuego.png',
+    'Primeros Auxilios Básicos y Avanzados': '/primeros_auxilios.png',
+    'Materiales y Mercancías Peligrosas': '/materiales_peligrosos.png',
+    'Operación Segura de Montacargas': '/montacargas .png',
+    'LOTO - Bloqueo y Etiquetado': '/Lockout_tagout.png',
+    'Brigadas de Emergencia': '/brigada_de_emergencia.png',
+    'Brigada de Emergencia': '/brigada_de_emergencia.png',
+    'Brigada de emergencia': '/brigada_de_emergencia.png',
+    'Buceo Scuba Diver': '/buceo.png',
+    'Sistema de Gestión ISO 9001': '/control_de_calidad.png',
+    'Seguridad en Trabajos en Caliente': '/Seguridad_en_Trabajos _en_Caliente.jpeg',
+    'Sistema de Gestión ISO 14001': '/Sistema-de_Gestión_ISO_14001.jpeg',
+    'Seguridad en el Izaje de Cargas': '/Seguridad_en_el_Izaje_de_Cargas.jpeg',
+    'Rescate y Salvamento Acuático': '/Rescate_y_Salvamento_Acuático.jpeg',
+    'Seguridad Alimentaria ISO 22000': '/Seguridad_Alimentaria_ISO_22000.jpeg',
+    'Supervivencia Básico y Avanzado': '/Supervivencia_Básico_y_Avanzado.jpeg',
+    'Procedimientos Operativos Normalizados NFPA': '/Procedimientos_Operativos_Normalizados_NFPA.jpeg',
+    'Análisis de Vulnerabilidad': '/Análisis_de_Vulnerabilidad.jpeg',
+    'Plan de Contingencia': '/Plan_de_Contingencia.jpeg',
+    'Continuidad de los Negocios': '/Continuidad_de_los_Negocios.jpeg',
+    'Simulaciones de Emergencias': '/Simulaciones_de_Emergencias.jpeg',
+    'Sistema Comando de Incidentes': '/Sistema_Comando_de_Incidentes.jpeg',
+    'Control de Emergencias Químicas': '/Control_de_Emergencias_Químicas.jpeg',
+    'Certificación de Conductores que Transportan': '/Certificación_de_Conductores_que_Transportan.jpeg',
+    'Curso de Primer Respondiente en Emergencias Médicas': '/Curso_de_Primer_Respondiente_en_Emergencias_Médicas.jpeg'
+  };
+  return imageMap[courseName] || null;
+};
+
 // GET - Obtener curso por slug
 export async function GET(
   request: NextRequest,
@@ -333,7 +367,7 @@ export async function GET(
       id: course.id,
       name: course.name,
       slug: courseSlug,
-      image: `/api/placeholder/800/600`, // Placeholder por ahora
+      image: course.image || getCourseImage(course.name) || '/alturas.png', // Usar imagen real del curso
       description: course.description,
       ...specificDetails,
       gradient: course.gradient,

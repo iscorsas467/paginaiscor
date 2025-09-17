@@ -443,6 +443,7 @@ const getCourseImage = (courseName: string) => {
     'LOTO - Bloqueo y Etiquetado': '/Lockout_tagout.png',
     'Brigadas de Emergencia': '/brigada_de_emergencia.png',
     'Brigada de Emergencia': '/brigada_de_emergencia.png',
+    'Brigada de emergencia': '/brigada_de_emergencia.png',
     'Seguridad en Trabajos en Caliente': '/Seguridad_en_Trabajos _en_Caliente.jpeg',
     'Sistema de Gestión ISO 9001': '/Sistema_de_Gestión_ISO_9001.jpeg',
     'Seguridad en el Izaje de Cargas': '/Seguridad_en_el_Izaje_de_Cargas.jpeg',
