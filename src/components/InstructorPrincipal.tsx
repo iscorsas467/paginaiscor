@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { 
   UserIcon,
   AcademicCapIcon,
@@ -10,7 +11,9 @@ import {
   FireIcon,
   HeartIcon,
   BoltIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
+  BriefcaseIcon,
+  TrophyIcon
 } from '@heroicons/react/24/outline';
 
 const certifications = [
@@ -87,8 +90,8 @@ export default function InstructorPrincipal() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center px-6 py-3 rounded-full bg-blue-100 text-blue-800 text-sm font-semibold mb-8"
           >
-            <UserIcon className="h-5 w-5 mr-3" />
-            Instructor Principal
+            <BriefcaseIcon className="h-5 w-5 mr-3" />
+            Director General
           </motion.div>
           
           <motion.h2 
@@ -106,13 +109,83 @@ export default function InstructorPrincipal() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8"
           >
-            Instructor de seguridad operacional y recuperación de personal en SAR Search and Rescue para el suroccidente Colombiano. 
-            <span className="font-semibold text-blue-600"> 20 años de experiencia</span> en Ingeniería Industrial con amplia experiencia en 
-            <span className="font-semibold text-green-600"> seguridad industrial</span>, 
-            <span className="font-semibold text-purple-600"> seguridad física</span> y 
-            <span className="font-semibold text-orange-600"> sistemas de gestión en SST</span>.
+            Director General de ISCOR con <span className="font-semibold text-blue-600">20 años de experiencia</span> en Ingeniería Industrial, 
+            especializado en <span className="font-semibold text-green-600">seguridad industrial</span>, 
+            <span className="font-semibold text-purple-600">seguridad física</span> y 
+            <span className="font-semibold text-orange-600">sistemas de gestión en SST</span>. 
+            Instructor de seguridad operacional y recuperación de personal en SAR Search and Rescue para el suroccidente Colombiano.
           </motion.p>
         </div>
+
+        {/* Director Profile Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden mb-16"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+            {/* Imagen del Director */}
+            <div className="relative h-96 lg:h-auto">
+              <Image
+                src="/Director.jpg"
+                alt="Juan Fernando Aldana - Director General de ISCOR"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            
+            {/* Información del Director */}
+            <div className="p-8 lg:p-12 flex flex-col justify-center">
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">Director General</h3>
+                <p className="text-lg text-blue-600 font-semibold">Juan Fernando Aldana</p>
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                    <TrophyIcon className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900">20+ Años de Experiencia</p>
+                    <p className="text-sm text-slate-600">Ingeniería Industrial y Seguridad</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                    <ShieldCheckIcon className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900">Especialista en Seguridad</p>
+                    <p className="text-sm text-slate-600">Industrial, Física y SST</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <GlobeAltIcon className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900">Instructor Internacional</p>
+                    <p className="text-sm text-slate-600">SAR Search and Rescue</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6">
+                <p className="text-slate-700 leading-relaxed">
+                  "Nuestra misión en ISCOR es proporcionar formación de excelencia en seguridad industrial, 
+                  contribuyendo al desarrollo de profesionales altamente capacitados y al fortalecimiento 
+                  de la cultura de prevención en las organizaciones."
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Certificaciones */}
@@ -123,7 +196,7 @@ export default function InstructorPrincipal() {
           >
             <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center">
               <AcademicCapIcon className="h-6 w-6 mr-3 text-blue-600" />
-              Certificaciones Internacionales
+              Certificaciones del Director
             </h3>
             
             <div className="space-y-6">
@@ -161,7 +234,7 @@ export default function InstructorPrincipal() {
           >
             <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center">
               <StarIcon className="h-6 w-6 mr-3 text-green-600" />
-              Experiencia Profesional
+              Trayectoria Profesional
             </h3>
             
             <div className="space-y-6">
@@ -193,7 +266,7 @@ export default function InstructorPrincipal() {
           className="mt-16"
         >
           <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">
-            Especialidades y Competencias
+            Especialidades del Director
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
