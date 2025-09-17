@@ -101,8 +101,6 @@ export async function POST(request: NextRequest) {
       objectives, benefits, requirements, modules, slug
     } = body;
 
-    const useDetailedColumns = process.env.USE_DETAILED_COLUMNS === 'true';
-
     // Obtener el siguiente orden
     const lastCourse = await prisma.home_service_items.findFirst({
       orderBy: { order: 'desc' }
@@ -117,28 +115,25 @@ export async function POST(request: NextRequest) {
       gradient,
       order: nextOrder,
       servicesId: 'services-1', // ID del servicio principal
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      // Campos detallados
+      detailedDescription,
+      duration,
+      certification,
+      category,
+      students,
+      rating,
+      price,
+      instructor,
+      location,
+      schedule,
+      image,
+      objectives,
+      benefits,
+      requirements,
+      modules,
+      slug
     };
-
-    // Agregar campos detallados si el feature flag está activo
-    if (useDetailedColumns) {
-      courseData.detailedDescription = detailedDescription;
-      courseData.duration = duration;
-      courseData.certification = certification;
-      courseData.category = category;
-      courseData.students = students;
-      courseData.rating = rating;
-      courseData.price = price;
-      courseData.instructor = instructor;
-      courseData.location = location;
-      courseData.schedule = schedule;
-      courseData.image = image;
-      courseData.objectives = objectives;
-      courseData.benefits = benefits;
-      courseData.requirements = requirements;
-      courseData.modules = modules;
-      courseData.slug = slug;
-    }
 
     const course = await prisma.home_service_items.create({
       data: courseData
@@ -161,18 +156,41 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
-    const { id, name, description, icon, gradient, category, duration, certification, price, image, order } = body;
+    const { 
+      id, name, description, icon, gradient, category, duration, certification, price, image, order,
+      detailedDescription, students, rating, instructor, location, schedule,
+      objectives, benefits, requirements, modules, slug
+    } = body;
+
+    const updateData: any = {
+      name,
+      description,
+      icon,
+      gradient,
+      order: order || 0,
+      updatedAt: new Date(),
+      // Campos detallados
+      detailedDescription,
+      duration,
+      certification,
+      category,
+      students,
+      rating,
+      price,
+      instructor,
+      location,
+      schedule,
+      image,
+      objectives,
+      benefits,
+      requirements,
+      modules,
+      slug
+    };
 
     const course = await prisma.home_service_items.update({
       where: { id },
-      data: {
-        name,
-        description,
-        icon,
-        gradient,
-        order: order || 0,
-        updatedAt: new Date()
-      }
+      data: updateData
     });
 
     return NextResponse.json({ 
