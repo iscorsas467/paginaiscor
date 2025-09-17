@@ -28,6 +28,7 @@ import { motion } from 'framer-motion';
 import ThreeJSBackground from '@/components/ThreeJSBackground';
 import LoginModal from '@/components/LoginModal';
 import MinimalHero from '@/components/MinimalHero';
+import ClientesSection from '@/components/ClientesSection';
 import AboutSection from '@/components/AboutSection';
 import ServicesSection from '@/components/ServicesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -55,6 +56,8 @@ export default function Home() {
         <MinimalHero />
       </section>
 
+      {/* Clientes Section */}
+      <ClientesSection />
 
       {/* About Section */}
       <AboutSection />
