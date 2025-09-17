@@ -205,7 +205,24 @@ export default function CourseManager() {
           description: course.description,
           icon: course.icon,
           gradient: course.gradient,
-          order: course.order
+          order: course.order,
+          // Campos detallados
+          detailedDescription: course.detailedDescription,
+          duration: course.duration,
+          certification: course.certification,
+          category: course.category,
+          students: course.students,
+          rating: course.rating,
+          price: course.price,
+          instructor: course.instructor,
+          location: course.location,
+          schedule: course.schedule,
+          image: course.image,
+          objectives: course.objectives,
+          benefits: course.benefits,
+          requirements: course.requirements,
+          modules: course.modules,
+          slug: course.slug
         }),
       });
 
