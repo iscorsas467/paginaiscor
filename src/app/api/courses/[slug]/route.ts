@@ -407,6 +407,10 @@ export async function GET(
     return NextResponse.json({ 
       success: true, 
       data: detailedCourse 
+    }, {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
     });
   } catch (error) {
     console.error('Error fetching course:', error);
