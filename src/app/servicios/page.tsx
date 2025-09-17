@@ -642,7 +642,8 @@ export default function ServiciosPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {coursesData.map((course, index) => {
-              const courseImage = getCourseImage(course.name);
+              // Usar la imagen de la base de datos, con fallback a la función estática
+              const courseImage = course.image || getCourseImage(course.name);
               
               return (
                 <motion.div
