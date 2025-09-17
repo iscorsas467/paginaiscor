@@ -365,19 +365,32 @@ export async function GET(
       return courseDetails[courseName] || defaultDetails;
     };
 
+    // Usar datos reales de la base de datos, con fallback a datos estáticos solo si no existen
     const specificDetails = getCourseDetails(course.name);
     
     const detailedCourse = {
       id: course.id,
       name: course.name,
       slug: courseSlug,
-      image: course.image || getCourseImage(course.name) || '/alturas.png', // Usar imagen real del curso
+      image: course.image || getCourseImage(course.name) || '/alturas.png',
       description: course.description,
-      ...specificDetails,
+      // Usar datos de la BD si existen, sino usar fallback estático
+      detailedDescription: course.detailedDescription || specificDetails.detailedDescription,
+      duration: course.duration || specificDetails.duration,
+      certification: course.certification || specificDetails.certification,
+      category: course.category || specificDetails.category,
+      students: course.students || Math.floor((course.id.charCodeAt(0) + course.id.length) * 50) + 500,
+      rating: course.rating || Math.round((4.5 + (course.id.charCodeAt(1) % 5) * 0.1) * 10) / 10,
+      price: course.price || specificDetails.price,
+      instructor: course.instructor || specificDetails.instructor,
+      location: course.location || specificDetails.location,
+      schedule: course.schedule || specificDetails.schedule,
+      objectives: course.objectives || specificDetails.objectives,
+      benefits: course.benefits || specificDetails.benefits,
+      requirements: course.requirements || specificDetails.requirements,
+      modules: course.modules || specificDetails.modules,
       gradient: course.gradient,
       icon: course.icon,
-      students: Math.floor((course.id.charCodeAt(0) + course.id.length) * 50) + 500, // Valor determinístico
-      rating: Math.round((4.5 + (course.id.charCodeAt(1) % 5) * 0.1) * 10) / 10, // Valor determinístico entre 4.5 y 5
       order: course.order
     };
 
