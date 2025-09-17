@@ -310,8 +310,8 @@ const getCourseSlug = (courseName: string) => {
     'Seguridad en el Izaje de Cargas': 'trabajo-en-alturas',
     'Buceo Scuba Diver': 'buceo-scuba-diver',
     'Rescate y Salvamento Acuático': 'primeros-auxilios-basicos-avanzados',
-    'Sistema de Gestión ISO 14001': 'sistema-gestion-iso-9001',
-    'Seguridad Alimentaria ISO 22000': 'sistema-gestion-iso-9001',
+    'Sistema de Gestión ISO 14001': 'sistema-gestion-iso-14001',
+    'Seguridad Alimentaria ISO 22000': 'seguridad-alimentaria-iso-22000',
     'Supervivencia Básico y Avanzado': 'brigadas-emergencia'
   };
   return slugMap[courseName] || null;
