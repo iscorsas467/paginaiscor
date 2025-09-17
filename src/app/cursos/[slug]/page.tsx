@@ -1616,7 +1616,7 @@ const courses: Course[] = [
   },
   {
     name: 'Auditorías de Seguridad',
-    slug: 'auditorias-seguridad',
+    slug: 'auditoras-de-seguridad',
     image: '/control_de_calidad.png',
     description: 'Formación especializada en auditorías de seguridad industrial y sistemas de gestión.',
     detailedDescription: 'El curso de Auditorías de Seguridad proporciona formación integral en la realización de auditorías de seguridad industrial. Incluye metodologías, técnicas de evaluación, identificación de no conformidades y elaboración de informes de auditoría.',
@@ -1664,7 +1664,7 @@ const courses: Course[] = [
   },
   {
     name: 'Control de Calidad',
-    slug: 'control-calidad',
+    slug: 'control-de-calidad',
     image: '/control_de_calidad.png',
     description: 'Implementación de sistemas de control de calidad y mejora continua de procesos.',
     detailedDescription: 'El curso de Control de Calidad proporciona formación integral en sistemas de gestión de calidad. Incluye herramientas estadísticas, metodologías de mejora, control de procesos y certificación de calidad.',
@@ -1712,7 +1712,7 @@ const courses: Course[] = [
   },
   {
     name: 'Gestión de Riesgos Laborales',
-    slug: 'gestion-riesgos-laborales',
+    slug: 'gestin-de-riesgos-laborales',
     image: '/control_de_calidad.png',
     description: 'Identificación, evaluación y control de riesgos laborales en el entorno de trabajo.',
     detailedDescription: 'El curso de Gestión de Riesgos Laborales proporciona formación integral en la identificación, evaluación y control de riesgos en el lugar de trabajo. Incluye metodologías de análisis, medidas preventivas y sistemas de gestión de riesgos.',
