@@ -49,22 +49,32 @@ export async function GET(
   try {
     const { slug } = await params;
     
-    // Buscar el curso por nombre (convertir slug a nombre)
-    const courseName = slug
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-
+    // Buscar el curso por slug directamente
     const course = await prisma.home_service_items.findFirst({
       where: {
-        name: {
-          contains: courseName,
-          mode: 'insensitive'
-        }
+        slug: slug
       }
     });
 
-    if (!course) {
+    // Si no se encuentra por slug, intentar por nombre
+    let courseData = course;
+    if (!courseData) {
+      const courseName = slug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      courseData = await prisma.home_service_items.findFirst({
+        where: {
+          name: {
+            contains: courseName,
+            mode: 'insensitive'
+          }
+        }
+      });
+    }
+
+    if (!courseData) {
       return NextResponse.json({ 
         success: false, 
         error: 'Curso no encontrado' 
@@ -72,7 +82,7 @@ export async function GET(
     }
 
     // Datos completos del curso (incluyendo información detallada específica)
-    const courseSlug = course.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    const courseSlug = courseData.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     
     // Función para obtener información específica de cada curso
     const getCourseDetails = (courseName: string) => {
@@ -366,32 +376,32 @@ export async function GET(
     };
 
     // Usar datos reales de la base de datos, con fallback a datos estáticos solo si no existen
-    const specificDetails = getCourseDetails(course.name);
+    const specificDetails = getCourseDetails(courseData.name);
     
     const detailedCourse = {
-      id: course.id,
-      name: course.name,
+      id: courseData.id,
+      name: courseData.name,
       slug: courseSlug,
-      image: course.image || getCourseImage(course.name) || '/alturas.png',
-      description: course.description,
+      image: courseData.image || getCourseImage(courseData.name) || '/alturas.png',
+      description: courseData.description,
       // Usar datos de la BD si existen, sino usar fallback estático
-      detailedDescription: course.detailedDescription || specificDetails.detailedDescription,
-      duration: course.duration || specificDetails.duration,
-      certification: course.certification || specificDetails.certification,
-      category: course.category || specificDetails.category,
-      students: course.students || Math.floor((course.id.charCodeAt(0) + course.id.length) * 50) + 500,
-      rating: course.rating || Math.round((4.5 + (course.id.charCodeAt(1) % 5) * 0.1) * 10) / 10,
-      price: course.price || specificDetails.price,
-      instructor: course.instructor || specificDetails.instructor,
-      location: course.location || specificDetails.location,
-      schedule: course.schedule || specificDetails.schedule,
-      objectives: course.objectives || specificDetails.objectives,
-      benefits: course.benefits || specificDetails.benefits,
-      requirements: course.requirements || specificDetails.requirements,
-      modules: course.modules || specificDetails.modules,
-      gradient: course.gradient,
-      icon: course.icon,
-      order: course.order
+      detailedDescription: courseData.detailedDescription || specificDetails.detailedDescription,
+      duration: courseData.duration || specificDetails.duration,
+      certification: courseData.certification || specificDetails.certification,
+      category: courseData.category || specificDetails.category,
+      students: courseData.students || Math.floor((courseData.id.charCodeAt(0) + courseData.id.length) * 50) + 500,
+      rating: courseData.rating || Math.round((4.5 + (courseData.id.charCodeAt(1) % 5) * 0.1) * 10) / 10,
+      price: courseData.price || specificDetails.price,
+      instructor: courseData.instructor || specificDetails.instructor,
+      location: courseData.location || specificDetails.location,
+      schedule: courseData.schedule || specificDetails.schedule,
+      objectives: courseData.objectives || specificDetails.objectives,
+      benefits: courseData.benefits || specificDetails.benefits,
+      requirements: courseData.requirements || specificDetails.requirements,
+      modules: courseData.modules || specificDetails.modules,
+      gradient: courseData.gradient,
+      icon: courseData.icon,
+      order: courseData.order
     };
 
     return NextResponse.json({ 
