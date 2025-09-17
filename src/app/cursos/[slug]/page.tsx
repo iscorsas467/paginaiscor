@@ -1613,6 +1613,150 @@ const courses: Course[] = [
     category: 'Gestión',
     students: 280,
     rating: 4.8
+  },
+  {
+    name: 'Auditorías de Seguridad',
+    slug: 'auditorias-seguridad',
+    image: '/control_de_calidad.png',
+    description: 'Formación especializada en auditorías de seguridad industrial y sistemas de gestión.',
+    detailedDescription: 'El curso de Auditorías de Seguridad proporciona formación integral en la realización de auditorías de seguridad industrial. Incluye metodologías, técnicas de evaluación, identificación de no conformidades y elaboración de informes de auditoría.',
+    duration: '32 horas',
+    certification: 'Válido 2 años',
+    gradient: 'from-purple-600 to-indigo-600',
+    icon: DocumentCheckIcon,
+    objectives: [
+      'Dominar metodologías de auditoría',
+      'Identificar no conformidades',
+      'Elaborar informes de auditoría',
+      'Aplicar normativas de seguridad',
+      'Desarrollar planes de mejora'
+    ],
+    benefits: [
+      'Certificación como auditor',
+      'Mejora en sistemas de seguridad',
+      'Cumplimiento normativo',
+      'Reducción de riesgos',
+      'Competitividad profesional'
+    ],
+    requirements: [
+      'Mayor de 18 años',
+      'Conocimientos en seguridad industrial',
+      'Experiencia en gestión empresarial',
+      'Capacidad de análisis',
+      'Compromiso con la calidad'
+    ],
+    modules: [
+      'Fundamentos de Auditoría',
+      'Metodologías de Auditoría',
+      'Técnicas de Evaluación',
+      'Identificación de No Conformidades',
+      'Elaboración de Informes',
+      'Planes de Mejora',
+      'Prácticas de Auditoría'
+    ],
+    instructor: 'Ing. Ana Martínez - Auditora Certificada ISO',
+    price: 'Consultar',
+    location: 'Centro de Entrenamiento ISCOR',
+    schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM',
+    category: 'Auditoría',
+    students: 320,
+    rating: 4.7
+  },
+  {
+    name: 'Control de Calidad',
+    slug: 'control-calidad',
+    image: '/control_de_calidad.png',
+    description: 'Implementación de sistemas de control de calidad y mejora continua de procesos.',
+    detailedDescription: 'El curso de Control de Calidad proporciona formación integral en sistemas de gestión de calidad. Incluye herramientas estadísticas, metodologías de mejora, control de procesos y certificación de calidad.',
+    duration: '40 horas',
+    certification: 'Válido 3 años',
+    gradient: 'from-blue-600 to-cyan-600',
+    icon: ChartBarIcon,
+    objectives: [
+      'Implementar sistemas de calidad',
+      'Aplicar herramientas estadísticas',
+      'Desarrollar procesos de mejora',
+      'Gestionar la calidad total',
+      'Preparar para certificación ISO'
+    ],
+    benefits: [
+      'Mejora en la calidad de productos',
+      'Reducción de costos',
+      'Satisfacción del cliente',
+      'Certificación de calidad',
+      'Competitividad empresarial'
+    ],
+    requirements: [
+      'Mayor de 18 años',
+      'Conocimientos básicos de estadística',
+      'Experiencia en procesos industriales',
+      'Capacidad de análisis',
+      'Compromiso con la calidad'
+    ],
+    modules: [
+      'Fundamentos de Calidad',
+      'Herramientas Estadísticas',
+      'Control de Procesos',
+      'Metodologías de Mejora',
+      'Gestión de la Calidad Total',
+      'Certificación ISO 9001',
+      'Prácticas de Campo'
+    ],
+    instructor: 'Ing. Carlos Rodríguez - Especialista en Calidad',
+    price: 'Consultar',
+    location: 'Centro de Entrenamiento ISCOR',
+    schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM',
+    category: 'Calidad',
+    students: 450,
+    rating: 4.8
+  },
+  {
+    name: 'Gestión de Riesgos Laborales',
+    slug: 'gestion-riesgos-laborales',
+    image: '/control_de_calidad.png',
+    description: 'Identificación, evaluación y control de riesgos laborales en el entorno de trabajo.',
+    detailedDescription: 'El curso de Gestión de Riesgos Laborales proporciona formación integral en la identificación, evaluación y control de riesgos en el lugar de trabajo. Incluye metodologías de análisis, medidas preventivas y sistemas de gestión de riesgos.',
+    duration: '36 horas',
+    certification: 'Válido 2 años',
+    gradient: 'from-red-600 to-orange-600',
+    icon: ExclamationTriangleIcon,
+    objectives: [
+      'Identificar riesgos laborales',
+      'Evaluar niveles de riesgo',
+      'Implementar controles preventivos',
+      'Desarrollar planes de gestión',
+      'Monitorear y mejorar procesos'
+    ],
+    benefits: [
+      'Reducción de accidentes laborales',
+      'Cumplimiento normativo',
+      'Mejora en la seguridad',
+      'Reducción de costos',
+      'Cultura de prevención'
+    ],
+    requirements: [
+      'Mayor de 18 años',
+      'Conocimientos en seguridad laboral',
+      'Experiencia en gestión empresarial',
+      'Capacidad de análisis',
+      'Compromiso con la prevención'
+    ],
+    modules: [
+      'Fundamentos de Gestión de Riesgos',
+      'Identificación de Riesgos',
+      'Evaluación de Riesgos',
+      'Controles Preventivos',
+      'Planes de Gestión',
+      'Monitoreo y Mejora',
+      'Casos Prácticos'
+    ],
+    instructor: 'Ing. María González - Especialista en Prevención de Riesgos',
+    price: 'Consultar',
+    location: 'Centro de Entrenamiento ISCOR',
+    schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM',
+    category: 'Prevención',
+    students: 380,
+    rating: 4.6
   }
 ];
 
