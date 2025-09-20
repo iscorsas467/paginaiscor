@@ -73,7 +73,7 @@ async function analyzeCourseDetails() {
       .map((course: any) => course.name);
 
     console.log('📝 CURSOS QUE NECESITAN INFORMACIÓN ESPECÍFICA:\n');
-    coursesNeedingSpecificInfo.forEach((courseName, index) => {
+    coursesNeedingSpecificInfo.forEach((courseName: string, index: number) => {
       console.log(`${index + 1}. ${courseName}`);
     });
 
