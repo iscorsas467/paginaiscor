@@ -41,7 +41,7 @@ async function importCertificados() {
         const recordString = recordMatch[1];
         
         // Parsear el registro
-        const parts = recordString.split(',').map(part => part.trim());
+        const parts = recordString.split(',').map((part: string) => part.trim());
         
         if (parts.length >= 8) {
           const certificado: CertificadoData = {
@@ -77,7 +77,7 @@ async function importCertificados() {
       
       try {
         await prisma.certificados.createMany({
-          data: batch.map(cert => ({
+          data: batch.map((cert: any) => ({
             numero_certificado: cert.numero_certificado,
             nombre: cert.nombre,
             cedula: BigInt(cert.cedula),
@@ -108,7 +108,7 @@ async function importCertificados() {
     });
 
     console.log('\n📋 Ejemplos de certificados importados:');
-    ejemplos.forEach((cert, index) => {
+    ejemplos.forEach((cert: any, index: number) => {
       console.log(`${index + 1}. ${cert.nombre} - Cédula: ${cert.cedula} - ${cert.capacitacion}`);
     });
 

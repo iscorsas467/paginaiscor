@@ -15,7 +15,7 @@ async function checkCoursesData() {
     
     if (serviceItems.length > 0) {
       console.log('\n📋 Cursos encontrados:');
-      serviceItems.forEach((item, index) => {
+      serviceItems.forEach((item: any, index: number) => {
         console.log(`${index + 1}. ${item.name}`);
         console.log(`   Descripción: ${item.description}`);
         console.log(`   Icono: ${item.icon}`);
@@ -32,7 +32,7 @@ async function checkCoursesData() {
     console.log(`📊 Total de secciones de servicios: ${homeServices.length}`);
     
     if (homeServices.length > 0) {
-      homeServices.forEach((service, index) => {
+      homeServices.forEach((service: any, index: number) => {
         console.log(`${index + 1}. ${service.title}`);
         console.log(`   Descripción: ${service.description}`);
         console.log('');
@@ -44,7 +44,7 @@ async function checkCoursesData() {
     console.log(`📊 Total de hero sections: ${homeHero.length}`);
     
     if (homeHero.length > 0) {
-      homeHero.forEach((hero, index) => {
+      homeHero.forEach((hero: any, index: number) => {
         console.log(`${index + 1}. ${hero.title}`);
         console.log(`   Badge: ${hero.badge}`);
         console.log(`   Subtítulo: ${hero.subtitle}`);
@@ -61,7 +61,7 @@ async function checkCoursesData() {
     console.log(`📊 Total de información de contacto: ${contactInfo.length}`);
     
     if (contactInfo.length > 0) {
-      contactInfo.forEach((info, index) => {
+      contactInfo.forEach((info: any, index: number) => {
         console.log(`${index + 1}. ${info.title}`);
         console.log(`   Descripción: ${info.description}`);
         console.log(`   Items: ${info.contact_info_items.length}`);

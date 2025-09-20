@@ -10,7 +10,7 @@ async function checkUsersTable() {
     
     if (users.length > 0) {
       console.log('Usuarios encontrados:')
-      users.forEach(user => {
+      users.forEach((user: any) => {
         console.log(`  - ${user.username} (${user.email}) - ${user.role}`)
       })
     }

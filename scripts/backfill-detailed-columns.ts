@@ -285,7 +285,7 @@ async function backfillDetailedColumns(options: BackfillOptions) {
     if (dryRun) {
       const csvContent = [
         'Course,Action,Status,Error',
-        ...results.map(r => `${r.course},${r.action},${r.status},${r.error || ''}`)
+        ...results.map((r: any) => `${r.course},${r.action},${r.status},${r.error || ''}`)
       ].join('\n');
       
       const filename = `logs/backfill-${new Date().toISOString().split('T')[0]}.csv`;
