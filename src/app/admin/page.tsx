@@ -21,6 +21,9 @@ import {
 } from '@heroicons/react/24/outline';
 import ContentManager from '@/components/ContentManager';
 import CourseManager from '@/components/CourseManager';
+import CertificateManager from '@/components/CertificateManager';
+import FormSubmissionsManager from '@/components/FormSubmissionsManager';
+import NotificationsDropdown from '@/components/NotificationsDropdown';
 
 export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -109,6 +112,7 @@ export default function AdminPage() {
   const navigation = [
     { name: 'Dashboard', icon: HomeIcon, id: 'dashboard' },
     { name: 'Gestión de Cursos', icon: AcademicCapIcon, id: 'courses' },
+    { name: 'Solicitudes de Información', icon: DocumentTextIcon, id: 'form-submissions' },
     { name: 'Contenido del Sitio', icon: DocumentTextIcon, id: 'content' },
     { name: 'Usuarios', icon: UsersIcon, id: 'users' },
     { name: 'Certificados', icon: ClipboardDocumentListIcon, id: 'certificates' },
@@ -151,6 +155,26 @@ export default function AdminPage() {
               <p className="text-gray-600 mt-1">Gestiona el contenido de las páginas principales</p>
             </div>
             <ContentManager />
+          </div>
+        );
+      case 'form-submissions':
+        return (
+          <div className="p-6">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Solicitudes de Información</h2>
+              <p className="text-gray-600 mt-1">Gestiona las solicitudes enviadas desde los formularios de cursos</p>
+            </div>
+            <FormSubmissionsManager />
+          </div>
+        );
+      case 'certificates':
+        return (
+          <div className="p-6">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Gestión de Certificados</h2>
+              <p className="text-gray-600 mt-1">Administra todos los certificados emitidos por ISCOR</p>
+            </div>
+            <CertificateManager />
           </div>
         );
       case 'dashboard':
@@ -308,10 +332,7 @@ export default function AdminPage() {
               </div>
               
               {/* Notificaciones */}
-              <button className="relative bg-white p-2 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 border border-gray-200">
-                <BellIcon className="h-6 w-6" />
-                <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 ring-2 ring-white"></span>
-              </button>
+              <NotificationsDropdown />
               
               {/* Información del Usuario */}
               <div className="flex items-center space-x-3 bg-gray-50 px-4 py-2 rounded-lg">

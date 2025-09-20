@@ -297,34 +297,32 @@ model home_hero {
 }
 
 model home_service_items {
-  id            String        @id
-  name          String
-  description   String
-  icon          String
-  gradient      String
-  order         Int           @default(0)
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime
-  servicesId    String
-  home_services home_services @relation(fields: [servicesId], references: [id], onDelete: Cascade)
-  
-  // Campos detallados opcionales (feature flag USE_DETAILED_COLUMNS)
+  id                  String        @id
+  name                String
+  description         String
+  icon                String
+  gradient            String
+  order               Int           @default(0)
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime
+  servicesId          String
+  benefits            Json?
+  category            String?
+  certification       String?
   detailedDescription String?
-  duration           String?
-  certification      String?
-  category           String?
-  students           Int?
-  rating             Float?
-  price              String?
-  instructor         String?
-  location           String?
-  schedule           String?
-  image              String?
-  objectives         Json?     // Array de strings
-  benefits           Json?     // Array de strings
-  requirements       Json?     // Array de strings
-  modules            Json?     // Array de strings
-  slug               String?
+  duration            String?
+  image               String?
+  instructor          String?
+  location            String?
+  modules             Json?
+  objectives          Json?
+  price               String?
+  rating              Float?
+  requirements        Json?
+  schedule            String?
+  slug                String?
+  students            Int?
+  home_services       home_services @relation(fields: [servicesId], references: [id], onDelete: Cascade)
 }
 
 model home_services {
@@ -452,31 +450,62 @@ model team_stats {
 }
 
 model certificados {
-  id                Int      @id @default(autoincrement())
+  id                 Int      @id @default(autoincrement())
   numero_certificado String
-  nombre            String
-  cedula            BigInt
-  capacitacion      String
-  horas             String
-  fecha_realizacion String
-  fecha_vencimiento String
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  nombre             String
+  cedula             BigInt
+  capacitacion       String
+  horas              String
+  fecha_realizacion  String
+  fecha_vencimiento  String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
-  @@map("certificados")
   @@index([cedula])
+  @@map("certificados")
 }
 
-// Tabla auxiliar de control para migraciones
 model migration_control {
   id          String   @id @default(cuid())
-  courseId    String?  // FK opcional a home_service_items
-  step        String   // ADD_COLUMNS, BACKFILL, API_SWITCH, FORM_SWITCH
-  status      String   // PENDING, RUNNING, DONE, ERROR, ROLLED_BACK
+  courseId    String?
+  step        String
+  status      String
   notes       String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  metricsJson Json?    // Para contar componentes poblados, etc.
+  metricsJson Json?
 
   @@map("migration_control")
+}
+
+model form_submissions {
+  id         String   @id @default(cuid())
+  courseName String
+  courseSlug String
+  nombre     String
+  email      String
+  telefono   String
+  empresa    String?
+  mensaje    String?
+  status     String   @default("nuevo")
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("form_submissions")
+}
+
+// Notificaciones del sistema
+model notifications {
+  id          String   @id @default(cuid())
+  type        String   // "form_submission", "certificate_issued", "system"
+  title       String   // Título de la notificación
+  message     String   // Mensaje de la notificación
+  data        Json?    // Datos adicionales (JSON)
+  isRead      Boolean  @default(false) // Si ha sido leída
+  priority    String   @default("normal") // low, normal, high, urgent
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("notifications")
 }

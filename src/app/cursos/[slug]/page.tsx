@@ -1847,11 +1847,39 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simular envío del formulario
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Enviar datos al panel de administración
+      const response = await fetch('/api/form-submissions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          courseName: course?.name || 'Curso no especificado',
+          courseSlug: course?.slug || slug,
+          nombre: formData.nombre,
+          email: formData.email,
+          telefono: formData.telefono,
+          empresa: formData.empresa,
+          mensaje: formData.mensaje
+        })
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setIsSubmitting(false);
+      } else {
+        // Si falla el envío al admin, aún mostrar éxito al usuario
+        console.error('Error enviando al panel admin:', response.statusText);
+        setIsSubmitted(true);
+        setIsSubmitting(false);
+      }
+    } catch (error) {
+      console.error('Error enviando formulario:', error);
+      // Aún mostrar éxito al usuario para no interrumpir la experiencia
       setIsSubmitted(true);
-    }, 2000);
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -2187,7 +2215,7 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
                   Gracias por su interés en el curso de {course.name}. Nos pondremos en contacto con usted en las próximas 24 horas.
                 </p>
                 <Link
-                  href="/"
+                  href="/servicios"
                   className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-3 px-8 rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-200"
                 >
                   Ver Otros Cursos

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 import { 
   ShieldCheckIcon,
   ArrowRightIcon,
@@ -102,16 +103,18 @@ export default function MinimalHero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24"
           >
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group px-10 py-4 bg-white text-slate-900 font-semibold rounded-xl hover:bg-white/95 transition-all duration-300 shadow-xl hover:shadow-2xl"
-            >
-              <span className="flex items-center text-lg">
-                Conocer Nuestros Servicios
-                <ArrowRightIcon className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
-              </span>
-            </motion.button>
+            <Link href="/servicios">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group px-10 py-4 bg-white text-slate-900 font-semibold rounded-xl hover:bg-white/95 transition-all duration-300 shadow-xl hover:shadow-2xl"
+              >
+                <span className="flex items-center text-lg">
+                  Conocer Nuestros Servicios
+                  <ArrowRightIcon className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+                </span>
+              </motion.button>
+            </Link>
             
             <motion.button 
               whileHover={{ scale: 1.05 }}

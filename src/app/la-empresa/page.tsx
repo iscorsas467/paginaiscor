@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import ClientesSection from '@/components/ClientesSection';
+import CallModal from '@/components/CallModal';
+import AppointmentModal from '@/components/AppointmentModal';
 import { 
   BuildingOffice2Icon,
   CogIcon,
@@ -53,6 +55,9 @@ function CounterAnimation({ target, suffix = '' }: { target: number; suffix?: st
 }
 
 export default function LaEmpresa() {
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+
   return (
     <div className="bg-white">
       {/* Hero Section - Compacto */}
@@ -940,19 +945,21 @@ export default function LaEmpresa() {
                 title: '¿Alguna pregunta?',
                 description: 'Llámanos',
                 icon: PhoneIcon,
-                href: 'tel:+57XXXXXXXXX',
+                href: '#',
                 color: '#3B82F6',
                 glowColor: 'from-blue-400/20 to-blue-600/10',
-                bgGradient: 'from-blue-50 to-blue-100/50'
+                bgGradient: 'from-blue-50 to-blue-100/50',
+                onClick: () => setIsCallModalOpen(true)
               },
               {
                 title: 'Programe una cita',
                 description: 'Con nosotros',
                 icon: CalendarIcon,
-                href: '/agenda',
+                href: '#',
                 color: '#22C55E',
                 glowColor: 'from-green-400/20 to-green-600/10',
-                bgGradient: 'from-green-50 to-green-100/50'
+                bgGradient: 'from-green-50 to-green-100/50',
+                onClick: () => setIsAppointmentModalOpen(true)
               },
               {
                 title: 'La Empresa',
@@ -983,37 +990,77 @@ export default function LaEmpresa() {
                 }}
               >
                 {/* Card con Glassmorphism Premium */}
-                <div className="relative rounded-2xl border border-white/20 bg-white/80 backdrop-blur-xl p-6 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 dark:bg-slate-800/40 dark:border-slate-700/50">
-                  {/* Borde con Glow */}
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${action.glowColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
-                  {/* Fondo con gradiente sutil */}
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${action.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
-                  <div className="relative">
-                    {/* Icon Badge Premium */}
-                    <div className="size-12 grid place-content-center rounded-xl border border-white/40 bg-gradient-to-br from-white/70 to-white/30 shadow-inner mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                      <action.icon className="h-6 w-6" style={{ color: action.color }} />
-            </div>
-            
-                    {/* Título de la Card */}
-                    <h3 className="text-lg font-bold text-slate-900 mb-2 dark:text-slate-100">
-                      {action.title}
-                    </h3>
+                {action.onClick ? (
+                  <button
+                    onClick={action.onClick}
+                    className="relative w-full rounded-2xl border border-white/20 bg-white/80 backdrop-blur-xl p-6 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 dark:bg-slate-800/40 dark:border-slate-700/50 text-left"
+                  >
+                    {/* Borde con Glow */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${action.glowColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                     
-                    {/* Descripción */}
-                    <p className="text-sm leading-6 text-slate-600 dark:text-slate-400">
-                      {action.description}
-                    </p>
+                    {/* Fondo con gradiente sutil */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${action.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                     
-                    {/* Efecto de partículas en hover */}
-                    <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute top-4 left-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500" />
-                      <div className="absolute top-6 right-6 w-1 h-1 bg-blue-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-100" />
-                      <div className="absolute bottom-6 left-6 w-1 h-1 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-200" />
-              </div>
-            </div>
-          </div>
+                    <div className="relative">
+                      {/* Icon Badge Premium */}
+                      <div className="size-12 grid place-content-center rounded-xl border border-white/40 bg-gradient-to-br from-white/70 to-white/30 shadow-inner mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <action.icon className="h-6 w-6" style={{ color: action.color }} />
+                      </div>
+                      
+                      {/* Título de la Card */}
+                      <h3 className="text-lg font-bold text-slate-900 mb-2 dark:text-slate-100">
+                        {action.title}
+                      </h3>
+                      
+                      {/* Descripción */}
+                      <p className="text-sm leading-6 text-slate-600 dark:text-slate-400">
+                        {action.description}
+                      </p>
+                      
+                      {/* Efecto de partículas en hover */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        <div className="absolute top-4 left-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500" />
+                        <div className="absolute top-6 right-6 w-1 h-1 bg-blue-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-100" />
+                        <div className="absolute bottom-6 left-6 w-1 h-1 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-200" />
+                      </div>
+                    </div>
+                  </button>
+                ) : (
+                  <Link
+                    href={action.href}
+                    className="relative block rounded-2xl border border-white/20 bg-white/80 backdrop-blur-xl p-6 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 dark:bg-slate-800/40 dark:border-slate-700/50"
+                  >
+                    {/* Borde con Glow */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${action.glowColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                    
+                    {/* Fondo con gradiente sutil */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${action.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                    
+                    <div className="relative">
+                      {/* Icon Badge Premium */}
+                      <div className="size-12 grid place-content-center rounded-xl border border-white/40 bg-gradient-to-br from-white/70 to-white/30 shadow-inner mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <action.icon className="h-6 w-6" style={{ color: action.color }} />
+                      </div>
+                      
+                      {/* Título de la Card */}
+                      <h3 className="text-lg font-bold text-slate-900 mb-2 dark:text-slate-100">
+                        {action.title}
+                      </h3>
+                      
+                      {/* Descripción */}
+                      <p className="text-sm leading-6 text-slate-600 dark:text-slate-400">
+                        {action.description}
+                      </p>
+                      
+                      {/* Efecto de partículas en hover */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        <div className="absolute top-4 left-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500" />
+                        <div className="absolute top-6 right-6 w-1 h-1 bg-blue-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-100" />
+                        <div className="absolute bottom-6 left-6 w-1 h-1 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-200" />
+                      </div>
+                    </div>
+                  </Link>
+                )}
               </motion.div>
             ))}
           </motion.div>
@@ -1048,6 +1095,19 @@ export default function LaEmpresa() {
           </motion.div>
         </div>
       </section>
+
+      {/* Modal de llamada */}
+      <CallModal
+        isOpen={isCallModalOpen}
+        onClose={() => setIsCallModalOpen(false)}
+        phoneNumber="3148070853"
+      />
+
+      {/* Modal de citas */}
+      <AppointmentModal
+        isOpen={isAppointmentModalOpen}
+        onClose={() => setIsAppointmentModalOpen(false)}
+      />
     </div>
   );
 }

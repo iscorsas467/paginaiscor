@@ -13,6 +13,7 @@ import {
   ArrowRightIcon,
   StarIcon
 } from '@heroicons/react/24/outline';
+import CallModal from '@/components/CallModal';
 
 export default function Contacto() {
   const [formData, setFormData] = useState({
@@ -25,8 +26,11 @@ export default function Contacto() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [contactData, setContactData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   // Cargar datos de contacto desde la API
   useEffect(() => {
@@ -54,24 +58,53 @@ export default function Contacto() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí iría la lógica para enviar el formulario
-    console.log('Formulario enviado:', formData);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(null);
     
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        nombre: '',
-        email: '',
-        empresa: '',
-        telefono: '',
-        servicio: '',
-        mensaje: ''
+    try {
+      // Enviar datos al panel de administración
+      const response = await fetch('/api/form-submissions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          courseName: formData.servicio ? `Contacto General - ${formData.servicio}` : 'Contacto General',
+          courseSlug: 'contacto-general',
+          nombre: formData.nombre,
+          email: formData.email,
+          telefono: formData.telefono,
+          empresa: formData.empresa || null,
+          mensaje: `Servicio de interés: ${formData.servicio || 'No especificado'}\n\nMensaje: ${formData.mensaje}`
+        })
       });
-    }, 3000);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            nombre: '',
+            email: '',
+            empresa: '',
+            telefono: '',
+            servicio: '',
+            mensaje: ''
+          });
+        }, 3000);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al enviar el mensaje');
+      }
+    } catch (error: any) {
+      setSubmitError(error.message);
+      console.error('Error enviando formulario:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Horarios de atención
@@ -291,12 +324,31 @@ export default function Contacto() {
                       />
                     </div>
 
+                    {submitError && (
+                      <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-center">
+                        <p className="text-red-700 font-medium">
+                          {submitError}
+                        </p>
+                      </div>
+                    )}
+
                     <div>
                       <button
                         type="submit"
-                        className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-4 text-center text-lg font-semibold text-white shadow-xl hover:shadow-2xl hover:from-blue-700 hover:to-cyan-700 focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 transform hover:scale-[1.02]"
+                        disabled={isSubmitting}
+                        className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-4 text-center text-lg font-semibold text-white shadow-xl hover:shadow-2xl hover:from-blue-700 hover:to-cyan-700 focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                       >
-                        Enviar Mensaje
+                        {isSubmitting ? (
+                          <span className="flex items-center justify-center">
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Enviando...
+                          </span>
+                        ) : (
+                          'Enviar Mensaje'
+                        )}
                       </button>
                     </div>
                   </form>
@@ -555,7 +607,11 @@ export default function Contacto() {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
               <a
-                href="tel:+573148070853"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsCallModalOpen(true);
+                }}
                 className="group px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-xl hover:shadow-2xl"
               >
                 <span className="flex items-center text-lg">
@@ -565,7 +621,9 @@ export default function Contacto() {
               </a>
               
               <a
-                href="mailto:iscr@iscrcolombia.com.co"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=director@iscorcolombia.com&su=Consulta de Servicios - ISCOR Colombia&body=Estimado Director,%0D%0A%0D%0AMe pongo en contacto con usted para solicitar información sobre los servicios de seguridad industrial de ISCOR Colombia.%0D%0A%0D%0AInformación de la consulta:%0D%0A- Empresa: [Nombre de su empresa]%0D%0A- Servicio de interés: [Especifique el servicio]%0D%0A- Número de empleados: [Cantidad aproximada]%0D%0A- Ubicación: [Ciudad/Departamento]%0D%0A- Fecha estimada: [Fecha deseada para el servicio]%0D%0A%0D%0ADetalles adicionales:%0D%0A[Describa sus necesidades específicas y cualquier requerimiento especial]%0D%0A%0D%0AEspero su respuesta para coordinar una reunión o llamada.%0D%0A%0D%0ASaludos cordiales,%0D%0A[Nombre]%0D%0A[Teléfono]%0D%0A[Email]"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-10 py-5 border-2 border-white/30 text-white font-semibold rounded-xl hover:border-white/50 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm text-lg"
               >
                 Enviar Email
@@ -574,6 +632,13 @@ export default function Contacto() {
           </div>
         </div>
       </section>
+
+      {/* Modal de llamada */}
+      <CallModal
+        isOpen={isCallModalOpen}
+        onClose={() => setIsCallModalOpen(false)}
+        phoneNumber="3148070853"
+      />
     </div>
   );
 }
