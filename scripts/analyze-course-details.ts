@@ -69,8 +69,8 @@ async function analyzeCourseDetails() {
 
     // Lista de cursos que necesitan información específica
     const coursesNeedingSpecificInfo = allCourses
-      .filter(course => !coursesWithSpecificInfo.includes(course.name))
-      .map(course => course.name);
+      .filter((course: any) => !coursesWithSpecificInfo.includes(course.name))
+      .map((course: any) => course.name);
 
     console.log('📝 CURSOS QUE NECESITAN INFORMACIÓN ESPECÍFICA:\n');
     coursesNeedingSpecificInfo.forEach((courseName, index) => {
