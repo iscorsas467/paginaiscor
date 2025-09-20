@@ -83,7 +83,7 @@ async function testCertificados() {
     });
 
     console.log(`\n📋 TIPOS DE CAPACITACIÓN:`);
-    tiposCapacitacion.forEach((tipo: string) => {
+    tiposCapacitacion.forEach((tipo: any) => {
       console.log(`   ${tipo.capacitacion}: ${tipo._count.capacitacion} certificados`);
     });
 
