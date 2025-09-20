@@ -59,7 +59,7 @@ export async function GET(
     if (!courseData) {
       const courseName = slug
         .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
 
       courseData = await prisma.home_service_items.findFirst({
@@ -431,7 +431,7 @@ export async function PUT(
     // Buscar el curso por nombre
     const courseName = slug
       .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
 
     const course = await prisma.home_service_items.findFirst({

@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
     ]);
 
     // Procesar certificados para incluir estado
-    const certificadosConEstado = certificados.map(cert => {
+    const certificadosConEstado = certificados.map((cert: any) => {
       let estado = 'Vigente';
       
       try {
@@ -90,7 +90,7 @@ export async function GET(request: NextRequest) {
 
     // Filtrar por estado si se especifica
     const certificadosFiltrados = status 
-      ? certificadosConEstado.filter(cert => cert.estado === status)
+      ? certificadosConEstado.filter((cert: any) => cert.estado === status)
       : certificadosConEstado;
 
     return NextResponse.json({
