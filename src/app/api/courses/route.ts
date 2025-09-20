@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Transformar los datos para que coincidan con la estructura esperada
-    const transformedCourses = courses.map(course => {
+    const transformedCourses = courses.map((course: any) => {
       return {
         id: course.id,
         name: course.name,
