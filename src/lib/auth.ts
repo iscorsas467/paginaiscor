@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import { prisma } from './db'
+import { prisma } from './prisma'
 
 export async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, 12)
