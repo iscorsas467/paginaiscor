@@ -330,7 +330,7 @@ export async function GET(
 
       // Información por defecto si no se encuentra el curso específico
       const defaultDetails = {
-        detailedDescription: `${course.description} Este curso está diseñado para proporcionar conocimientos teóricos y prácticos avanzados en el área de ${courseName.toLowerCase()}.`,
+        detailedDescription: `${course?.description || 'Curso especializado'} Este curso está diseñado para proporcionar conocimientos teóricos y prácticos avanzados en el área de ${courseName.toLowerCase()}.`,
         duration: '40 horas',
         certification: 'Válido 2 años',
         objectives: [
