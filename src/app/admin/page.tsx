@@ -29,6 +29,8 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [user, setUser] = useState<any>(null);
+  const [dashboardStats, setDashboardStats] = useState<any>(null);
+  const [statsLoading, setStatsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -49,6 +51,25 @@ export default function AdminPage() {
 
     checkAuth();
   }, [router]);
+
+  // Cargar estadísticas del dashboard
+  useEffect(() => {
+    const loadDashboardStats = async () => {
+      try {
+        const response = await fetch('/api/dashboard-stats');
+        if (response.ok) {
+          const data = await response.json();
+          setDashboardStats(data.data);
+        }
+      } catch (error) {
+        console.error('Error cargando estadísticas:', error);
+      } finally {
+        setStatsLoading(false);
+      }
+    };
+
+    loadDashboardStats();
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -121,18 +142,46 @@ export default function AdminPage() {
     { name: 'Configuración', icon: CogIcon, id: 'settings' },
   ];
 
-  const stats = [
-    { name: 'Total de Cursos', value: '29', change: '+2', changeType: 'positive' },
-    { name: 'Usuarios Activos', value: '1,234', change: '+12%', changeType: 'positive' },
-    { name: 'Certificados Emitidos', value: '856', change: '+8%', changeType: 'positive' },
-    { name: 'Ingresos del Mes', value: '$45,230', change: '+15%', changeType: 'positive' },
+  // Estadísticas dinámicas basadas en datos reales
+  const stats = dashboardStats ? [
+    { 
+      name: 'Total de Cursos', 
+      value: dashboardStats.overview.totalCourses.toString(), 
+      change: 'Disponibles', 
+      changeType: 'neutral',
+      icon: AcademicCapIcon
+    },
+    { 
+      name: 'Certificados Emitidos', 
+      value: dashboardStats.overview.totalCertificates.toString(), 
+      change: 'Histórico', 
+      changeType: 'positive',
+      icon: ClipboardDocumentListIcon
+    },
+    { 
+      name: 'Solicitudes del Mes', 
+      value: dashboardStats.overview.monthlySubmissions.toString(), 
+      change: dashboardStats.overview.submissionChange >= 0 ? `+${dashboardStats.overview.submissionChange}%` : `${dashboardStats.overview.submissionChange}%`, 
+      changeType: dashboardStats.overview.submissionChange >= 0 ? 'positive' : 'negative',
+      icon: DocumentTextIcon
+    },
+    { 
+      name: 'Solicitudes Pendientes', 
+      value: dashboardStats.overview.pendingSubmissions.toString(), 
+      change: 'Requieren atención', 
+      changeType: 'warning',
+      icon: ExclamationTriangleIcon
+    },
+  ] : [
+    { name: 'Total de Cursos', value: '29', change: 'Disponibles', changeType: 'neutral', icon: AcademicCapIcon },
+    { name: 'Certificados Emitidos', value: '5,700+', change: 'Histórico', changeType: 'positive', icon: ClipboardDocumentListIcon },
+    { name: 'Solicitudes del Mes', value: '0', change: 'Cargando...', changeType: 'neutral', icon: DocumentTextIcon },
+    { name: 'Solicitudes Pendientes', value: '0', change: 'Cargando...', changeType: 'neutral', icon: ExclamationTriangleIcon },
   ];
 
-  const recentActivity = [
-    { id: 1, action: 'Nuevo curso agregado', user: 'Juan Pérez', time: '2 horas' },
-    { id: 2, action: 'Certificado emitido', user: 'María González', time: '4 horas' },
-    { id: 3, action: 'Contenido actualizado', user: 'Carlos López', time: '6 horas' },
-    { id: 4, action: 'Usuario registrado', user: 'Ana Rodríguez', time: '8 horas' },
+  // Actividad reciente basada en datos reales
+  const recentActivity = dashboardStats?.recentActivity || [
+    { id: 1, action: 'Cargando actividad...', user: 'Sistema', time: 'Ahora' },
   ];
 
   const renderContent = () => {
@@ -185,80 +234,171 @@ export default function AdminPage() {
               <p className="text-gray-600 mt-1">Resumen general del sistema de administración</p>
             </div>
             
-            <div className="space-y-8">
+            <div className="space-y-6 lg:space-y-8">
               {/* Estadísticas */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Estadísticas Generales</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {stats.map((stat) => (
-                    <div key={stat.name} className="bg-gradient-to-br from-white to-gray-50 overflow-hidden shadow-lg rounded-xl border border-gray-200">
-                      <div className="p-6">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0">
-                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                              <ChartBarIcon className="h-6 w-6 text-blue-600" />
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Estadísticas Generales</h3>
+                  {statsLoading && (
+                    <div className="flex items-center text-sm text-gray-500">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                      Cargando...
+                    </div>
+                  )}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6">
+                  {stats.map((stat) => {
+                    const IconComponent = stat.icon;
+                    const getBgColor = (changeType: string) => {
+                      switch (changeType) {
+                        case 'positive': return 'bg-green-100';
+                        case 'negative': return 'bg-red-100';
+                        case 'warning': return 'bg-yellow-100';
+                        default: return 'bg-blue-100';
+                      }
+                    };
+                    const getIconColor = (changeType: string) => {
+                      switch (changeType) {
+                        case 'positive': return 'text-green-600';
+                        case 'negative': return 'text-red-600';
+                        case 'warning': return 'text-yellow-600';
+                        default: return 'text-blue-600';
+                      }
+                    };
+                    
+                    return (
+                      <div key={stat.name} className="bg-gradient-to-br from-white to-gray-50 overflow-hidden shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition-shadow duration-200">
+                        <div className="p-4 lg:p-6">
+                          <div className="flex items-start space-x-4">
+                            <div className="flex-shrink-0">
+                              <div className={`w-12 h-12 ${getBgColor(stat.changeType)} rounded-xl flex items-center justify-center shadow-sm`}>
+                                <IconComponent className={`h-6 w-6 ${getIconColor(stat.changeType)}`} />
+                              </div>
                             </div>
-                          </div>
-                          <div className="ml-4 flex-1">
-                            <dt className="text-sm font-medium text-gray-500 truncate">
-                              {stat.name}
-                            </dt>
-                            <dd className="flex items-baseline">
-                              <div className="text-2xl font-bold text-gray-900">
-                                {stat.value}
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-medium text-gray-600 leading-tight mb-1">
+                                {stat.name}
+                              </h4>
+                              <div className="flex items-baseline space-x-2">
+                                <span className="text-2xl lg:text-3xl font-bold text-gray-900">
+                                  {stat.value}
+                                </span>
+                                <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                                  stat.changeType === 'positive' ? 'bg-green-100 text-green-700' : 
+                                  stat.changeType === 'negative' ? 'bg-red-100 text-red-700' :
+                                  stat.changeType === 'warning' ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-700'
+                                }`}>
+                                  {stat.change}
+                                </span>
                               </div>
-                              <div className={`ml-2 flex items-baseline text-sm font-semibold ${
-                                stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-                              }`}>
-                                {stat.change}
-                              </div>
-                            </dd>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
+              {/* Cursos Más Solicitados */}
+              {dashboardStats?.charts?.courseStats && dashboardStats.charts.courseStats.length > 0 && (
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900">Cursos Más Solicitados</h3>
+                    <span className="text-sm text-gray-500">Top 5</span>
+                  </div>
+                  <div className="bg-gradient-to-br from-white to-gray-50 shadow-lg rounded-xl border border-gray-200 overflow-hidden">
+                    <div className="p-4 lg:p-6">
+                      <div className="space-y-3">
+                        {dashboardStats.charts.courseStats.slice(0, 5).map((course: any, index: number) => (
+                          <div key={course.courseName} className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
+                            <div className="flex items-center space-x-4 flex-1 min-w-0">
+                              <div className="flex-shrink-0">
+                                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-sm">
+                                  <span className="text-sm font-bold text-white">#{index + 1}</span>
+                                </div>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-semibold text-gray-900 text-sm lg:text-base truncate">
+                                  {course.courseName}
+                                </h4>
+                                <p className="text-sm text-gray-500 mt-1">
+                                  {course._count.courseName} solicitud{course._count.courseName !== 1 ? 'es' : ''}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="flex-shrink-0 ml-4">
+                              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-800 border border-blue-200">
+                                {course._count.courseName}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Actividad Reciente */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Actividad Reciente</h3>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Actividad Reciente</h3>
+                  <span className="text-sm text-gray-500">Últimas 10 actividades</span>
+                </div>
                 <div className="bg-gradient-to-br from-white to-gray-50 shadow-lg rounded-xl border border-gray-200 overflow-hidden">
-                  <div className="p-6">
-                    <div className="flow-root">
-                      <ul className="-mb-8">
+                  <div className="p-4 lg:p-6">
+                    {recentActivity.length > 0 && recentActivity[0].action !== 'Cargando actividad...' ? (
+                      <div className="space-y-4">
                         {recentActivity.map((activity, activityIdx) => (
-                          <li key={activity.id}>
-                            <div className="relative pb-8">
-                              {activityIdx !== recentActivity.length - 1 ? (
-                                <span
-                                  className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
-                                  aria-hidden="true"
-                                />
-                              ) : null}
-                              <div className="relative flex space-x-4">
-                                <div>
-                                  <span className="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center ring-4 ring-white shadow-lg">
-                                    <BellIcon className="h-5 w-5 text-white" />
-                                  </span>
+                          <div key={activity.id} className="relative">
+                            <div className="flex items-start space-x-4 p-4 bg-white rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
+                              <div className="flex-shrink-0">
+                                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-sm">
+                                  <BellIcon className="h-5 w-5 text-white" />
                                 </div>
-                                <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                                  <div>
-                                    <p className="text-sm text-gray-600">
-                                      {activity.action} por <span className="font-semibold text-gray-900">{activity.user}</span>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-start justify-between">
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-medium text-gray-900 leading-tight">
+                                      {activity.action}
                                     </p>
+                                    <div className="mt-1 flex items-center space-x-2 text-xs text-gray-500">
+                                      <span>Por <span className="font-semibold text-gray-700">{activity.user}</span></span>
+                                      {activity.company && (
+                                        <>
+                                          <span>•</span>
+                                          <span className="truncate">{activity.company}</span>
+                                        </>
+                                      )}
+                                    </div>
                                   </div>
-                                  <div className="text-right text-sm whitespace-nowrap text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                                    {activity.time}
+                                  <div className="flex-shrink-0 ml-4">
+                                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
+                                      {activity.time}
+                                    </span>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </li>
+                            {activityIdx !== recentActivity.length - 1 && (
+                              <div className="absolute left-6 top-12 w-0.5 h-4 bg-gray-200"></div>
+                            )}
+                          </div>
                         ))}
-                      </ul>
-                    </div>
+                      </div>
+                    ) : (
+                      <div className="text-center py-12">
+                        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <BellIcon className="h-8 w-8 text-gray-400" />
+                        </div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Sin actividad reciente</h4>
+                        <p className="text-gray-500 text-sm max-w-md mx-auto">
+                          Las solicitudes de formularios aparecerán aquí cuando los usuarios se pongan en contacto contigo.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

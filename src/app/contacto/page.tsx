@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { 
-  MapPinIcon, 
   PhoneIcon, 
   EnvelopeIcon, 
   ClockIcon,
@@ -77,7 +76,7 @@ export default function Contacto() {
           email: formData.email,
           telefono: formData.telefono,
           empresa: formData.empresa || null,
-          mensaje: `Servicio de interés: ${formData.servicio || 'No especificado'}\n\nMensaje: ${formData.mensaje}`
+          mensaje: `Servicio de interés: ${formData.servicio || 'No especificado'} - Mensaje: ${formData.mensaje}`
         })
       });
 
@@ -195,12 +194,12 @@ export default function Contacto() {
       </section>
 
       {/* Contact Form and Info - Estilo Siemens Profesional */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50" style={{ pointerEvents: 'auto' }}>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             {/* Contact Form */}
-            <div className="relative">
-              <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 p-8">
+            <div className="relative" style={{ pointerEvents: 'auto', zIndex: 999 }}>
+              <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 p-8" style={{ pointerEvents: 'auto', zIndex: 999 }}>
                 <div className="flex items-center mb-8">
                   <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl shadow-lg mr-4">
                     <EnvelopeIcon className="h-8 w-8 text-white" />
@@ -210,149 +209,214 @@ export default function Contacto() {
                   </h2>
                 </div>
 
-                {isSubmitted ? (
-                  <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
-                    <CheckCircleIcon className="h-16 w-16 text-green-600 mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold text-green-900 mb-2">
-                      ¡Mensaje Enviado!
-                    </h3>
-                    <p className="text-green-700 text-lg">
-                      Gracias por contactarnos. Nos pondremos en contacto contigo pronto.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                      <div className="group">
-                        <label htmlFor="nombre" className="block text-sm font-semibold text-slate-700 mb-3">
-                          Nombre Completo *
-                        </label>
-                        <input
-                          type="text"
-                          name="nombre"
-                          id="nombre"
-                          required
-                          value={formData.nombre}
-                          onChange={handleChange}
-                          className="block w-full rounded-xl border-2 border-slate-300 px-4 py-4 text-slate-900 shadow-lg placeholder:text-slate-400 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white"
-                          placeholder="Tu nombre completo"
-                        />
+                {/* Formulario Profesional */}
+                <div className="relative" style={{ pointerEvents: 'auto', zIndex: 9999 }}>
+                  
+                  {isSubmitted ? (
+                    <div className="text-center py-12">
+                      <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6">
+                        <CheckCircleIcon className="h-10 w-10 text-green-600" />
                       </div>
-
-                      <div className="group">
-                        <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-3">
-                          Email *
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          id="email"
-                          required
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="block w-full rounded-xl border-2 border-slate-300 px-4 py-4 text-slate-900 shadow-lg placeholder:text-slate-400 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white"
-                          placeholder="tu@email.com"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                      <div className="group">
-                        <label htmlFor="empresa" className="block text-sm font-semibold text-slate-700 mb-3">
-                          Empresa
-                        </label>
-                        <input
-                          type="text"
-                          name="empresa"
-                          id="empresa"
-                          value={formData.empresa}
-                          onChange={handleChange}
-                          className="block w-full rounded-xl border-2 border-slate-300 px-4 py-4 text-slate-900 shadow-lg placeholder:text-slate-400 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white"
-                          placeholder="Nombre de tu empresa"
-                        />
-                      </div>
-
-                      <div className="group">
-                        <label htmlFor="telefono" className="block text-sm font-semibold text-slate-700 mb-3">
-                          Teléfono
-                        </label>
-                        <input
-                          type="tel"
-                          name="telefono"
-                          id="telefono"
-                          value={formData.telefono}
-                          onChange={handleChange}
-                          className="block w-full rounded-xl border-2 border-slate-300 px-4 py-4 text-slate-900 shadow-lg placeholder:text-slate-400 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white"
-                          placeholder="+57 300 123 4567"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="group">
-                      <label htmlFor="servicio" className="block text-sm font-semibold text-slate-700 mb-3">
-                        Servicio de Interés
-                      </label>
-                      <select
-                        name="servicio"
-                        id="servicio"
-                        value={formData.servicio}
-                        onChange={handleChange}
-                        className="block w-full rounded-xl border-2 border-slate-300 px-4 py-4 text-slate-900 shadow-lg focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white"
-                      >
-                        <option value="">Selecciona un servicio</option>
-                        {services.map((service) => (
-                          <option key={service} value={service}>
-                            {service}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="group">
-                      <label htmlFor="mensaje" className="block text-sm font-semibold text-slate-700 mb-3">
-                        Mensaje *
-                      </label>
-                      <textarea
-                        name="mensaje"
-                        id="mensaje"
-                        rows={4}
-                        required
-                        value={formData.mensaje}
-                        onChange={handleChange}
-                        className="block w-full rounded-xl border-2 border-slate-300 px-4 py-4 text-slate-900 shadow-lg placeholder:text-slate-400 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white resize-none"
-                        placeholder="Cuéntanos sobre tu proyecto..."
-                      />
-                    </div>
-
-                    {submitError && (
-                      <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-center">
-                        <p className="text-red-700 font-medium">
-                          {submitError}
-                        </p>
-                      </div>
-                    )}
-
-                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                        ¡Mensaje Enviado Exitosamente!
+                      </h3>
+                      <p className="text-gray-600 mb-6">
+                        Gracias por contactarnos. Nuestro equipo se pondrá en contacto contigo en las próximas 24 horas.
+                      </p>
                       <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-4 text-center text-lg font-semibold text-white shadow-xl hover:shadow-2xl hover:from-blue-700 hover:to-cyan-700 focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                        onClick={() => {
+                          setIsSubmitted(false);
+                          setFormData({
+                            nombre: '',
+                            email: '',
+                            empresa: '',
+                            telefono: '',
+                            servicio: '',
+                            mensaje: ''
+                          });
+                        }}
+                        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
                       >
-                        {isSubmitting ? (
-                          <span className="flex items-center justify-center">
-                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            Enviando...
-                          </span>
-                        ) : (
-                          'Enviar Mensaje'
-                        )}
+                        Enviar Otro Mensaje
                       </button>
                     </div>
-                  </form>
-                )}
+                  ) : (
+                    <div>
+                      
+                    <form onSubmit={handleSubmit} className="space-y-8" style={{ pointerEvents: 'auto', zIndex: 1000 }}>
+                      {/* Información Personal */}
+                      <div className="space-y-6">
+                        <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+                          Información Personal
+                        </h3>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                            <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-2">
+                              Nombre Completo *
+                            </label>
+                            <input
+                              type="text"
+                              id="nombre"
+                              name="nombre"
+                              required
+                              value={formData.nombre}
+                              onChange={handleChange}
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
+                              placeholder="Ingresa tu nombre completo"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                              Correo Electrónico *
+                            </label>
+                            <input
+                              type="email"
+                              id="email"
+                              name="email"
+                              required
+                              value={formData.email}
+                              onChange={handleChange}
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
+                              placeholder="tu@empresa.com"
+                            />
+                          </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                            <label htmlFor="empresa" className="block text-sm font-medium text-gray-700 mb-2">
+                              Empresa
+                            </label>
+                            <input
+                              type="text"
+                              id="empresa"
+                              name="empresa"
+                              value={formData.empresa}
+                              onChange={handleChange}
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
+                              placeholder="Nombre de tu empresa"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label htmlFor="telefono" className="block text-sm font-medium text-gray-700 mb-2">
+                              Teléfono *
+                            </label>
+                            <input
+                              type="tel"
+                              id="telefono"
+                              name="telefono"
+                              required
+                              value={formData.telefono}
+                              onChange={handleChange}
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
+                              placeholder="+57 300 123 4567"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Servicio de Interés */}
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+                          Servicio de Interés
+                        </h3>
+                        
+                        <div>
+                          <label htmlFor="servicio" className="block text-sm font-medium text-gray-700 mb-2">
+                            ¿En qué servicio estás interesado?
+                          </label>
+                          <select
+                            id="servicio"
+                            name="servicio"
+                            value={formData.servicio}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                            style={{ pointerEvents: 'auto', zIndex: 1001 }}
+                          >
+                            <option value="">Selecciona un servicio</option>
+                            {services.map((service) => (
+                              <option key={service} value={service}>
+                                {service}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Mensaje */}
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+                          Detalles del Proyecto
+                        </h3>
+                        
+                        <div>
+                          <label htmlFor="mensaje" className="block text-sm font-medium text-gray-700 mb-2">
+                            Cuéntanos sobre tu proyecto *
+                          </label>
+                          <textarea
+                            id="mensaje"
+                            name="mensaje"
+                            rows={6}
+                            required
+                            value={formData.mensaje}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                            placeholder="Describe tu proyecto, necesidades específicas, número de empleados, fechas importantes, etc."
+                          />
+                        </div>
+                      </div>
+
+                      {/* Mensajes de Error */}
+                      {submitError && (
+                        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                          <div className="flex">
+                            <div className="flex-shrink-0">
+                              <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="ml-3">
+                              <p className="text-sm text-red-800">{submitError}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Botón de Envío */}
+                      <div className="pt-4">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full flex justify-center items-center px-8 py-4 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                          style={{ pointerEvents: 'auto', zIndex: 1002 }}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              </svg>
+                              Enviando Mensaje...
+                            </>
+                          ) : (
+                            <>
+                              <EnvelopeIcon className="w-5 h-5 mr-2" />
+                              Enviar Mensaje
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </form>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -466,52 +530,7 @@ export default function Contacto() {
                   </div>
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="mt-12">
-                  <div className="flex items-center mb-6">
-                    <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl shadow-lg mr-3">
-                      <MapPinIcon className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-900">Ubicación</h3>
-                  </div>
-                  <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 shadow-lg border border-slate-200">
-                    <div className="flex items-center justify-center h-full bg-gradient-to-br from-blue-50 to-blue-100">
-                      <div className="text-center">
-                        <MapPinIcon className="h-16 w-16 text-blue-600 mx-auto mb-4" />
-                        <span className="text-slate-600 font-medium">Mapa de ubicación</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Additional Info */}
-                <div className="mt-12 p-8 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl shadow-lg border border-slate-200">
-                  <div className="flex items-center mb-6">
-                    <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl shadow-lg mr-3">
-                      <CheckCircleIcon className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-900">
-                      ¿Por qué elegir ISCOR?
-                    </h3>
-                  </div>
-                  <ul className="space-y-4">
-                    {[
-                      'Respuesta en menos de 24 horas',
-                      'Evaluación gratuita de riesgos',
-                      'Personal certificado y experto',
-                      'Cumplimiento normativo garantizado',
-                      'Seguimiento continuo y auditorías'
-                    ].map((benefit, index) => (
-                      <li 
-                        key={benefit}
-                        className="flex items-center text-sm text-slate-700 font-medium"
-                      >
-                        <CheckCircleIcon className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
