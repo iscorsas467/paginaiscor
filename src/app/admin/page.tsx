@@ -350,7 +350,7 @@ export default function AdminPage() {
                   <div className="p-4 lg:p-6">
                     {recentActivity.length > 0 && recentActivity[0].action !== 'Cargando actividad...' ? (
                       <div className="space-y-4">
-                        {recentActivity.map((activity, activityIdx) => (
+                        {recentActivity.map((activity: any, activityIdx: number) => (
                           <div key={activity.id} className="relative">
                             <div className="flex items-start space-x-4 p-4 bg-white rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
                               <div className="flex-shrink-0">
