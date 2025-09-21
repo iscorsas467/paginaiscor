@@ -418,14 +418,14 @@ export default function Contacto() {
                       {
                         id: 4,
                         title: 'Correo Electrónico',
-                        description: 'iscr@iscrcolombia.com.co',
+                        description: 'iscor@iscorcolombia.com.co',
                         icon: '✉️',
                         gradient: 'from-orange-500 to-orange-600'
                       },
                       {
                         id: 5,
                         title: 'Sitio Web',
-                        description: 'www.iscrcolombia.com.co',
+                        description: 'www.iscorcolombia.com.co',
                         icon: '🌐',
                         gradient: 'from-cyan-500 to-cyan-600'
                       }
@@ -621,7 +621,7 @@ export default function Contacto() {
               </a>
               
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=director@iscorcolombia.com&su=Consulta de Servicios - ISCOR Colombia&body=Estimado Director,%0D%0A%0D%0AMe pongo en contacto con usted para solicitar información sobre los servicios de seguridad industrial de ISCOR Colombia.%0D%0A%0D%0AInformación de la consulta:%0D%0A- Empresa: [Nombre de su empresa]%0D%0A- Servicio de interés: [Especifique el servicio]%0D%0A- Número de empleados: [Cantidad aproximada]%0D%0A- Ubicación: [Ciudad/Departamento]%0D%0A- Fecha estimada: [Fecha deseada para el servicio]%0D%0A%0D%0ADetalles adicionales:%0D%0A[Describa sus necesidades específicas y cualquier requerimiento especial]%0D%0A%0D%0AEspero su respuesta para coordinar una reunión o llamada.%0D%0A%0D%0ASaludos cordiales,%0D%0A[Nombre]%0D%0A[Teléfono]%0D%0A[Email]"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=iscor@iscorcolombia.com.co&su=Consulta de Servicios - ISCOR Colombia&body=Estimado Director,%0D%0A%0D%0AMe pongo en contacto con usted para solicitar información sobre los servicios de seguridad industrial de ISCOR Colombia.%0D%0A%0D%0AInformación de la consulta:%0D%0A- Empresa: [Nombre de su empresa]%0D%0A- Servicio de interés: [Especifique el servicio]%0D%0A- Número de empleados: [Cantidad aproximada]%0D%0A- Ubicación: [Ciudad/Departamento]%0D%0A- Fecha estimada: [Fecha deseada para el servicio]%0D%0A%0D%0ADetalles adicionales:%0D%0A[Describa sus necesidades específicas y cualquier requerimiento especial]%0D%0A%0D%0AEspero su respuesta para coordinar una reunión o llamada.%0D%0A%0D%0ASaludos cordiales,%0D%0A[Nombre]%0D%0A[Teléfono]%0D%0A[Email]"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-10 py-5 border-2 border-white/30 text-white font-semibold rounded-xl hover:border-white/50 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm text-lg"

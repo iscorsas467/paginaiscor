@@ -222,57 +222,74 @@ export default function LaEmpresa() {
               </motion.span>
             </motion.h1>
 
-            {/* Logo compacto */}
-            <motion.div 
-              className="flex justify-center mb-4"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
-            >
-              <motion.img
-                src="/iscor-logo-completo.png"
-                alt="ISCOR S.A.S"
-                className="h-24 sm:h-28 lg:h-32 w-auto drop-shadow-md"
-                whileHover={{ 
-                  scale: 1.02,
-                  transition: { duration: 0.2, ease: 'easeOut' }
-                }}
-              />
-            </motion.div>
-            
-            {/* Tagline compacto */}
+            {/* Contenido mejorado sin imagen */}
             <motion.div
-              className="space-y-2"
-              initial={{ opacity: 0, y: 10 }}
+              className="space-y-4 mt-6"
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.3, ease: 'easeOut' }}
+              transition={{ duration: 0.4, delay: 0.3, ease: 'easeOut' }}
             >
-              <motion.p 
-                className="text-sm md:text-base text-blue-300 font-bold tracking-wide"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.4, ease: 'easeOut' }}
+              {/* Nombre de la empresa destacado */}
+              <motion.div
+                className="text-center"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
               >
-                INGENIERÍA DE SEGURIDAD Y CONTROL DE RIESGOS
-              </motion.p>
-              
-              <motion.p 
-                className="text-xs md:text-sm text-slate-300 font-semibold tracking-wide"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.5, ease: 'easeOut' }}
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-2 tracking-tight">
+                  ISCOR
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
+              </motion.div>
+
+              {/* Descripción principal */}
+              <motion.div
+                className="space-y-3"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5, ease: 'easeOut' }}
               >
-                cultura preventiva
-              </motion.p>
-              
-              <motion.p 
-                className="text-xs text-cyan-300 font-light italic tracking-wide"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.6, ease: 'easeOut' }}
+                <motion.p 
+                  className="text-lg md:text-xl text-blue-300 font-bold tracking-wide text-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.6, ease: 'easeOut' }}
+                >
+                  INGENIERÍA DE SEGURIDAD Y CONTROL DE RIESGOS
+                </motion.p>
+                
+                <motion.p 
+                  className="text-base md:text-lg text-slate-300 font-semibold tracking-wide text-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.7, ease: 'easeOut' }}
+                >
+                  cultura preventiva
+                </motion.p>
+                
+                <motion.p 
+                  className="text-sm md:text-base text-cyan-300 font-light italic tracking-wide text-center max-w-2xl mx-auto leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.8, ease: 'easeOut' }}
+                >
+                  &ldquo;Ingeniería de Seguridad y Control de Riesgos S.A.S&rdquo;
+                </motion.p>
+              </motion.div>
+
+              {/* Elementos decorativos */}
+              <motion.div
+                className="flex justify-center items-center space-x-4 mt-6"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.9, ease: 'easeOut' }}
               >
-                &ldquo;Ingeniería de Seguridad y Control de Riesgos S.A.S&rdquo;
-              </motion.p>
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                <div className="w-8 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                <div className="w-8 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+              </motion.div>
             </motion.div>
             
             {/* Indicador de scroll ampliado */}

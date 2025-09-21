@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { 
@@ -13,11 +12,9 @@ import {
   CheckBadgeIcon,
   XCircleIcon,
   UserGroupIcon,
-  ArrowLeftIcon,
   ShieldCheckIcon,
   ExclamationTriangleIcon,
   LockClosedIcon,
-  EyeIcon,
   InformationCircleIcon,
   ClockIcon
 } from '@heroicons/react/24/outline';
@@ -39,7 +36,6 @@ export default function CertificadosPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchResult, setSearchResult] = useState<CertificateData | null>(null);
   const [error, setError] = useState('');
-  const router = useRouter();
 
   const handleSearch = async () => {
     if (!cedula.trim()) {
@@ -99,47 +95,9 @@ export default function CertificadosPage() {
         </div>
       </div>
       
-      {/* Header */}
-      <div className="relative z-10 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-lg">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <button
-                onClick={() => router.push('/')}
-                className="flex items-center px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200"
-              >
-                <ArrowLeftIcon className="h-5 w-5 mr-2" />
-                Volver al Inicio
-              </button>
-              <div className="h-8 w-px bg-slate-300" />
-              <div className="flex items-center space-x-4">
-                <div className="relative w-12 h-12">
-                  <Image
-                    src="/iscor-logo-completo.png"
-                    alt="ISCOR Logo"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold text-slate-900">ISCOR</h1>
-                  <p className="text-sm text-slate-600">Sistema de Verificación</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center px-3 py-2 bg-green-100 text-green-800 rounded-lg">
-                <ShieldCheckIcon className="h-4 w-4 mr-2" />
-                <span className="text-sm font-medium">Sistema Seguro</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Main Content */}
-      <section className="relative py-16">
+      <section className="relative pt-24 pb-16">
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           {/* Hero Section */}
           <div className="text-center mb-16">
