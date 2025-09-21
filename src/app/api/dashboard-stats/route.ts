@@ -16,11 +16,11 @@ export async function GET() {
       courseStats,
       certificateStats
     ] = await Promise.all([
-      // Total de cursos
-      prisma.course.count(),
+      // Total de cursos (usando home_service_items)
+      prisma.home_service_items.count(),
       
-      // Total de certificados (usando la tabla certificados si existe)
-      prisma.$queryRaw`SELECT COUNT(*) as count FROM certificados`.then((result: any) => result[0]?.count || 0),
+      // Total de certificados
+      prisma.certificados.count(),
       
       // Total de solicitudes de formularios
       prisma.form_submissions.count(),
@@ -74,13 +74,13 @@ export async function GET() {
       // Estadísticas de certificados por año (últimos 5 años)
       prisma.$queryRaw`
         SELECT 
-          EXTRACT(YEAR FROM f_realizacion::date) as year,
+          EXTRACT(YEAR FROM "fecha_realizacion"::date) as year,
           COUNT(*) as count
         FROM certificados 
-        WHERE f_realizacion IS NOT NULL 
-          AND f_realizacion != ''
-          AND f_realizacion ~ '^[0-9]'
-        GROUP BY EXTRACT(YEAR FROM f_realizacion::date)
+        WHERE "fecha_realizacion" IS NOT NULL 
+          AND "fecha_realizacion" != ''
+          AND "fecha_realizacion" ~ '^[0-9]'
+        GROUP BY EXTRACT(YEAR FROM "fecha_realizacion"::date)
         ORDER BY year DESC
         LIMIT 5
       `
