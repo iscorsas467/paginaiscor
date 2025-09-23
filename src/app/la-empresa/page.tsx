@@ -61,7 +61,7 @@ export default function LaEmpresa() {
   return (
     <div className="bg-white">
       {/* Hero Section - Compacto */}
-      <section className="relative py-8 md:py-12 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-hidden flex items-center">
+      <section className="relative pt-16 pb-12 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-hidden flex items-center">
         {/* Fondo Ultra Premium Multi-Capa */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900" />
         
@@ -183,7 +183,7 @@ export default function LaEmpresa() {
         {/* Overlay con gradiente sutil */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-slate-900/15 to-slate-900/30" />
 
-        <div className="relative mx-auto max-w-5xl px-4 lg:px-6 py-4 lg:py-6 w-full">
+        <div className="relative mx-auto max-w-5xl px-4 lg:px-6 pt-8 pb-12 w-full">
           <div className="mx-auto max-w-6xl text-center">
             
             {/* Badge compacto */}
@@ -197,23 +197,24 @@ export default function LaEmpresa() {
               ✨ Líderes en Seguridad Industrial
             </motion.div>
             
-            {/* Título Principal Compacto */}
+            {/* Título Principal */}
             <motion.h1 
-              className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-4 leading-none"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-none"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
             >
               <motion.span 
-                className="text-white block drop-shadow-2xl"
+                className="text-white inline-block drop-shadow-2xl"
                 initial={{ opacity: 0, x: -80 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
               >
                 ¿Quiénes
               </motion.span>
+              <span className="text-white mx-2"> </span>
               <motion.span 
-                className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent block drop-shadow-2xl"
+                className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent inline-block drop-shadow-2xl"
                 initial={{ opacity: 0, x: 80 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
@@ -236,7 +237,7 @@ export default function LaEmpresa() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
               >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-2 tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-2 tracking-tight">
                   ISCOR
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
@@ -330,7 +331,7 @@ export default function LaEmpresa() {
       </section>
 
       {/* About Section - Diseño Moderno y Profesional */}
-      <section className="py-20 md:py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
+      <section className="pt-20 pb-8 md:pt-24 md:pb-12 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
         {/* Background Pattern Sutil */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -348,7 +349,7 @@ export default function LaEmpresa() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-4">
               Sobre Nosotros
             </h2>
             <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">
@@ -446,7 +447,7 @@ export default function LaEmpresa() {
       </section>
 
       {/* Misión y Visión - Diseño Premium y Profesional */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+      <section className="pt-2 pb-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
         {/* Patrón de fondo sutil */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -468,7 +469,7 @@ export default function LaEmpresa() {
               Nuestro Propósito
             </div>
             
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-4">
               Misión y Visión
             </h2>
             
@@ -529,7 +530,7 @@ export default function LaEmpresa() {
       </section>
 
       {/* Lo que nos hace diferentes - Diseño Ultra Profesional y Premium */}
-      <section className="relative py-24 md:py-28 px-4 overflow-hidden">
+      <section className="relative pt-12 pb-24 md:pt-16 md:pb-28 px-4 overflow-hidden">
         {/* Fondo Premium con Degradado Profundo */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1E3A] via-[#0F2B5C] to-[#0A1E3A]"></div>
         
@@ -564,7 +565,7 @@ export default function LaEmpresa() {
             </div>
             
             {/* Título Principal */}
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white text-center mb-4">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white text-center mb-4">
               Lo que nos hace diferentes
             </h2>
             
@@ -650,7 +651,7 @@ export default function LaEmpresa() {
       </section>
 
       {/* Nuestros Valores - Diseño Premium Corporativo */}
-      <section className="relative py-24 md:py-28 px-4 overflow-hidden">
+      <section className="relative pt-8 pb-24 md:pt-12 md:pb-28 px-4 overflow-hidden">
         {/* Fondo Sutil con Degradado Limpio */}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-white"></div>
         
@@ -675,13 +676,13 @@ export default function LaEmpresa() {
             viewport={{ once: true, amount: 0.4 }}
           >
             {/* Píldora Estilo Glass */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/50 px-4 py-1 text-xs tracking-wide text-gray-700 backdrop-blur mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/50 px-4 py-1 text-xs tracking-wide text-gray-700 backdrop-blur mb-4">
               <div className="w-2 h-2 rounded-full bg-blue-500"></div>
               Nuestros Valores
             </div>
             
             {/* Título Central Fuerte */}
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 text-center mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-blue-900 text-center mb-4">
               Los principios que nos guían
             </h2>
             
@@ -792,7 +793,7 @@ export default function LaEmpresa() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl md:text-3xl font-extrabold text-center text-white mb-3">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center text-white mb-3">
               Nuestros Logros
             </h2>
             <p className="text-white/70 text-center max-w-xl mx-auto text-sm md:text-base">
@@ -878,7 +879,7 @@ export default function LaEmpresa() {
       <ClientesSection />
 
       {/* Contact CTA - Diseño Ultra Premium Corporativo */}
-      <section className="relative py-16 md:py-20 px-4 overflow-hidden">
+      <section className="relative pt-8 pb-16 md:pt-12 md:pb-20 px-4 overflow-hidden">
         {/* Fondo Ultra Premium Multi-Capa */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" />
         

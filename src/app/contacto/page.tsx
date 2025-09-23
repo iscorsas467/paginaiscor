@@ -194,12 +194,12 @@ export default function Contacto() {
       </section>
 
       {/* Contact Form and Info - Estilo Siemens Profesional */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50" style={{ pointerEvents: 'auto' }}>
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             {/* Contact Form */}
-            <div className="relative" style={{ pointerEvents: 'auto', zIndex: 999 }}>
-              <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 p-8" style={{ pointerEvents: 'auto', zIndex: 999 }}>
+            <div className="relative">
+              <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 p-8">
                 <div className="flex items-center mb-8">
                   <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl shadow-lg mr-4">
                     <EnvelopeIcon className="h-8 w-8 text-white" />
@@ -210,7 +210,7 @@ export default function Contacto() {
                 </div>
 
                 {/* Formulario Profesional */}
-                <div className="relative" style={{ pointerEvents: 'auto', zIndex: 9999 }}>
+                <div className="relative">
                   
                   {isSubmitted ? (
                     <div className="text-center py-12">
@@ -243,7 +243,7 @@ export default function Contacto() {
                   ) : (
                     <div>
                       
-                    <form onSubmit={handleSubmit} className="space-y-8" style={{ pointerEvents: 'auto', zIndex: 1000 }}>
+                    <form onSubmit={handleSubmit} className="space-y-8">
                       {/* Información Personal */}
                       <div className="space-y-6">
                         <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
@@ -263,7 +263,6 @@ export default function Contacto() {
                               value={formData.nombre}
                               onChange={handleChange}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
                               placeholder="Ingresa tu nombre completo"
                             />
                           </div>
@@ -280,7 +279,6 @@ export default function Contacto() {
                               value={formData.email}
                               onChange={handleChange}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
                               placeholder="tu@empresa.com"
                             />
                           </div>
@@ -298,7 +296,6 @@ export default function Contacto() {
                               value={formData.empresa}
                               onChange={handleChange}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
                               placeholder="Nombre de tu empresa"
                             />
                           </div>
@@ -315,7 +312,6 @@ export default function Contacto() {
                               value={formData.telefono}
                               onChange={handleChange}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
                               placeholder="+57 300 123 4567"
                             />
                           </div>
@@ -395,7 +391,6 @@ export default function Contacto() {
                           type="submit"
                           disabled={isSubmitting}
                           className="w-full flex justify-center items-center px-8 py-4 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-                          style={{ pointerEvents: 'auto', zIndex: 1002 }}
                         >
                           {isSubmitting ? (
                             <>

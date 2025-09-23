@@ -81,7 +81,7 @@ const affiliations = [
 
 export default function InstructorPrincipal() {
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section className="pt-8 pb-24 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center mb-16">
           <motion.div 

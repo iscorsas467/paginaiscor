@@ -40,14 +40,14 @@ export default function MinimalHero() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center">
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-20">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-24 pb-20">
         <div className="text-center">
           {/* Badge */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-6 py-3 rounded-full bg-white/15 backdrop-blur-md border border-white/30 text-white text-sm font-semibold mb-12 shadow-lg"
+            className="inline-flex items-center px-6 py-3 rounded-full bg-white/15 backdrop-blur-md border border-white/30 text-white text-sm font-semibold mb-6 shadow-lg"
           >
             <ShieldCheckIcon className="h-5 w-5 mr-3" />
             Líder en Seguridad Industrial desde 2005
@@ -60,7 +60,7 @@ export default function MinimalHero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-12"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6">
               <span className="block mb-4">ISCOR</span>
             </h1>
             
@@ -131,7 +131,7 @@ export default function MinimalHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto px-8 sm:px-0"
           >
             {stats.map((stat, index) => (
               <motion.div

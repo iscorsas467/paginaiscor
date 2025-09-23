@@ -562,7 +562,7 @@ export default function ServiciosPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-hidden">
+      <section className="relative pt-16 pb-12 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -582,18 +582,17 @@ export default function ServiciosPage() {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-blue-900/60 to-slate-900/80"></div>
         
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32">
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-8 pb-12">
           <div className="mx-auto max-w-4xl text-center">
             {/* Badge */}
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-8">
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-4">
               <ShieldCheckIcon className="h-5 w-5 mr-3" />
               Servicios Profesionales
             </div>
             
             {/* Main Heading */}
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-8">
-              <span className="text-white">Nuestros</span>
-              <br />
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-8">
+              <span className="text-white">Nuestros </span>
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Servicios</span>
             </h1>
 
@@ -623,7 +622,7 @@ export default function ServiciosPage() {
       </section>
 
       {/* Courses Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <section className="pt-8 pb-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-20">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8">
@@ -631,8 +630,9 @@ export default function ServiciosPage() {
               Cursos Disponibles
             </div>
             
-            <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-8">
-              Servicios de Seguridad Industrial
+            <h2 className="text-5xl md:text-6xl font-bold mb-8">
+              <span className="text-slate-900">Servicios de </span>
+              <span className="text-blue-800">Seguridad Industrial</span>
             </h2>
             
             <p className="text-xl text-slate-600 leading-relaxed">
@@ -640,7 +640,7 @@ export default function ServiciosPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {coursesData.map((course, index) => {
               // Usar la imagen de la base de datos, con fallback a la función estática
               const courseImage = (course as any).image || getCourseImage(course.name);
@@ -651,12 +651,12 @@ export default function ServiciosPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group bg-white rounded-2xl shadow-xl border border-slate-200 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                  className="group bg-white rounded-2xl shadow-xl border border-slate-200 p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer flex flex-col"
                   onClick={() => handleCourseClick(course.name)}
                 >
                   {/* Image container */}
                   {courseImage && (
-                    <div className="w-16 h-16 rounded-2xl shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl shadow-lg mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
                       <Image
                         src={courseImage}
                         alt={course.name}
@@ -669,7 +669,7 @@ export default function ServiciosPage() {
                   
                   {/* Icon fallback */}
                   {!courseImage && (
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${course.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br ${course.gradient} flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
                       <span className="text-2xl">
                         {renderIcon(course.icon, "h-6 w-6")}
                       </span>
@@ -718,7 +718,7 @@ export default function ServiciosPage() {
                   </div>
 
                   {/* CTA Button */}
-                  <div className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-lg group-hover:shadow-xl flex items-center justify-center">
+                  <div className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-lg group-hover:shadow-xl flex items-center justify-center mt-auto">
                     Más Información
                     <ArrowRightIcon className="ml-2 h-5 w-5" />
                   </div>

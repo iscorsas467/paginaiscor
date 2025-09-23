@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -10,7 +10,14 @@ import {
   XMarkIcon, 
   ShieldCheckIcon,
   UserIcon,
-  LockClosedIcon
+  LockClosedIcon,
+  HomeIcon,
+  BriefcaseIcon,
+  BuildingOfficeIcon,
+  UserGroupIcon,
+  PhoneIcon,
+  DocumentIcon,
+  CogIcon
 } from '@heroicons/react/24/outline';
 
 const navigation = [
@@ -25,6 +32,7 @@ export default function ModernNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,14 +42,31 @@ export default function ModernNavbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Detectar clicks fuera del menú
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <motion.header 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-b border-slate-200/50 shadow-sm"
     >
-      <nav className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <motion.div 
@@ -52,24 +77,24 @@ export default function ModernNavbar() {
               {/* Desktop Logo - Logo completo */}
               <div className="hidden md:block">
                 <Image
-                  src="/iscor-logo-completo.png"
+                  src="/iscor-logo-completooo.png"
                   alt="ISCOR - Soluciones Empresariales"
-                  width={160}
-                  height={48}
-                  className="transition-all duration-300 opacity-100"
+                  width={238}
+                  height={76}
+                  className="transition-all duration-300 opacity-100 h-19 w-auto"
                   priority
                   quality={90}
                 />
               </div>
               
-              {/* Mobile Logo - Logo pequeño */}
+              {/* Mobile Logo - Logo completo */}
               <div className="block md:hidden">
                 <Image
-                  src="/iscor-logo-pequeño.png"
-                  alt="ISCOR"
-                  width={36}
-                  height={36}
-                  className="transition-all duration-300 opacity-100"
+                  src="/iscor-logo-completooo.png"
+                  alt="ISCOR - Soluciones Empresariales"
+                  width={120}
+                  height={40}
+                  className="transition-all duration-300 opacity-100 h-10 w-auto"
                   priority
                   quality={90}
                 />
@@ -134,104 +159,118 @@ export default function ModernNavbar() {
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Abrir menú principal</span>
-              <Bars3Icon className="h-5 w-5" aria-hidden="true" />
+              <Bars3Icon className="h-6 w-6 sm:h-5 sm:w-5" aria-hidden="true" />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="lg:hidden"
+      {/* Mobile menu overlay */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-50">
+          {/* Menu panel - WHITE BACKGROUND */}
+          <div 
+            ref={menuRef}
+            className="fixed top-4 bottom-4 right-4 w-64 max-w-full bg-white shadow-xl rounded-3xl sm:w-72 lg:hidden"
           >
-            <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center">
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.1 }}
-                  >
-                    <Image
-                      src="/iscor-logo-pequeño.png"
-                      alt="ISCOR"
-                      width={36}
-                      height={36}
-                      className="transition-all duration-300"
-                      priority
-                      quality={90}
-                    />
-                  </motion.div>
+            {/* Close button */}
+            <div className="flex justify-end p-2 bg-white">
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+              >
+                <XMarkIcon className="h-5 w-5" />
+              </button>
                 </div>
-                <button
-                  type="button"
-                  className="rounded-lg p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all duration-200"
+            
+            {/* Navigation */}
+            <div className="px-3 pb-3 bg-white">
+              <nav className="space-y-1">
+                <Link
+                  href="/"
                   onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center justify-between px-3 py-2 text-base font-medium rounded-lg ${
+                    pathname === '/' 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
                 >
-                  <span className="sr-only">Cerrar menú</span>
-                  <XMarkIcon className="h-5 w-5" aria-hidden="true" />
-                </button>
-              </div>
-              <div className="flow-root">
-                <div className="space-y-1">
-                  {navigation.map((item) => (
-                    <div key={item.name}>
+                  <span>Inicio</span>
+                  <HomeIcon className="h-5 w-5" />
+                </Link>
                       <Link
-                        href={item.href}
-                        className={`block px-3 py-2.5 text-sm font-medium transition-all duration-200 rounded-lg ${
-                          pathname === item.href
-                            ? 'text-blue-600 bg-blue-50'
-                            : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
-                        }`}
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.name}
+                  href="/servicios"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center justify-between px-3 py-2 text-base font-medium rounded-lg ${
+                    pathname === '/servicios' 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  <span>Servicios</span>
+                  <BriefcaseIcon className="h-5 w-5" />
                       </Link>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 pt-4 border-t border-slate-200 space-y-3">
                   <Link
-                    href="/certificados"
-                    className="flex items-center w-full px-3 py-2.5 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-all duration-200"
+                  href="/la-empresa"
                     onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center justify-between px-3 py-2 text-base font-medium rounded-lg ${
+                    pathname === '/la-empresa' 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
                   >
-                    <ShieldCheckIcon className="h-4 w-4 mr-2" />
-                    Certificados
+                  <span>Nosotros</span>
+                  <BuildingOfficeIcon className="h-5 w-5" />
                   </Link>
                   <Link
-                    href="/admin"
-                    className="flex items-center w-full px-3 py-2.5 text-sm font-medium text-slate-700 bg-slate-50 rounded-lg hover:bg-slate-100 transition-all duration-200"
+                  href="/nuestro-equipo"
                     onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center justify-between px-3 py-2 text-base font-medium rounded-lg ${
+                    pathname === '/nuestro-equipo' 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
                   >
-                    <LockClosedIcon className="h-4 w-4 mr-2" />
-                    Admin
+                  <span>Equipo</span>
+                  <UserGroupIcon className="h-5 w-5" />
                   </Link>
                   <Link
                     href="/contacto"
-                    className="block w-full px-3 py-2.5 text-center text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center justify-between px-3 py-2 text-base font-medium rounded-lg ${
+                    pathname === '/contacto' 
+                      ? 'bg-blue-100 text-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  <span>Contacto</span>
+                  <PhoneIcon className="h-5 w-5" />
+                </Link>
+              </nav>
+              
+              {/* Additional links */}
+              <div className="mt-3 pt-3 border-t border-gray-200 bg-white">
+                <Link
+                  href="/certificados"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-lg"
+                >
+                  <span>Certificados</span>
+                  <DocumentIcon className="h-5 w-5" />
+                </Link>
+                <Link
+                  href="/admin"
                     onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg"
                   >
-                    Contactar
+                  <span>Admin</span>
+                  <CogIcon className="h-5 w-5" />
                   </Link>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+          </div>
+        </div>
         )}
-      </AnimatePresence>
     </motion.header>
   );
 }

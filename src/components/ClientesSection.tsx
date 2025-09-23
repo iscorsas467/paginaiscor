@@ -179,7 +179,7 @@ export default function ClientesSection() {
                     alt={logo.alt}
                     loading="lazy"
                     decoding="async"
-                    className="h-8 md:h-9 object-contain grayscale-[0.3] opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:saturate-120 will-change-transform mb-1"
+                    className="h-10 md:h-12 object-contain transition duration-300 group-hover:scale-110 will-change-transform mb-1"
                   />
                   <p className="text-[10px] md:text-xs text-slate-600 text-center leading-tight group-hover:text-slate-800 transition-colors duration-300">
                     {logo.description}

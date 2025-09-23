@@ -80,10 +80,10 @@ export default function NuestroEquipo() {
         {/* Gradient Overlay - Estilo Lockheed Martin */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-blue-900/60 to-slate-900/80"></div>
         
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-32">
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-20 pb-16 lg:pt-24 lg:pb-20">
           <div className="mx-auto max-w-4xl text-center">
             {/* Badge - Estilo Cisco */}
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-8">
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-4">
               <UserGroupIcon className="h-5 w-5 mr-3" />
               Nuestro Equipo
             </div>
