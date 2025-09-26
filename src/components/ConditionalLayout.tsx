@@ -16,6 +16,11 @@ export default function ConditionalLayout({ children }: ConditionalLayoutProps) 
     return <>{children}</>;
   }
   
+  // Si estamos en la página principal (mantenimiento), no mostrar navbar ni footer
+  if (pathname === '/') {
+    return <>{children}</>;
+  }
+  
   // Para todas las demás rutas, mostrar navbar y footer
   return (
     <>
