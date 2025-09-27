@@ -24,6 +24,8 @@ export default function Button({
   disabled,
   ...props
 }: ButtonProps) {
+  // Separar props de HTML de props de motion
+  const { onAnimationStart, onAnimationEnd, ...htmlProps } = props;
   const variantClasses = {
     primary: `
       bg-brand-600 text-white border border-brand-600
@@ -84,7 +86,7 @@ export default function Button({
       whileHover={!isDisabled ? { scale: 1.02 } : {}}
       whileTap={!isDisabled ? { scale: 0.98 } : {}}
       transition={{ duration: 0.1 }}
-      {...props}
+      {...htmlProps}
     >
       {/* Loading Spinner */}
       {loading && (
