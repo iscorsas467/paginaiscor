@@ -74,142 +74,30 @@ export default function ModernNavbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {/* Desktop Logo - SVG vectorial ISCOR */}
+              {/* Desktop Logo - SVG vectorial desde archivo */}
               <div className="hidden md:block">
-                <svg
-                  viewBox="0 0 500 100"
-                  className="transition-all duration-300 opacity-100 h-20 w-auto"
+                <img
+                  src="/iscor-logo-completo.svg"
+                  alt="ISCOR - Soluciones Empresariales"
+                  className="transition-all duration-300 opacity-100 h-20 w-auto object-contain"
                   style={{
                     filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
                     maxWidth: 'none'
                   }}
-                >
-                  <defs>
-                    <linearGradient id="iscorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#1e40af" />
-                      <stop offset="30%" stopColor="#3b82f6" />
-                      <stop offset="70%" stopColor="#1e40af" />
-                      <stop offset="100%" stopColor="#1e3a8a" />
-                    </linearGradient>
-                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feDropShadow dx="2" dy="2" stdDeviation="3" floodColor="#1e40af" floodOpacity="0.3"/>
-                    </filter>
-                  </defs>
-                  
-                  {/* Logo principal ISCOR */}
-                  <text
-                    x="250"
-                    y="45"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    className="font-black text-5xl fill-[url(#iscorGradient)]"
-                    style={{
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      fontWeight: '900',
-                      letterSpacing: '0.1em',
-                      filter: 'url(#shadow)'
-                    }}
-                  >
-                    ISCOR
-                  </text>
-                  
-                  {/* Subtítulo */}
-                  <text
-                    x="250"
-                    y="70"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    className="text-sm fill-slate-600"
-                    style={{
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      fontWeight: '600',
-                      letterSpacing: '0.15em',
-                      fontSize: '12px'
-                    }}
-                  >
-                    SOLUCIONES EMPRESARIALES
-                  </text>
-                  
-                  {/* Línea decorativa */}
-                  <line
-                    x1="150"
-                    y1="80"
-                    x2="350"
-                    y2="80"
-                    stroke="url(#iscorGradient)"
-                    strokeWidth="2"
-                    opacity="0.6"
-                  />
-                </svg>
+                />
               </div>
               
-              {/* Mobile Logo - SVG vectorial ISCOR */}
+              {/* Mobile Logo - SVG vectorial desde archivo */}
               <div className="block md:hidden">
-                <svg
-                  viewBox="0 0 350 70"
-                  className="transition-all duration-300 opacity-100 h-15 w-auto"
+                <img
+                  src="/iscor-logo-completo.svg"
+                  alt="ISCOR - Soluciones Empresariales"
+                  className="transition-all duration-300 opacity-100 h-15 w-auto object-contain"
                   style={{
                     filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
                     maxWidth: 'none'
                   }}
-                >
-                  <defs>
-                    <linearGradient id="iscorGradientMobile" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#1e40af" />
-                      <stop offset="30%" stopColor="#3b82f6" />
-                      <stop offset="70%" stopColor="#1e40af" />
-                      <stop offset="100%" stopColor="#1e3a8a" />
-                    </linearGradient>
-                    <filter id="shadowMobile" x="-20%" y="-20%" width="140%" height="140%">
-                      <feDropShadow dx="1" dy="1" stdDeviation="2" floodColor="#1e40af" floodOpacity="0.3"/>
-                    </filter>
-                  </defs>
-                  
-                  {/* Logo principal ISCOR */}
-                  <text
-                    x="175"
-                    y="30"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    className="font-black text-3xl fill-[url(#iscorGradientMobile)]"
-                    style={{
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      fontWeight: '900',
-                      letterSpacing: '0.1em',
-                      filter: 'url(#shadowMobile)'
-                    }}
-                  >
-                    ISCOR
-                  </text>
-                  
-                  {/* Subtítulo */}
-                  <text
-                    x="175"
-                    y="50"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    className="text-xs fill-slate-600"
-                    style={{
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      fontWeight: '600',
-                      letterSpacing: '0.1em',
-                      fontSize: '9px'
-                    }}
-                  >
-                    SOLUCIONES EMPRESARIALES
-                  </text>
-                  
-                  {/* Línea decorativa */}
-                  <line
-                    x1="100"
-                    y1="60"
-                    x2="250"
-                    y2="60"
-                    stroke="url(#iscorGradientMobile)"
-                    strokeWidth="1.5"
-                    opacity="0.6"
-                  />
-                </svg>
+                />
               </div>
             </motion.div>
           </Link>
