@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import { 
   ShieldCheckIcon,
   GlobeAltIcon,
@@ -15,7 +16,9 @@ import {
   BoltIcon,
   CogIcon,
   AcademicCapIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
+  ChevronDownIcon,
+  ChevronUpIcon
 } from '@heroicons/react/24/outline';
 
 const serviceCategories = [
@@ -23,6 +26,7 @@ const serviceCategories = [
     title: 'Seguridad y Salud en el Trabajo',
     icon: ShieldCheckIcon,
     gradient: 'from-blue-500 to-blue-600',
+    description: '30 servicios especializados en seguridad industrial y salud ocupacional',
     services: [
       'Certificación de conductores que transportan',
       'Control de derrames',
@@ -60,6 +64,7 @@ const serviceCategories = [
     title: 'Medio Ambiente',
     icon: GlobeAltIcon,
     gradient: 'from-green-500 to-green-600',
+    description: '22 servicios especializados en gestión ambiental y sostenibilidad',
     services: [
       'Estudios de impacto ambiental y planes de manejo ambiental',
       'Estudios hidrobiológicos y monitoreo calidad de agua',
@@ -86,9 +91,10 @@ const serviceCategories = [
     ]
   },
   {
-    title: 'Calidad',
+    title: 'Calidad y Seguridad Alimentaria',
     icon: DocumentCheckIcon,
     gradient: 'from-purple-500 to-purple-600',
+    description: '4 servicios especializados en sistemas de calidad e inocuidad',
     services: [
       'Sistema de gestión de la calidad ISO 9001',
       'Sistema de gestión seguridad alimentaria ISO 22000',
@@ -97,20 +103,14 @@ const serviceCategories = [
     ]
   },
   {
-    title: 'Seguridad Física',
+    title: 'Seguridad Física y Equipos',
     icon: LockClosedIcon,
-    gradient: 'from-gray-500 to-gray-600',
+    gradient: 'from-orange-500 to-orange-600',
+    description: '14 servicios especializados en seguridad física e inspección de equipos',
     services: [
       'Visitas domiciliarias',
       'Estudios de seguridad',
-      'Seguridad con armas de fuego'
-    ]
-  },
-  {
-    title: 'Inspección de Equipos',
-    icon: EyeIcon,
-    gradient: 'from-orange-500 to-orange-600',
-    services: [
+      'Seguridad con armas de fuego',
       'Seguridad electrónica y CCTV circuito cerrado de televisión',
       'Entrenamiento de escoltas y guardas de seguridad privada',
       'Curso de supervivencia básico y avanzado',
@@ -127,6 +127,12 @@ const serviceCategories = [
 ];
 
 export default function ServicesSection() {
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+
+  const toggleDropdown = (index: number) => {
+    setOpenDropdown(openDropdown === index ? null : index);
+  };
+
   return (
     <section className="py-24 bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -163,47 +169,78 @@ export default function ServicesSection() {
           </motion.p>
         </div>
 
-        <div className="space-y-16">
+        {/* Dropdown Categories */}
+        <div className="space-y-6">
           {serviceCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 * categoryIndex }}
-              className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-8 border border-slate-200"
+              className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
             >
-              {/* Category Header */}
-              <div className="flex items-center mb-8">
-                <div className={`w-16 h-16 bg-gradient-to-r ${category.gradient} rounded-xl flex items-center justify-center mr-6`}>
-                  <category.icon className="h-8 w-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
-                    {category.title}
-                  </h3>
-                  <p className="text-slate-600">
-                    {category.services.length} servicios especializados
-                  </p>
-                </div>
-              </div>
-
-              {/* Services Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 sm:px-0">
-                {category.services.map((service, serviceIndex) => (
+              {/* Clickable Header */}
+              <button
+                onClick={() => toggleDropdown(categoryIndex)}
+                className="w-full p-8 text-left hover:bg-slate-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className={`w-16 h-16 bg-gradient-to-r ${category.gradient} rounded-xl flex items-center justify-center mr-6`}>
+                      <category.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
+                        {category.title}
+                      </h3>
+                      <p className="text-slate-600">
+                        {category.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Chevron Icon */}
                   <motion.div
-                    key={service}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.05 * serviceIndex }}
-                    className="flex items-start space-x-3 p-4 bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow duration-300"
+                    animate={{ rotate: openDropdown === categoryIndex ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex-shrink-0"
                   >
-                    <CheckCircleIcon className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-slate-700 text-sm font-medium leading-relaxed">
-                      {service}
-                    </span>
+                    <ChevronDownIcon className="h-6 w-6 text-slate-400" />
                   </motion.div>
-                ))}
-              </div>
+                </div>
+              </button>
+
+              {/* Dropdown Content */}
+              <AnimatePresence>
+                {openDropdown === categoryIndex && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-8 pb-8 border-t border-slate-100">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-6">
+                        {category.services.map((service, serviceIndex) => (
+                          <motion.div
+                            key={service}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: serviceIndex * 0.05 }}
+                            className="flex items-start space-x-3 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors duration-300"
+                          >
+                            <CheckCircleIcon className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                            <span className="text-slate-700 text-sm font-medium leading-relaxed">
+                              {service}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>
