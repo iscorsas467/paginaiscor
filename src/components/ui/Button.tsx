@@ -24,8 +24,20 @@ export default function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  // Separar props de HTML de props de motion
-  const { onAnimationStart, onAnimationEnd, ...htmlProps } = props;
+  // Separar props de HTML de props de motion que causan conflictos
+  const { 
+    onAnimationStart, 
+    onAnimationEnd, 
+    onDragStart, 
+    onDrag, 
+    onDragEnd,
+    onDragEnter,
+    onDragExit,
+    onDragLeave,
+    onDragOver,
+    onDrop,
+    ...htmlProps 
+  } = props;
   const variantClasses = {
     primary: `
       bg-brand-600 text-white border border-brand-600
