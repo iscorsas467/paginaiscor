@@ -330,6 +330,9 @@ export default function LaEmpresa() {
         </div>
       </section>
 
+      {/* Nuestros Clientes - Carrusel Interactivo */}
+      <ClientesSection />
+
       {/* About Section - Diseño Moderno y Profesional */}
       <section className="pt-20 pb-8 md:pt-24 md:pb-12 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
         {/* Background Pattern Sutil */}
@@ -875,8 +878,6 @@ export default function LaEmpresa() {
         </div>
       </section>
 
-      {/* Nuestros Clientes - Componente Premium */}
-      <ClientesSection />
 
       {/* Contact CTA - Diseño Ultra Premium Corporativo */}
       <section className="relative pt-8 pb-16 md:pt-12 md:pb-20 px-4 overflow-hidden">

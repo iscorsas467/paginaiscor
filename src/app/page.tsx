@@ -56,7 +56,7 @@ export default function Home() {
         <MinimalHero />
       </section>
 
-      {/* Clientes Section */}
+      {/* Nuestros Clientes - Carrusel Interactivo */}
       <ClientesSection />
 
       {/* About Section */}

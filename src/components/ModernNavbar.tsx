@@ -66,11 +66,11 @@ export default function ModernNavbar() {
       className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-b border-slate-200/50 shadow-sm"
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
+        <div className="flex items-center justify-between h-16 sm:h-18 md:h-20 py-3 md:py-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center group">
+          <Link href="/" className="flex items-center group mr-6">
             <motion.div 
-              className="relative transition-all duration-300 group-hover:scale-105"
+              className="relative transition-all duration-300 group-hover:scale-105 max-h-15 md:max-h-20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -79,11 +79,11 @@ export default function ModernNavbar() {
                 <Image
                   src="/iscor-logo-completooo.png"
                   alt="ISCOR - Soluciones Empresariales"
-                  width={238}
-                  height={76}
-                  className="transition-all duration-300 opacity-100 h-19 w-auto"
+                  width={500}
+                  height={80}
+                  className="transition-all duration-300 opacity-100 h-20 w-auto object-contain"
                   priority
-                  quality={90}
+                  quality={95}
                 />
               </div>
               
@@ -92,18 +92,18 @@ export default function ModernNavbar() {
                 <Image
                   src="/iscor-logo-completooo.png"
                   alt="ISCOR - Soluciones Empresariales"
-                  width={120}
-                  height={40}
-                  className="transition-all duration-300 opacity-100 h-10 w-auto"
+                  width={250}
+                  height={60}
+                  className="transition-all duration-300 opacity-100 h-15 w-auto object-contain"
                   priority
-                  quality={90}
+                  quality={95}
                 />
               </div>
             </motion.div>
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-1">
+          <div className="hidden lg:flex lg:items-center lg:space-x-1 flex-1">
             {navigation.map((item) => (
               <Link
                 key={item.name}
