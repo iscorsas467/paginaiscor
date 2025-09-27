@@ -153,7 +153,7 @@ export default function Footer() {
               <img 
                 src="/iscor_logo_colores.svg" 
                 alt="ISCOR Logo" 
-                className="h-8 w-auto filter brightness-0 invert"
+                className="h-10 w-auto filter brightness-100 contrast-110 saturate-110 invert"
               />
               <p className="text-sm text-gray-300">
                 © 2024 ISCOR S.A.S. Todos los derechos reservados.

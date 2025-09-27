@@ -79,11 +79,13 @@ export default function ModernNavbar() {
                 <Image
                   src="/iscor-logo-completooo.png"
                   alt="ISCOR - Soluciones Empresariales"
-                  width={500}
-                  height={80}
-                  className="transition-all duration-300 opacity-100 h-20 w-auto object-contain"
+                  width={600}
+                  height={120}
+                  className="transition-all duration-300 opacity-100 h-20 w-auto object-contain filter brightness-100 contrast-110 saturate-110"
                   priority
-                  quality={95}
+                  quality={100}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
               
@@ -92,11 +94,13 @@ export default function ModernNavbar() {
                 <Image
                   src="/iscor-logo-completooo.png"
                   alt="ISCOR - Soluciones Empresariales"
-                  width={250}
-                  height={60}
-                  className="transition-all duration-300 opacity-100 h-15 w-auto object-contain"
+                  width={300}
+                  height={75}
+                  className="transition-all duration-300 opacity-100 h-15 w-auto object-contain filter brightness-100 contrast-110 saturate-110"
                   priority
-                  quality={95}
+                  quality={100}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
             </motion.div>
