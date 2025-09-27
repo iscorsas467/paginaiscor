@@ -74,33 +74,43 @@ export default function ModernNavbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {/* Desktop Logo - Logo completo */}
+              {/* Desktop Logo - PNG de alta calidad optimizado */}
               <div className="hidden md:block">
                 <Image
                   src="/iscor-logo-completooo.png"
                   alt="ISCOR - Soluciones Empresariales"
-                  width={600}
-                  height={120}
-                  className="transition-all duration-300 opacity-100 h-20 w-auto object-contain filter brightness-100 contrast-110 saturate-110"
+                  width={800}
+                  height={160}
+                  className="transition-all duration-300 opacity-100 h-20 w-auto object-contain"
                   priority
                   quality={100}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  unoptimized={true}
+                  style={{
+                    imageRendering: 'crisp-edges',
+                    WebkitImageRendering: 'crisp-edges',
+                    msInterpolationMode: 'nearest-neighbor',
+                    filter: 'brightness(1.05) contrast(1.1) saturate(1.1)'
+                  }}
                 />
               </div>
               
-              {/* Mobile Logo - Logo completo */}
+              {/* Mobile Logo - PNG de alta calidad optimizado */}
               <div className="block md:hidden">
                 <Image
                   src="/iscor-logo-completooo.png"
                   alt="ISCOR - Soluciones Empresariales"
-                  width={300}
-                  height={75}
-                  className="transition-all duration-300 opacity-100 h-15 w-auto object-contain filter brightness-100 contrast-110 saturate-110"
+                  width={400}
+                  height={80}
+                  className="transition-all duration-300 opacity-100 h-15 w-auto object-contain"
                   priority
                   quality={100}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  unoptimized={true}
+                  style={{
+                    imageRendering: 'crisp-edges',
+                    WebkitImageRendering: 'crisp-edges',
+                    msInterpolationMode: 'nearest-neighbor',
+                    filter: 'brightness(1.05) contrast(1.1) saturate(1.1)'
+                  }}
                 />
               </div>
             </motion.div>
