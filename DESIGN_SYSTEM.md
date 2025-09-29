@@ -294,3 +294,5 @@ Componente para iconos con fondo y variantes de color.
 **Versión**: 1.0  
 **Mantenido por**: Equipo de Desarrollo ISCOR
 
+
+

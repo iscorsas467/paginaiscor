@@ -63,39 +63,41 @@ export default function ModernNavbar() {
     <motion.header 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-b border-slate-200/50 shadow-sm"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-b border-slate-200/50 shadow-sm -mt-24"
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18 md:h-20 py-3 md:py-4">
+        <div className="flex items-center justify-between h-40 sm:h-44 md:h-48 py-0 md:py-1">
           {/* Logo */}
-          <Link href="/" className="flex items-center group mr-6">
+          <Link href="/" className="flex items-center group -ml-4 mr-8 -mt-0">
             <motion.div 
-              className="relative transition-all duration-300 group-hover:scale-105 max-h-15 md:max-h-20"
+              className="relative transition-all duration-300 group-hover:scale-105 max-h-40 md:max-h-48"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {/* Desktop Logo - SVG vectorial desde archivo */}
+              {/* Desktop Logo - SVG vectorial en alta resolución */}
               <div className="hidden md:block">
                 <img
-                  src="/iscor-logo-completo.svg"
+                  src="/logo_iscor.svg"
                   alt="ISCOR - Soluciones Empresariales"
-                  className="transition-all duration-300 opacity-100 h-20 w-auto object-contain"
+                  className="transition-all duration-300 opacity-100 h-48 w-auto object-contain"
                   style={{
                     filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
-                    maxWidth: 'none'
+                    maxWidth: 'none',
+                    transform: 'scaleX(1.3) scaleY(1.2)'
                   }}
                 />
               </div>
               
-              {/* Mobile Logo - SVG vectorial desde archivo */}
+              {/* Mobile Logo - SVG vectorial en alta resolución */}
               <div className="block md:hidden">
                 <img
-                  src="/iscor-logo-completo.svg"
+                  src="/logo_iscor.svg"
                   alt="ISCOR - Soluciones Empresariales"
-                  className="transition-all duration-300 opacity-100 h-15 w-auto object-contain"
+                  className="transition-all duration-300 opacity-100 h-36 w-auto object-contain"
                   style={{
                     filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
-                    maxWidth: 'none'
+                    maxWidth: 'none',
+                    transform: 'scaleX(1.3) scaleY(1.2)'
                   }}
                 />
               </div>
@@ -103,7 +105,7 @@ export default function ModernNavbar() {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-1 flex-1">
+          <div className="hidden lg:flex lg:items-center lg:space-x-3 flex-1 justify-center mt-20">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -128,7 +130,7 @@ export default function ModernNavbar() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-3">
+          <div className="hidden lg:flex lg:items-center lg:space-x-4 mt-20">
             <Link
               href="/certificados"
               className="flex items-center px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200"

@@ -165,3 +165,5 @@ INSERT INTO team_hero (
 -- Actualizar la relación entre hero y stats
 UPDATE team_stats SET "heroId" = 'team-hero-main' WHERE id = 'team-stats-main';
 
+
+

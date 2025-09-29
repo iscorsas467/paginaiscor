@@ -151,9 +151,9 @@ export default function Footer() {
           <div className="flex flex-col items-center space-y-4 lg:flex-row lg:justify-between lg:space-y-0">
             <div className="flex items-center space-x-2">
               <img 
-                src="/iscor_logo_colores.svg" 
+                src="/logo_iscor.svg" 
                 alt="ISCOR Logo" 
-                className="h-10 w-auto filter brightness-100 contrast-110 saturate-110 invert"
+                className="h-16 w-auto filter brightness-100 contrast-110 saturate-110 invert"
               />
               <p className="text-sm text-gray-300">
                 © 2024 ISCOR S.A.S. Todos los derechos reservados.

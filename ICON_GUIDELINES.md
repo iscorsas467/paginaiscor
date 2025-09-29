@@ -145,3 +145,5 @@ Este documento describe los iconos utilizados en el sitio web ISCOR y sus signif
 **Versión**: 1.0  
 **Librería de iconos**: Heroicons v24/outline
 
+
+

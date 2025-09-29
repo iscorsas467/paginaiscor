@@ -224,3 +224,5 @@ const logos: { src: string; alt: string }[] = [
 - ✅ **Responsive**: Funciona en todos los dispositivos
 - ✅ **Accesibilidad**: Implementada en ambas variantes
 
+
+

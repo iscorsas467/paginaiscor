@@ -41,9 +41,11 @@ export default function Navbar() {
         <div className="flex items-center">
           <Link href="/" className="-m-1.5 p-1.5 group">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded"></div>
-              </div>
+              <img
+                src="/logo_iscor.svg"
+                alt="ISCOR Logo"
+                className="h-12 w-auto object-contain filter brightness-0 invert group-hover:scale-110 transition-transform duration-300"
+              />
               <span className="text-white font-bold text-xl tracking-wide">ISCOR</span>
             </div>
           </Link>

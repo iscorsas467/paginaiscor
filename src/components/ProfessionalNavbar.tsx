@@ -41,9 +41,13 @@ export default function ProfessionalNavbar() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <div className="w-6 h-6 bg-white rounded-sm"></div>
-            </div>
+            <img
+              src="/logo_iscor.svg"
+              alt="ISCOR Logo"
+              className={`h-12 w-auto object-contain group-hover:scale-110 transition-transform duration-300 ${
+                scrolled ? 'filter brightness-0' : 'filter brightness-0 invert'
+              }`}
+            />
             <span className={`text-2xl font-bold transition-colors duration-300 ${
               scrolled ? 'text-slate-900' : 'text-white'
             }`}>
