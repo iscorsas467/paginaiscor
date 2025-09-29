@@ -63,14 +63,14 @@ export default function ModernNavbar() {
     <motion.header 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-b border-slate-200/50 shadow-sm -mt-24"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-b border-slate-200/50 shadow-sm"
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-40 sm:h-44 md:h-48 py-0 md:py-1">
+        <div className="flex items-center justify-between h-16 sm:h-20 md:h-48 py-2 md:py-1">
           {/* Logo */}
-          <Link href="/" className="flex items-end group">
+          <Link href="/" className="flex items-center group">
             <motion.div 
-              className="relative transition-all duration-300 group-hover:scale-105 mt-26"
+              className="relative transition-all duration-300 group-hover:scale-105"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -92,7 +92,7 @@ export default function ModernNavbar() {
                 <img
                   src="/logo_iscor_recortado.svg"
                   alt="ISCOR - Soluciones Empresariales"
-                  className="transition-all duration-300 opacity-100 h-36 w-auto object-contain"
+                  className="transition-all duration-300 opacity-100 h-24 w-auto object-contain"
                   style={{
                     filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
                     maxWidth: 'none'
@@ -151,15 +151,15 @@ export default function ModernNavbar() {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex lg:hidden">
+          {/* Mobile menu button - ALWAYS VISIBLE */}
+          <div className="flex">
             <button
               type="button"
               className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200"
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Abrir menú principal</span>
-              <Bars3Icon className="h-6 w-6 sm:h-5 sm:w-5" aria-hidden="true" />
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -167,24 +167,24 @@ export default function ModernNavbar() {
 
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50">
+        <div className="lg:hidden fixed inset-0 z-50 bg-black/50">
           {/* Menu panel - WHITE BACKGROUND */}
           <div 
             ref={menuRef}
-            className="fixed top-4 bottom-4 right-4 w-64 max-w-full bg-white shadow-xl rounded-3xl sm:w-72 lg:hidden"
+            className="fixed top-0 right-0 h-auto w-64 max-w-[80vw] bg-white shadow-xl lg:hidden"
           >
             {/* Close button */}
-            <div className="flex justify-end p-2 bg-white">
+            <div className="flex justify-end p-4 bg-white border-b border-gray-200">
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
               >
-                <XMarkIcon className="h-5 w-5" />
+                <XMarkIcon className="h-6 w-6" />
               </button>
-                </div>
+            </div>
             
             {/* Navigation */}
-            <div className="px-3 pb-3 bg-white">
+            <div className="px-3 py-4 bg-white overflow-y-auto">
               <nav className="space-y-1">
                 <Link
                   href="/"

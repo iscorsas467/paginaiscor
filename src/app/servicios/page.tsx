@@ -592,8 +592,7 @@ export default function ServiciosPage() {
             
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-8">
-              <span className="text-white">Nuestros </span>
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Servicios</span>
+              <span className="text-white">Nuestros Servicios</span>
             </h1>
 
             {/* Subtitle */}

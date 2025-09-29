@@ -187,7 +187,7 @@ export default function ModernServicesSection() {
           </div>
           
           <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-8">
-            Nuestros <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Servicios</span>
+            Nuestros Servicios
           </h2>
           
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">

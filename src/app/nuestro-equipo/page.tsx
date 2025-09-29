@@ -90,9 +90,7 @@ export default function NuestroEquipo() {
             
             {/* Main Heading - Estilo IBM */}
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-8">
-              <span className="text-white">Nuestro</span>
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Equipo</span>
+              <span className="text-white">Nuestro Equipo</span>
             </h1>
 
             {/* Subtitle - Estilo Siemens */}

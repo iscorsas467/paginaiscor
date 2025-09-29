@@ -210,16 +210,7 @@ export default function LaEmpresa() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
               >
-                ¿Quiénes
-              </motion.span>
-              <span className="text-white mx-2"> </span>
-              <motion.span 
-                className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent inline-block drop-shadow-2xl"
-                initial={{ opacity: 0, x: 80 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
-              >
-                Somos?
+                ¿Quiénes Somos?
               </motion.span>
             </motion.h1>
 
@@ -921,7 +912,7 @@ export default function LaEmpresa() {
             
             {/* Título Principal con Gradiente */}
             <motion.h2 
-              className="text-3xl md:text-4xl font-extrabold tracking-tight text-center bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 bg-clip-text text-transparent mb-4 dark:from-slate-100 dark:via-blue-100 dark:to-slate-100"
+              className="text-3xl md:text-4xl font-extrabold tracking-tight text-center text-white mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}

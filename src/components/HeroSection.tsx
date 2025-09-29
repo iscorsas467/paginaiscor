@@ -45,7 +45,7 @@ export default function HeroSection() {
         {/* Título principal con efecto de brillo */}
         <div className="text-center mb-12">
           <h1 className="text-white text-7xl md:text-9xl font-extrabold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,.6)] relative">
-            <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent animate-pulse">
+            <span className="text-white animate-pulse">
               ISCOR
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-xl animate-pulse"></div>
@@ -60,10 +60,9 @@ export default function HeroSection() {
           <p className="text-white text-xl md:text-2xl leading-relaxed font-light">
             Protegemos vidas y optimizamos operaciones con soluciones integrales de{" "}
             <span className="relative inline-block">
-              <span className="text-[#0B66FF] font-semibold bg-gradient-to-r from-[#0B66FF] to-[#3B82F6] bg-clip-text text-transparent">
+              <span className="text-white font-semibold">
                 seguridad integral
               </span>
-              <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0B66FF] to-[#3B82F6] rounded-full"></div>
             </span>{" "}
             y control de riesgos.
           </p>

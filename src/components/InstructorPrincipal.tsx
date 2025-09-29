@@ -6,7 +6,6 @@ import {
   UserIcon,
   AcademicCapIcon,
   ShieldCheckIcon,
-  StarIcon,
   GlobeAltIcon,
   FireIcon,
   HeartIcon,
@@ -39,24 +38,6 @@ const certifications = [
   }
 ];
 
-const experience = [
-  {
-    title: 'Oficial (r) Fuerza Aérea Colombiana',
-    description: 'Experiencia militar en operaciones aéreas y supervivencia'
-  },
-  {
-    title: 'Oficial (r) Cuerpo de Bomberos Voluntarios de Cali',
-    description: 'Experiencia en emergencias y rescate'
-  },
-  {
-    title: 'Líder Voluntario Defensa Civil Colombiana',
-    description: 'Regional Valle del Cauca - Gestión de emergencias'
-  },
-  {
-    title: 'Asesor Internacional BASC',
-    description: 'Business Alliance for Secure Commerce con alianza Aduana EEUU'
-  }
-];
 
 const affiliations = [
   {
@@ -107,13 +88,13 @@ export default function InstructorPrincipal() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8"
+            className="text-lg md:text-xl text-black leading-relaxed mb-8"
           >
-            Director General de ISCOR con <span className="font-semibold text-blue-600">20 años de experiencia</span> en Ingeniería Industrial, 
-            especializado en <span className="font-semibold text-green-600">seguridad industrial</span>, 
-            <span className="font-semibold text-purple-600">seguridad física</span> y 
-            <span className="font-semibold text-orange-600">sistemas de gestión en SST</span>. 
-            Instructor de seguridad operacional y recuperación de personal en SAR Search and Rescue para el suroccidente Colombiano.
+            Director General de ISCOR con <span className="font-bold">20 años de experiencia</span> en Ingeniería Industrial, 
+            especializado en <span className="font-bold">seguridad industrial</span>, 
+            <span className="font-bold">seguridad física</span> y 
+            <span className="font-bold">sistemas de gestión en SST</span>. 
+            Instructor de seguridad operacional y recuperación de personal en SAR (Search and Rescue) para el suroccidente colombiano.
           </motion.p>
         </div>
 
@@ -187,76 +168,40 @@ export default function InstructorPrincipal() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Certificaciones */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center">
-              <AcademicCapIcon className="h-6 w-6 mr-3 text-blue-600" />
-              Certificaciones del Director
-            </h3>
-            
-            <div className="space-y-6">
-              {certifications.map((cert, index) => (
-                <motion.div
-                  key={cert.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                  className="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm border border-slate-200"
-                >
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                      <cert.icon className="h-6 w-6 text-white" />
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-semibold text-slate-900 mb-2">
-                      {cert.name}
-                    </h4>
-                    <p className="text-slate-600 text-sm">
-                      {cert.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Experiencia */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center">
-              <StarIcon className="h-6 w-6 mr-3 text-green-600" />
-              Trayectoria Profesional
-            </h3>
-            
-            <div className="space-y-6">
-              {experience.map((exp, index) => (
-                <motion.div
-                  key={exp.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                  className="p-4 bg-white rounded-xl shadow-sm border border-slate-200"
-                >
-                  <h4 className="text-lg font-semibold text-slate-900 mb-2">
-                    {exp.title}
-                  </h4>
-                  <p className="text-slate-600 text-sm">
-                    {exp.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+        {/* Certificaciones */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-16"
+        >
+          <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center flex items-center justify-center">
+            <AcademicCapIcon className="h-6 w-6 mr-3 text-blue-600" />
+            Certificaciones del Director
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={cert.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+                className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 text-center"
+              >
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <cert.icon className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="text-lg font-semibold text-slate-900 mb-2">
+                  {cert.name}
+                </h4>
+                <p className="text-slate-600 text-sm">
+                  {cert.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Especialidades */}
         <motion.div
@@ -302,23 +247,28 @@ export default function InstructorPrincipal() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 text-center"
+          className="mt-16"
         >
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-200">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">
-              Afiliaciones y Reconocimientos
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {affiliations.map((affiliation, index) => (
-                <div key={affiliation.name} className="text-center">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${affiliation.gradient} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                    <affiliation.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h4 className="font-semibold text-slate-900 mb-2">{affiliation.name}</h4>
-                  <p className="text-sm text-slate-600">{affiliation.fullName}</p>
+          <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">
+            Afiliaciones y Reconocimientos
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {affiliations.map((affiliation, index) => (
+              <motion.div
+                key={affiliation.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+                className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 text-center"
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r ${affiliation.gradient} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <affiliation.icon className="h-8 w-8 text-white" />
                 </div>
-              ))}
-            </div>
+                <h4 className="font-semibold text-slate-900 mb-2">{affiliation.name}</h4>
+                <p className="text-sm text-slate-600">{affiliation.fullName}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>

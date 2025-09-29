@@ -73,7 +73,7 @@ export default function MinimalHero() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -30, scale: 0.9 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="text-2xl md:text-3xl lg:text-4xl font-semibold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent"
+                  className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white"
                 >
                   {heroTexts[currentText]}
                 </motion.h2>
