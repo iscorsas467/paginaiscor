@@ -18,14 +18,18 @@ import {
   AcademicCapIcon,
   CheckCircleIcon,
   ChevronDownIcon,
-  ChevronUpIcon
+  ChevronUpIcon,
+  WrenchScrewdriverIcon,
+  ClipboardDocumentCheckIcon,
+  SunIcon,
+  ExclamationTriangleIcon
 } from '@heroicons/react/24/outline';
 
 const serviceCategories = [
   {
     title: 'Seguridad y Salud en el Trabajo',
-    icon: ShieldCheckIcon,
-    gradient: 'from-blue-500 to-blue-600',
+    icon: ExclamationTriangleIcon,
+    gradient: 'from-blue-800 to-blue-900',
     description: '30 servicios especializados en seguridad industrial y salud ocupacional',
     services: [
       'Certificación de conductores que transportan',
@@ -62,8 +66,8 @@ const serviceCategories = [
   },
   {
     title: 'Medio Ambiente',
-    icon: GlobeAltIcon,
-    gradient: 'from-green-500 to-green-600',
+    icon: SunIcon,
+    gradient: 'from-blue-800 to-blue-900',
     description: '22 servicios especializados en gestión ambiental y sostenibilidad',
     services: [
       'Estudios de impacto ambiental y planes de manejo ambiental',
@@ -92,8 +96,8 @@ const serviceCategories = [
   },
   {
     title: 'Calidad y Seguridad Alimentaria',
-    icon: DocumentCheckIcon,
-    gradient: 'from-purple-500 to-purple-600',
+    icon: ClipboardDocumentCheckIcon,
+    gradient: 'from-blue-800 to-blue-900',
     description: '4 servicios especializados en sistemas de calidad e inocuidad',
     services: [
       'Sistema de gestión de la calidad ISO 9001',
@@ -104,8 +108,8 @@ const serviceCategories = [
   },
   {
     title: 'Seguridad Física y Equipos',
-    icon: LockClosedIcon,
-    gradient: 'from-orange-500 to-orange-600',
+    icon: WrenchScrewdriverIcon,
+    gradient: 'from-blue-800 to-blue-900',
     description: '14 servicios especializados en seguridad física e inspección de equipos',
     services: [
       'Visitas domiciliarias',
@@ -163,9 +167,9 @@ export default function ServicesSection() {
             className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8"
           >
             Diseñamos, implementamos, administramos y auditamos sus sistemas integrados de 
-            <span className="font-semibold text-blue-600"> CALIDAD</span>, 
-            <span className="font-semibold text-green-600"> MEDIO AMBIENTE</span> y 
-            <span className="font-semibold text-purple-600"> SEGURIDAD Y SALUD EN EL TRABAJO</span>
+            <span className="font-bold"> CALIDAD</span>, 
+            <span className="font-bold"> MEDIO AMBIENTE</span> y 
+            <span className="font-bold"> SEGURIDAD Y SALUD EN EL TRABAJO</span>
           </motion.p>
         </div>
 
@@ -186,8 +190,12 @@ export default function ServicesSection() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <div className={`w-16 h-16 bg-gradient-to-r ${category.gradient} rounded-xl flex items-center justify-center mr-6`}>
-                      <category.icon className="h-8 w-8 text-white" />
+                    <div className={`w-16 h-16 bg-gradient-to-r ${category.gradient} rounded-xl flex items-center justify-center mr-6 shadow-lg`} style={{
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.2)'
+                    }}>
+                      <category.icon className="h-8 w-8 text-white drop-shadow-lg" style={{
+                        filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8))'
+                      }} />
                     </div>
                     <div>
                       <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">

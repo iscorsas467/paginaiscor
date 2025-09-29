@@ -149,15 +149,17 @@ export default function Footer() {
 
         <div className="mt-16 border-t border-gray-800 pt-8">
           <div className="flex flex-col items-center space-y-4 lg:flex-row lg:justify-between lg:space-y-0">
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-col items-center space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-6">
               <img 
-                src="/logo_iscor.svg" 
+                src="/logo_iscor_recortado.svg" 
                 alt="ISCOR Logo" 
-                className="h-16 w-auto filter brightness-100 contrast-110 saturate-110 invert"
+                className="h-32 w-auto filter brightness-0 invert lg:h-40"
               />
-              <p className="text-sm text-gray-300">
-                © 2024 ISCOR S.A.S. Todos los derechos reservados.
-              </p>
+              <div className="text-center lg:text-left">
+                <p className="text-sm text-gray-300">
+                  © 2024 ISCOR S.A.S. Todos los derechos reservados.
+                </p>
+              </div>
             </div>
             <div className="flex items-center space-x-2 text-sm text-gray-300">
               <GlobeAltIcon className="h-4 w-4" />

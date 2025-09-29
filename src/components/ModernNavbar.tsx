@@ -68,22 +68,21 @@ export default function ModernNavbar() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-40 sm:h-44 md:h-48 py-0 md:py-1">
           {/* Logo */}
-          <Link href="/" className="flex items-center group -ml-4 mr-8 -mt-0">
+          <Link href="/" className="flex items-end group">
             <motion.div 
-              className="relative transition-all duration-300 group-hover:scale-105 max-h-40 md:max-h-48"
+              className="relative transition-all duration-300 group-hover:scale-105 mt-26"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               {/* Desktop Logo - SVG vectorial en alta resolución */}
               <div className="hidden md:block">
                 <img
-                  src="/logo_iscor.svg"
+                  src="/logo_iscor_recortado.svg"
                   alt="ISCOR - Soluciones Empresariales"
                   className="transition-all duration-300 opacity-100 h-48 w-auto object-contain"
                   style={{
                     filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
-                    maxWidth: 'none',
-                    transform: 'scaleX(1.3) scaleY(1.2)'
+                    maxWidth: 'none'
                   }}
                 />
               </div>
@@ -91,13 +90,12 @@ export default function ModernNavbar() {
               {/* Mobile Logo - SVG vectorial en alta resolución */}
               <div className="block md:hidden">
                 <img
-                  src="/logo_iscor.svg"
+                  src="/logo_iscor_recortado.svg"
                   alt="ISCOR - Soluciones Empresariales"
                   className="transition-all duration-300 opacity-100 h-36 w-auto object-contain"
                   style={{
                     filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
-                    maxWidth: 'none',
-                    transform: 'scaleX(1.3) scaleY(1.2)'
+                    maxWidth: 'none'
                   }}
                 />
               </div>
