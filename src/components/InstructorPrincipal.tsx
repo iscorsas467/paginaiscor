@@ -50,13 +50,13 @@ const affiliations = [
     name: 'NFPA',
     fullName: 'National Fire Protection Association',
     icon: FireIcon,
-    gradient: 'from-red-500 to-red-600'
+    gradient: 'from-blue-500 to-blue-600'
   },
   {
     name: 'NAUI',
     fullName: 'National Association of Underwater Instructors',
     icon: GlobeAltIcon,
-    gradient: 'from-cyan-500 to-blue-500'
+    gradient: 'from-blue-500 to-blue-600'
   }
 ];
 
@@ -137,7 +137,7 @@ export default function InstructorPrincipal() {
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
                     <ShieldCheckIcon className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -147,7 +147,7 @@ export default function InstructorPrincipal() {
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
                     <GlobeAltIcon className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -253,7 +253,7 @@ export default function InstructorPrincipal() {
             Afiliaciones y Reconocimientos
           </h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-5xl mx-auto">
             {affiliations.map((affiliation, index) => (
               <motion.div
                 key={affiliation.name}

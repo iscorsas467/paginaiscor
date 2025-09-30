@@ -210,7 +210,7 @@ export default function Contacto() {
                 </div>
 
                 {/* Formulario Profesional */}
-                <div className="relative">
+                <div className="relative" style={{ pointerEvents: 'auto', zIndex: 1, position: 'relative' }}>
                   
                   {isSubmitted ? (
                     <div className="text-center py-12">
@@ -243,7 +243,7 @@ export default function Contacto() {
                   ) : (
                     <div>
                       
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    <form onSubmit={handleSubmit} className="space-y-8" style={{ pointerEvents: 'auto', zIndex: 2, position: 'relative' }}>
                       {/* Información Personal */}
                       <div className="space-y-6">
                         <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
@@ -264,6 +264,7 @@ export default function Contacto() {
                               onChange={handleChange}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                               placeholder="Ingresa tu nombre completo"
+                              style={{ pointerEvents: 'auto', zIndex: 1001, position: 'relative' }}
                             />
                           </div>
                           
@@ -280,6 +281,7 @@ export default function Contacto() {
                               onChange={handleChange}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                               placeholder="tu@empresa.com"
+                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
                             />
                           </div>
                         </div>
@@ -297,6 +299,7 @@ export default function Contacto() {
                               onChange={handleChange}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                               placeholder="Nombre de tu empresa"
+                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
                             />
                           </div>
                           
@@ -313,6 +316,7 @@ export default function Contacto() {
                               onChange={handleChange}
                               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                               placeholder="+57 300 123 4567"
+                              style={{ pointerEvents: 'auto', zIndex: 1001 }}
                             />
                           </div>
                         </div>
@@ -365,6 +369,7 @@ export default function Contacto() {
                             onChange={handleChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
                             placeholder="Describe tu proyecto, necesidades específicas, número de empleados, fechas importantes, etc."
+                            style={{ pointerEvents: 'auto', zIndex: 1001 }}
                           />
                         </div>
                       </div>
@@ -465,28 +470,28 @@ export default function Contacto() {
                         title: 'Bogotá',
                         description: 'Cl. 95 #20-28 Torre 1 Of. 702',
                         icon: '📍',
-                        gradient: 'from-green-500 to-green-600'
+                        gradient: 'from-blue-500 to-blue-600'
                       },
                       {
                         id: 3,
                         title: 'Cali',
                         description: 'Cl. 58 norte #5 BN 75 Torre 7 Of. 503',
                         icon: '📍',
-                        gradient: 'from-purple-500 to-purple-600'
+                        gradient: 'from-blue-500 to-blue-600'
                       },
                       {
                         id: 4,
                         title: 'Correo Electrónico',
                         description: 'iscor@iscorcolombia.com.co',
                         icon: '✉️',
-                        gradient: 'from-orange-500 to-orange-600'
+                        gradient: 'from-blue-500 to-blue-600'
                       },
                       {
                         id: 5,
                         title: 'Sitio Web',
                         description: 'www.iscorcolombia.com.co',
                         icon: '🌐',
-                        gradient: 'from-cyan-500 to-cyan-600'
+                        gradient: 'from-blue-500 to-blue-600'
                       }
                     ].map((item) => (
                       <div 

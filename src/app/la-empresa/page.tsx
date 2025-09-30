@@ -199,7 +199,7 @@ export default function LaEmpresa() {
             
             {/* Título Principal */}
             <motion.h1 
-              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-none"
+              className="text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 leading-none"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -228,8 +228,8 @@ export default function LaEmpresa() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
               >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-2 tracking-tight">
-                  ISCOR
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
+                  ISCOR <span className="text-4xl md:text-5xl lg:text-6xl">S.A.S.</span>
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full"></div>
               </motion.div>
@@ -259,14 +259,6 @@ export default function LaEmpresa() {
                   cultura preventiva
                 </motion.p>
                 
-                <motion.p 
-                  className="text-sm md:text-base text-cyan-300 font-light italic tracking-wide text-center max-w-2xl mx-auto leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.8, ease: 'easeOut' }}
-                >
-                  &ldquo;Ingeniería de Seguridad y Control de Riesgos S.A.S&rdquo;
-                </motion.p>
               </motion.div>
 
               {/* Elementos decorativos */}
@@ -383,10 +375,10 @@ export default function LaEmpresa() {
               viewport={{ once: true }}
             >
               <div className="flex flex-col items-center text-center">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
                   <ShieldCheckIcon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
+                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                   Certificaciones y Membresías
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
@@ -404,10 +396,10 @@ export default function LaEmpresa() {
               viewport={{ once: true }}
             >
               <div className="flex flex-col items-center text-center">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
                   <CogIcon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-green-600 transition-colors duration-300">
+                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                   Servicios Principales
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
@@ -425,10 +417,10 @@ export default function LaEmpresa() {
               viewport={{ once: true }}
             >
               <div className="flex flex-col items-center text-center">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
                     <TrophyIcon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-red-600 transition-colors duration-300">
+                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                   Experiencia y Posicionamiento
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
@@ -506,11 +498,11 @@ export default function LaEmpresa() {
               viewport={{ once: true }}
             >
               <div className="flex flex-col items-center text-center">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
+                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
                   <EyeIcon className="h-8 w-8 text-white" />
               </div>
               
-                <h3 className="text-lg font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors duration-300 uppercase tracking-wide">
+                <h3 className="text-lg font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300 uppercase tracking-wide">
                   Visión
               </h3>
               
@@ -579,21 +571,21 @@ export default function LaEmpresa() {
                 name: 'Sistemas de Gestión',
                 description: 'Diseñamos, Implementamos y auditamos sus Sistemas de Gestión para la Seguridad y Salud de los Trabajadores SGSST.',
                 gradient: 'from-blue-500 to-cyan-500',
-                glowGradient: 'from-blue-400/20 to-cyan-400/20',
+                glowGradient: 'from-blue-400/20 to-blue-600/20',
                 icon: ChartBarIcon
               },
               {
                 name: 'Miembro del CCS',
                 description: 'Miembro del CCS – Consejo Colombiano de Seguridad y NFPA – National Fire Protection Association.',
-                gradient: 'from-green-500 to-emerald-500',
-                glowGradient: 'from-green-400/20 to-emerald-400/20',
+                gradient: 'from-blue-500 to-blue-600',
+                glowGradient: 'from-blue-400/20 to-blue-600/20',
                 icon: UserGroupIcon
               },
               {
                 name: '18+ Años de Experiencia',
                 description: 'Más de 18 años en control de tareas de alto riesgo, posicionándonos con las mejores empresas del país.',
-                gradient: 'from-purple-500 to-violet-500',
-                glowGradient: 'from-purple-400/20 to-violet-400/20',
+                gradient: 'from-blue-500 to-blue-600',
+                glowGradient: 'from-blue-400/20 to-blue-600/20',
                 icon: TrophyIcon
               },
             ].map((feature, index) => (
@@ -692,22 +684,22 @@ export default function LaEmpresa() {
               {
                 name: 'Excelencia',
                 description: 'Nos esforzamos por la perfección en cada proyecto y en cada interacción con nuestros clientes.',
-                colorChip: 'from-[#FF7A18] to-[#FFB547]',
-                glowGradient: 'from-orange-400/20 to-yellow-400/20',
+                colorChip: 'from-blue-500 to-blue-600',
+                glowGradient: 'from-blue-400/20 to-blue-600/20',
                 icon: StarIcon
               },
               {
                 name: 'Compromiso',
                 description: 'Nos dedicamos completamente a cada proyecto hasta alcanzar los objetivos establecidos.',
-                colorChip: 'from-[#FF2D74] to-[#FF6FB2]',
-                glowGradient: 'from-pink-400/20 to-rose-400/20',
+                colorChip: 'from-blue-500 to-blue-600',
+                glowGradient: 'from-blue-400/20 to-blue-600/20',
                 icon: HeartIcon
               },
               {
                 name: 'Innovación',
                 description: 'Buscamos constantemente nuevas formas de resolver desafíos y mejorar nuestros servicios.',
-                colorChip: 'from-[#2E7CF6] to-[#00C2FF]',
-                glowGradient: 'from-blue-400/20 to-cyan-400/20',
+                colorChip: 'from-blue-500 to-blue-600',
+                glowGradient: 'from-blue-400/20 to-blue-600/20',
                 icon: LightBulbIcon
               },
             ].map((value, index) => (
@@ -912,7 +904,7 @@ export default function LaEmpresa() {
             
             {/* Título Principal con Gradiente */}
             <motion.h2 
-              className="text-3xl md:text-4xl font-extrabold tracking-tight text-center text-white mb-4"
+              className="text-5xl md:text-6xl font-extrabold tracking-tight text-center text-blue-900 mb-2"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}

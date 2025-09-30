@@ -66,9 +66,9 @@ export default function ModernNavbar() {
       className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl border-b border-slate-200/50 shadow-sm"
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 md:h-48 py-2 md:py-1">
+        <div className="flex items-center justify-between h-16 sm:h-20 md:h-20 py-2 md:py-1">
           {/* Logo */}
-          <Link href="/" className="flex items-center group">
+          <Link href="/" className="flex items-center group mt-5">
             <motion.div 
               className="relative transition-all duration-300 group-hover:scale-105"
               whileHover={{ scale: 1.05 }}
@@ -79,7 +79,7 @@ export default function ModernNavbar() {
                 <img
                   src="/logo_iscor_recortado.svg"
                   alt="ISCOR - Soluciones Empresariales"
-                  className="transition-all duration-300 opacity-100 h-48 w-auto object-contain"
+                  className="transition-all duration-300 opacity-100 h-40 w-auto object-contain"
                   style={{
                     filter: 'brightness(1.05) contrast(1.1) saturate(1.1)',
                     maxWidth: 'none'
@@ -103,7 +103,7 @@ export default function ModernNavbar() {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-3 flex-1 justify-center mt-20">
+          <div className="hidden lg:flex lg:items-center lg:space-x-3 flex-1 justify-center">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -128,31 +128,31 @@ export default function ModernNavbar() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-4 mt-20">
+          <div className="hidden lg:flex lg:items-center lg:space-x-4">
             <Link
               href="/certificados"
               className="flex items-center px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200"
             >
-              <ShieldCheckIcon className="h-4 w-4 mr-2" />
+              <ShieldCheckIcon className="h-4 w-4 mr-1" />
               Certificados
             </Link>
             <Link
               href="/admin"
               className="flex items-center px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200"
             >
-              <LockClosedIcon className="h-4 w-4 mr-2" />
+              <LockClosedIcon className="h-4 w-4 mr-1" />
               Admin
             </Link>
             <Link
               href="/contacto"
-              className="px-4 py-2 bg-blue-600 text-white text-base font-medium rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow-md"
+              className="px-3 py-2 bg-blue-600 text-white text-base font-medium rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow-md"
             >
               Contactar
             </Link>
           </div>
 
-          {/* Mobile menu button - ALWAYS VISIBLE */}
-          <div className="flex">
+          {/* Mobile menu button - ONLY VISIBLE ON MOBILE */}
+          <div className="flex lg:hidden">
             <button
               type="button"
               className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200"

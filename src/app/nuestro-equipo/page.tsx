@@ -36,21 +36,21 @@ const departments = [
     description: 'Certificaciones internacionales y reconocimientos',
     members: 4,
     icon: TrophyIcon,
-    gradient: 'from-green-600 to-emerald-600'
+    gradient: 'from-blue-600 to-blue-700'
   },
   {
     name: 'Consultoría',
     description: 'Experiencia en múltiples sectores industriales',
     members: 20,
     icon: ShieldCheckIcon,
-    gradient: 'from-purple-600 to-indigo-600'
+    gradient: 'from-blue-600 to-blue-700'
   },
   {
     name: 'Operaciones',
     description: 'Supervisión de trabajos de alto riesgo',
     members: 15,
     icon: CogIcon,
-    gradient: 'from-orange-600 to-red-600'
+    gradient: 'from-blue-600 to-blue-700'
   },
 ];
 

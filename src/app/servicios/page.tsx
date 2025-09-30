@@ -591,7 +591,7 @@ export default function ServiciosPage() {
             </div>
             
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-white mb-8">
               <span className="text-white">Nuestros Servicios</span>
             </h1>
 

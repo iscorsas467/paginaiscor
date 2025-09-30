@@ -115,7 +115,7 @@ export default function CertificadosPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight"
+              className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight"
             >
               Verificación de Certificados
             </motion.h1>

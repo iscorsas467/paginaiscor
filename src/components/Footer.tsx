@@ -80,18 +80,9 @@ const navigation = {
 export default function Footer() {
   return (
     <footer className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden">
-      <div className="relative mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-        <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
-          {navigation.main.map((item) => (
-            <div key={item.name} className="pb-6">
-              <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition-colors duration-200">
-                {item.name}
-              </Link>
-            </div>
-          ))}
-        </nav>
+      <div className="relative mx-auto max-w-7xl overflow-hidden px-6 pt-8 sm:pt-10 pb-1 lg:px-8">
 
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Contacto Telefónico */}
           <div className="text-center lg:text-left">
             <h3 className="text-lg font-semibold text-white mb-4">Hablar con nosotros</h3>
@@ -147,13 +138,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-gray-800 pt-8">
-          <div className="flex flex-col items-center space-y-4 lg:flex-row lg:justify-between lg:space-y-0">
-            <div className="flex flex-col items-center space-y-4 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-6">
+        <div className="mt-4 border-t border-gray-800 pt-0">
+          <div className="flex flex-col items-center space-y-0 lg:flex-row lg:justify-between lg:space-y-0">
+            <div className="flex flex-col items-center space-y-0 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-6">
               <img 
                 src="/logo_iscor_recortado.svg" 
                 alt="ISCOR Logo" 
-                className="h-32 w-auto filter brightness-0 invert lg:h-40"
+                className="h-32 w-auto filter brightness-0 invert lg:h-40 -mt-8"
               />
               <div className="text-center lg:text-left">
                 <p className="text-sm text-gray-300">

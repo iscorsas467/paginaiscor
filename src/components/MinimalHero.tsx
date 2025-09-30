@@ -61,7 +61,7 @@ export default function MinimalHero() {
             className="mb-12"
           >
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6">
-              <span className="block mb-4">ISCOR</span>
+              <span className="block mb-4">ISCOR <span className="text-4xl md:text-5xl lg:text-6xl">S.A.S.</span></span>
             </h1>
             
             {/* Dynamic Subtitle */}
@@ -88,11 +88,8 @@ export default function MinimalHero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="max-w-4xl mx-auto mb-16"
           >
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light">
-              Protegemos vidas y optimizamos operaciones con 
-              <span className="font-semibold text-blue-300"> soluciones integrales</span> de 
-              <span className="font-semibold text-cyan-300"> seguridad industrial</span> y 
-              <span className="font-semibold text-blue-300"> control de riesgos</span>.
+            <p className="text-lg md:text-xl text-white leading-relaxed font-light">
+              Protegemos vidas y optimizamos operaciones con soluciones integrales de seguridad industrial y control de riesgos.
             </p>
           </motion.div>
 
