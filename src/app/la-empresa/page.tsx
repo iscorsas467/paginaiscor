@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import ClientesSection from '@/components/ClientesSection';
 import CallModal from '@/components/CallModal';
 import AppointmentModal from '@/components/AppointmentModal';
@@ -57,6 +58,7 @@ function CounterAnimation({ target, suffix = '' }: { target: number; suffix?: st
 export default function LaEmpresa() {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const [isAboutExpanded, setIsAboutExpanded] = useState(false);
 
   return (
     <div className="bg-white">
@@ -194,7 +196,7 @@ export default function LaEmpresa() {
               transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
             >
               <div className="w-1 h-1 rounded-full bg-blue-400 mr-1.5 animate-pulse"></div>
-              ✨ Líderes en Seguridad Industrial
+              ✨ Líderes en Seguridad Integral
             </motion.div>
             
             {/* Título Principal */}
@@ -338,13 +340,37 @@ export default function LaEmpresa() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-4">
               Sobre Nosotros
             </h2>
-            <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">
-              Conoce más sobre nuestra empresa, experiencia y compromiso con la excelencia en seguridad industrial
+            <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto mb-6">
+              Empresa líder en Seguridad Integral con más de 18 años de experiencia
             </p>
+            
+            {/* Botón para expandir/contraer */}
+            <button
+              onClick={() => setIsAboutExpanded(!isAboutExpanded)}
+              className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              <span className="mr-3 text-lg">
+                {isAboutExpanded ? 'Ver menos' : 'Conocer más'}
+              </span>
+              {isAboutExpanded ? (
+                <ChevronUpIcon className="h-6 w-6 group-hover:-translate-y-1 transition-transform duration-200" />
+              ) : (
+                <ChevronDownIcon className="h-6 w-6 group-hover:translate-y-1 transition-transform duration-200" />
+              )}
+            </button>
           </motion.div>
 
-          {/* Grid de Tarjetas Responsivo */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Contenido Expandible */}
+          <motion.div
+            initial={false}
+            animate={{ 
+              height: isAboutExpanded ? 'auto' : 0,
+              opacity: isAboutExpanded ? 1 : 0
+            }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pb-8">
               {/* Descripción General */}
             <motion.div 
               className="group bg-white rounded-2xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -361,7 +387,7 @@ export default function LaEmpresa() {
                   Descripción General
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  ISCOR S.A.S &ldquo;Ingeniería de Seguridad y Control de Riesgos S.A.S&rdquo; es una empresa creada para atender y ayudar a diferentes compañías en Seguridad Industrial y atención de emergencias.
+                  ISCOR S.A.S &ldquo;Ingeniería de Seguridad y Control de Riesgos S.A.S&rdquo; es una empresa creada para atender y ayudar a diferentes compañías en Seguridad Integral y atención de emergencias.
                 </p>
               </div>
             </motion.div>
@@ -428,12 +454,53 @@ export default function LaEmpresa() {
                 </p>
               </div>
             </motion.div>
-          </div>
+
+            {/* Misión */}
+            <motion.div 
+              className="group bg-white rounded-2xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-all duration-300 hover:scale-105"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <FlagIcon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  Misión
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  ISCOR S.A.S se dedica a la aplicación de servicios eficientes de consultoría, asesoría y capacitación bajo los más altos estándares nacionales e internacionales actualizados, trabajando por el desarrollo integral de la sociedad.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Visión */}
+            <motion.div 
+              className="group bg-white rounded-2xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-all duration-300 hover:scale-105"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <EyeIcon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  Visión
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Para el año 2025, ISCOR se proyecta como una empresa sólida, de vanguardia, con reconocimiento nacional e internacional, servidora de soluciones económicas y eficaces en materia de seguridad integral.
+                </p>
+              </div>
+            </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Misión y Visión - Diseño Premium y Profesional */}
-      <section className="pt-2 pb-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
         {/* Patrón de fondo sutil */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -459,13 +526,37 @@ export default function LaEmpresa() {
               Misión y Visión
             </h2>
             
-            <p className="text-sm md:text-base text-gray-600 max-w-xl mx-auto leading-relaxed">
-              Los principios fundamentales que guían nuestro trabajo y definen nuestro futuro en la industria de la seguridad industrial.
+            <p className="text-sm md:text-base text-gray-600 max-w-xl mx-auto leading-relaxed mb-6">
+              Nuestros principios fundamentales que guían nuestro trabajo
             </p>
+            
+            {/* Botón para expandir/contraer */}
+            <button
+              onClick={() => setIsMissionVisionExpanded(!isMissionVisionExpanded)}
+              className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              <span className="mr-3 text-lg">
+                {isMissionVisionExpanded ? 'Ver menos' : 'Conocer más'}
+              </span>
+              {isMissionVisionExpanded ? (
+                <ChevronUpIcon className="h-6 w-6 group-hover:-translate-y-1 transition-transform duration-200" />
+              ) : (
+                <ChevronDownIcon className="h-6 w-6 group-hover:translate-y-1 transition-transform duration-200" />
+              )}
+            </button>
           </motion.div>
           
-          {/* Grid de Tarjetas Premium */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {/* Contenido Expandible */}
+          <motion.div
+            initial={false}
+            animate={{ 
+              height: isMissionVisionExpanded ? 'auto' : 0,
+              opacity: isMissionVisionExpanded ? 1 : 0
+            }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto pb-8">
             {/* Misión */}
             <motion.div 
               className="group bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-transform duration-300 ease-out hover:scale-105"
@@ -511,7 +602,8 @@ export default function LaEmpresa() {
               </p>
             </div>
             </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -795,7 +887,7 @@ export default function LaEmpresa() {
                 suffix: '+', 
                 label: 'Años de Experiencia', 
                 icon: ClockIcon,
-                description: 'Liderando el sector desde 2005'
+                description: 'Liderando el sector desde 2004'
               },
               { 
                 number: 500, 
@@ -921,7 +1013,7 @@ export default function LaEmpresa() {
               transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              Nuestro equipo de expertos está listo para ayudarte a implementar las mejores prácticas de seguridad industrial en tu empresa.
+              Nuestro equipo de expertos está listo para ayudarte a implementar las mejores prácticas de seguridad integral en tu empresa.
             </motion.p>
           </motion.div>
           
