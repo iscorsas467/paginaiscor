@@ -57,7 +57,7 @@ const services: Service[] = [
     name: 'Montacargas', 
     slug: 'montacargas',
     image: '/montacargas .png',
-    description: 'Capacitación y certificación en operación segura de montacargas, cumpliendo normativas de seguridad industrial.',
+    description: 'Capacitación y certificación en operación segura de montacargas, cumpliendo normativas de seguridad integral.',
     detailedDescription: 'Nuestro curso de Montacargas está diseñado para proporcionar a los participantes los conocimientos teóricos y prácticos necesarios para operar montacargas de manera segura y eficiente. El programa incluye formación en normativas de seguridad, mantenimiento preventivo, y procedimientos de emergencia.',
     duration: '40 horas',
     certification: 'Certificado válido por 2 años',
@@ -72,7 +72,7 @@ const services: Service[] = [
     ],
     benefits: [
       'Reducción significativa de accidentes laborales',
-      'Cumplimiento de normativas de seguridad industrial',
+      'Cumplimiento de normativas de seguridad integral',
       'Mejora en la eficiencia operativa',
       'Certificación reconocida a nivel nacional',
       'Soporte técnico continuo post-certificación'
@@ -93,7 +93,7 @@ const services: Service[] = [
       'Prácticas Supervisadas en Campo',
       'Evaluación Teórica y Práctica'
     ],
-    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Industrial',
+    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Integral',
     price: 'Consultar',
     location: 'Instalaciones del cliente o centro de entrenamiento ISCOR',
     schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM | Sábados: 8:00 AM - 12:00 PM'
@@ -304,7 +304,7 @@ const services: Service[] = [
     ],
     requirements: [
       'Mayor de 18 años',
-      'Experiencia en seguridad industrial',
+      'Experiencia en seguridad integral',
       'Buen estado de salud física',
       'Capacidad de análisis',
       'Compromiso con la seguridad'
@@ -318,7 +318,7 @@ const services: Service[] = [
       'Supervisión de Trabajos',
       'Procedimientos de Emergencia'
     ],
-    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Industrial',
+    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Integral',
     price: 'Consultar',
     location: 'Centro de Entrenamiento ISCOR',
     schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM'
@@ -729,42 +729,87 @@ const services: Service[] = [
     schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM'
   },
   { 
-    name: 'Buceo', 
-    slug: 'buceo',
+    name: 'Buceo Scuba Diver', 
+    slug: 'buceo-scuba-diver',
     image: '/buceo.png',
-    description: 'Servicios de buceo industrial y comercial con equipos certificados y personal especializado.',
-    detailedDescription: 'El curso de Buceo proporciona formación especializada en buceo industrial y comercial. Incluye formación en equipos de buceo, procedimientos de seguridad y técnicas especializadas.',
-    duration: '80 horas',
-    certification: 'Certificado válido por 3 años',
-    gradient: 'from-blue-600 to-cyan-600',
+    description: 'Certificación en buceo recreativo: scuba diver, advanced y máster scuba diver con instructor internacional NAUI.',
+    detailedDescription: 'El curso de Buceo Scuba Diver proporciona formación especializada en buceo recreativo. Incluye formación en equipos de buceo, procedimientos de seguridad y técnicas de buceo recreativo con certificación internacional.',
+    duration: '40 horas',
+    certification: 'Válido 2 años',
+    gradient: 'from-cyan-500 to-blue-500',
     icon: GlobeAltIcon,
     objectives: [
-      'Realizar buceo seguro',
-      'Manejar equipos de buceo',
-      'Aplicar técnicas especializadas',
+      'Realizar buceo recreativo seguro',
+      'Manejar equipos de buceo SCUBA',
+      'Aplicar técnicas de buceo NAUI',
       'Prevenir accidentes subacuáticos',
-      'Coordinar operaciones de buceo'
+      'Explorar entornos acuáticos de forma segura'
     ],
     benefits: [
-      'Buceo seguro y profesional',
-      'Certificación reconocida',
-      'Trabajo en entornos acuáticos',
-      'Cumplimiento normativo',
-      'Especialización técnica'
+      'Certificación internacional NAUI',
+      'Buceo recreativo seguro',
+      'Exploración de arrecifes y vida marina',
+      'Actividades de buceo deportivo',
+      'Formación con instructor internacional'
     ],
     requirements: [
       'Mayor de 18 años',
       'Excelente estado de salud física',
       'Capacidad de natación avanzada',
-      'Sin problemas cardíacos',
-      'Compromiso con la seguridad'
+      'Sin problemas cardíacos o respiratorios',
+      'Certificado médico de aptitud'
     ],
     modules: [
-      'Fundamentos de Buceo',
-      'Equipos de Buceo',
+      'Fundamentos de Buceo Recreativo',
+      'Equipos de Buceo SCUBA',
       'Fisiología del Buceo',
-      'Técnicas de Buceo',
-      'Buceo Industrial',
+      'Técnicas de Buceo NAUI',
+      'Buceo Recreativo Avanzado',
+      'Emergencias Subacuáticas',
+      'Prácticas en Agua'
+    ],
+    instructor: 'Cpt. Roberto Silva - Buzo Profesional Certificado',
+    price: 'Consultar',
+    location: 'Centro de Entrenamiento ISCOR y piscina',
+    schedule: 'Lunes a Sábado: 8:00 AM - 6:00 PM'
+  },
+  { 
+    name: 'Buceo', 
+    slug: 'buceo',
+    image: '/buceo.png',
+    description: 'Servicios de buceo recreativo con equipos certificados y personal especializado.',
+    detailedDescription: 'El curso de Buceo proporciona formación especializada en buceo recreativo. Incluye formación en equipos de buceo, procedimientos de seguridad y técnicas de buceo recreativo con certificación internacional.',
+    duration: '80 horas',
+    certification: 'Certificado válido por 3 años',
+    gradient: 'from-blue-600 to-cyan-600',
+    icon: GlobeAltIcon,
+    objectives: [
+      'Realizar buceo recreativo seguro',
+      'Manejar equipos de buceo recreativo',
+      'Aplicar técnicas de buceo NAUI',
+      'Prevenir accidentes subacuáticos',
+      'Explorar entornos acuáticos de forma segura'
+    ],
+    benefits: [
+      'Certificación internacional NAUI',
+      'Buceo recreativo seguro',
+      'Exploración de arrecifes y vida marina',
+      'Actividades de buceo deportivo',
+      'Formación con instructor internacional'
+    ],
+    requirements: [
+      'Mayor de 18 años',
+      'Excelente estado de salud física',
+      'Capacidad de natación avanzada',
+      'Sin problemas cardíacos o respiratorios',
+      'Certificado médico de aptitud'
+    ],
+    modules: [
+      'Fundamentos de Buceo Recreativo',
+      'Equipos de Buceo SCUBA',
+      'Fisiología del Buceo',
+      'Técnicas de Buceo NAUI',
+      'Buceo Recreativo Avanzado',
       'Emergencias Subacuáticas',
       'Prácticas en Agua'
     ],
