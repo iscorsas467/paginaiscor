@@ -97,7 +97,7 @@ const courses: Course[] = [
     ],
     benefits: [
       'Reducción significativa de accidentes por caídas',
-      'Cumplimiento de normativas de seguridad industrial',
+      'Cumplimiento de normativas de seguridad integral',
       'Mejora en la eficiencia y seguridad del trabajo',
       'Certificación reconocida a nivel nacional',
       'Actualización continua en técnicas de seguridad'
@@ -118,11 +118,11 @@ const courses: Course[] = [
       'Rescate en Altura',
       'Prácticas Supervisadas'
     ],
-    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Industrial',
+    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Integral',
     price: 'Consultar',
     location: 'Centro de Entrenamiento ISCOR',
     schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM',
-    category: 'Seguridad Industrial',
+    category: 'Seguridad Integral',
     students: 1250,
     rating: 4.9
   },
@@ -170,7 +170,7 @@ const courses: Course[] = [
     price: 'Consultar',
     location: 'Centro de Entrenamiento ISCOR',
     schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM',
-    category: 'Seguridad Industrial',
+    category: 'Seguridad Integral',
     students: 980,
     rating: 4.8
   },
@@ -337,7 +337,7 @@ const courses: Course[] = [
     ],
     benefits: [
       'Reducción significativa de accidentes laborales',
-      'Cumplimiento de normativas de seguridad industrial',
+      'Cumplimiento de normativas de seguridad integral',
       'Mejora en la eficiencia operativa',
       'Certificación reconocida a nivel nacional',
       'Soporte técnico continuo post-certificación'
@@ -358,7 +358,7 @@ const courses: Course[] = [
       'Prácticas Supervisadas en Campo',
       'Evaluación Teórica y Práctica'
     ],
-    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Industrial',
+    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Integral',
     price: 'Consultar',
     location: 'Instalaciones del cliente o centro de entrenamiento ISCOR',
     schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM | Sábados: 8:00 AM - 12:00 PM',
@@ -466,39 +466,39 @@ const courses: Course[] = [
     name: 'Buceo Scuba Diver',
     slug: 'buceo-scuba-diver',
     image: '/buceo.png',
-    description: 'Certificación de buceo scuba diver, advanced y máster scuba diver con instructor internacional NAUI.',
-    detailedDescription: 'El curso de Buceo Scuba Diver proporciona formación especializada en buceo recreativo y comercial. Incluye formación en equipos de buceo, procedimientos de seguridad y técnicas especializadas.',
+    description: 'Certificación en buceo recreativo: scuba diver, advanced y máster scuba diver con instructor internacional NAUI.',
+    detailedDescription: 'El curso de Buceo Scuba Diver proporciona formación especializada en buceo recreativo. Incluye formación en equipos de buceo, procedimientos de seguridad y técnicas de buceo recreativo con certificación internacional.',
     duration: '40 horas',
     certification: 'Válido 2 años',
     gradient: 'from-cyan-500 to-blue-500',
     icon: GlobeAltIcon,
     objectives: [
-      'Realizar buceo seguro',
-      'Manejar equipos de buceo',
-      'Aplicar técnicas especializadas',
+      'Realizar buceo recreativo seguro',
+      'Manejar equipos de buceo SCUBA',
+      'Aplicar técnicas de buceo NAUI',
       'Prevenir accidentes subacuáticos',
-      'Coordinar operaciones de buceo'
+      'Explorar entornos acuáticos de forma segura'
     ],
     benefits: [
-      'Buceo seguro y profesional',
-      'Certificación reconocida',
-      'Trabajo en entornos acuáticos',
-      'Cumplimiento normativo',
-      'Especialización técnica'
+      'Certificación internacional NAUI',
+      'Buceo recreativo seguro',
+      'Exploración de arrecifes y vida marina',
+      'Actividades de buceo deportivo',
+      'Formación con instructor internacional'
     ],
     requirements: [
       'Mayor de 18 años',
       'Excelente estado de salud física',
       'Capacidad de natación avanzada',
-      'Sin problemas cardíacos',
-      'Compromiso con la seguridad'
+      'Sin problemas cardíacos o respiratorios',
+      'Certificado médico de aptitud'
     ],
     modules: [
-      'Fundamentos de Buceo',
-      'Equipos de Buceo',
+      'Fundamentos de Buceo Recreativo',
+      'Equipos de Buceo SCUBA',
       'Fisiología del Buceo',
-      'Técnicas de Buceo',
-      'Buceo Recreativo',
+      'Técnicas de Buceo NAUI',
+      'Buceo Recreativo Avanzado',
       'Emergencias Subacuáticas',
       'Prácticas en Agua'
     ],
@@ -508,6 +508,54 @@ const courses: Course[] = [
     schedule: 'Lunes a Sábado: 8:00 AM - 6:00 PM',
     category: 'Especializado',
     students: 320,
+    rating: 4.9
+  },
+  {
+    name: 'Buceo',
+    slug: 'buceo',
+    image: '/buceo.png',
+    description: 'Servicios de buceo recreativo con equipos certificados y personal especializado.',
+    detailedDescription: 'El curso de Buceo proporciona formación especializada en buceo recreativo. Incluye formación en equipos de buceo, procedimientos de seguridad y técnicas de buceo recreativo con certificación internacional.',
+    duration: '80 horas',
+    certification: 'Certificado válido por 3 años',
+    gradient: 'from-blue-600 to-cyan-600',
+    icon: GlobeAltIcon,
+    objectives: [
+      'Realizar buceo recreativo seguro',
+      'Manejar equipos de buceo recreativo',
+      'Aplicar técnicas de buceo NAUI',
+      'Prevenir accidentes subacuáticos',
+      'Explorar entornos acuáticos de forma segura'
+    ],
+    benefits: [
+      'Certificación internacional NAUI',
+      'Buceo recreativo seguro',
+      'Exploración de arrecifes y vida marina',
+      'Actividades de buceo deportivo',
+      'Formación con instructor internacional'
+    ],
+    requirements: [
+      'Mayor de 18 años',
+      'Excelente estado de salud física',
+      'Capacidad de natación avanzada',
+      'Sin problemas cardíacos o respiratorios',
+      'Certificado médico de aptitud'
+    ],
+    modules: [
+      'Fundamentos de Buceo Recreativo',
+      'Equipos de Buceo SCUBA',
+      'Fisiología del Buceo',
+      'Técnicas de Buceo NAUI',
+      'Buceo Recreativo Avanzado',
+      'Emergencias Subacuáticas',
+      'Prácticas en Agua'
+    ],
+    instructor: 'Cpt. Roberto Silva - Buzo Profesional Certificado',
+    price: 'Consultar',
+    location: 'Centro de Entrenamiento ISCOR y piscina',
+    schedule: 'Lunes a Sábado: 8:00 AM - 6:00 PM',
+    category: 'Especializado',
+    students: 994,
     rating: 4.9
   },
   {
@@ -602,7 +650,7 @@ const courses: Course[] = [
     price: 'Consultar',
     location: 'Centro de Entrenamiento ISCOR',
     schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM',
-    category: 'Seguridad Industrial',
+    category: 'Seguridad Integral',
     students: 580,
     rating: 4.7
   },
@@ -986,7 +1034,7 @@ const courses: Course[] = [
     price: 'Consultar',
     location: 'Centro de Entrenamiento ISCOR',
     schedule: 'Lunes a Viernes: 8:00 AM - 6:00 PM',
-    category: 'Seguridad Industrial',
+    category: 'Seguridad Integral',
     students: 380,
     rating: 4.8
   },
@@ -1618,8 +1666,8 @@ const courses: Course[] = [
     name: 'Auditorías de Seguridad',
     slug: 'auditoras-de-seguridad',
     image: '/control_de_calidad.png',
-    description: 'Formación especializada en auditorías de seguridad industrial y sistemas de gestión.',
-    detailedDescription: 'El curso de Auditorías de Seguridad proporciona formación integral en la realización de auditorías de seguridad industrial. Incluye metodologías, técnicas de evaluación, identificación de no conformidades y elaboración de informes de auditoría.',
+    description: 'Formación especializada en auditorías de seguridad integral y sistemas de gestión.',
+    detailedDescription: 'El curso de Auditorías de Seguridad proporciona formación integral en la realización de auditorías de seguridad integral. Incluye metodologías, técnicas de evaluación, identificación de no conformidades y elaboración de informes de auditoría.',
     duration: '32 horas',
     certification: 'Válido 2 años',
     gradient: 'from-purple-600 to-indigo-600',
@@ -1640,7 +1688,7 @@ const courses: Course[] = [
     ],
     requirements: [
       'Mayor de 18 años',
-      'Conocimientos en seguridad industrial',
+      'Conocimientos en seguridad integral',
       'Experiencia en gestión empresarial',
       'Capacidad de análisis',
       'Compromiso con la calidad'
