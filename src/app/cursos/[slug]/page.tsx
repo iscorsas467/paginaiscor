@@ -1831,6 +1831,16 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
 
   const loadCourse = async () => {
     try {
+      // Para el curso de buceo, usar directamente el curso local para evitar problemas de imagen
+      if (slug === 'buceo') {
+        const buceoCourse = courses.find(c => c.slug === 'buceo');
+        if (buceoCourse) {
+          setCourse(buceoCourse);
+          setLoading(false);
+          return;
+        }
+      }
+
       const response = await fetch(`/api/courses/${slug}`);
       if (response.ok) {
         const data = await response.json();
