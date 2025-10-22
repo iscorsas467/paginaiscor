@@ -27,7 +27,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ThreeJSBackground from '@/components/ThreeJSBackground';
 import LoginModal from '@/components/LoginModal';
-import MinimalHero from '@/components/MinimalHero';
+import SpectacularHero from '@/components/SpectacularHero';
+import DirectorSection from '@/components/DirectorSection';
+import HeroInfoSection from '@/components/HeroInfoSection';
 import ClientesSection from '@/components/ClientesSection';
 import AboutSection from '@/components/AboutSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -51,10 +53,16 @@ export default function Home() {
       {/* 3D Spheres Background */}
       <ThreeJSBackground />
       
-      {/* Minimal Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <MinimalHero />
+      {/* Primera Sección: Título con Fondo */}
+      <section className="relative overflow-hidden pt-24 pb-12">
+        <SpectacularHero />
       </section>
+
+      {/* Segunda Sección: GIF del Director */}
+      <DirectorSection />
+
+      {/* Tercera Sección: Información Adicional */}
+      <HeroInfoSection />
 
       {/* Nuestros Clientes - Carrusel Interactivo */}
       <ClientesSection />
