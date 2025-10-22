@@ -83,15 +83,15 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    // Log de la actividad
-    await prisma.activityLog.create({
-      data: {
-        action: 'Credenciales de admin actualizadas',
-        user: currentCredentials.username,
-        details: `Usuario cambió sus credenciales de acceso`,
-        timestamp: new Date()
-      }
-    });
+    // Log de la actividad (comentado - tabla no existe en el esquema)
+    // await prisma.activityLog.create({
+    //   data: {
+    //     action: 'Credenciales de admin actualizadas',
+    //     user: currentCredentials.username,
+    //     details: `Usuario cambió sus credenciales de acceso`,
+    //     timestamp: new Date()
+    //   }
+    // });
 
     return NextResponse.json({
       success: true,
