@@ -292,6 +292,40 @@ export default function CourseManager() {
     ));
   };
 
+  const updateCourseArrayField = (courseId: string, field: 'objectives' | 'benefits' | 'requirements' | 'modules', value: string[]) => {
+    setCourses(prev => prev.map(course => 
+      course.id === courseId ? { ...course, [field]: value } : course
+    ));
+  };
+
+  const addCourseArrayItem = (courseId: string, field: 'objectives' | 'benefits' | 'requirements' | 'modules', value: string) => {
+    if (!value.trim()) return;
+    setCourses(prev => prev.map(course => 
+      course.id === courseId ? { 
+        ...course, 
+        [field]: [...(course[field] || []), value.trim()] 
+      } : course
+    ));
+  };
+
+  const removeCourseArrayItem = (courseId: string, field: 'objectives' | 'benefits' | 'requirements' | 'modules', index: number) => {
+    setCourses(prev => prev.map(course => 
+      course.id === courseId ? { 
+        ...course, 
+        [field]: (course[field] || []).filter((_, i) => i !== index) 
+      } : course
+    ));
+  };
+
+  const updateCourseArrayItem = (courseId: string, field: 'objectives' | 'benefits' | 'requirements' | 'modules', index: number, value: string) => {
+    setCourses(prev => prev.map(course => 
+      course.id === courseId ? { 
+        ...course, 
+        [field]: (course[field] || []).map((item, i) => i === index ? value : item) 
+      } : course
+    ));
+  };
+
   const addArrayItem = (field: 'objectives' | 'benefits' | 'requirements' | 'modules', value: string) => {
     if (!value.trim()) return;
     setFormData(prev => ({
@@ -748,34 +782,6 @@ export default function CourseManager() {
                               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                           </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Icono
-                            </label>
-                            <input
-                              type="text"
-                              value={course.icon}
-                              onChange={(e) => updateCourseField(course.id, 'icon', e.target.value)}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Gradiente
-                            </label>
-                            <select
-                              value={course.gradient}
-                              onChange={(e) => updateCourseField(course.id, 'gradient', e.target.value)}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            >
-                              <option value="from-blue-500 to-blue-600">Azul</option>
-                              <option value="from-green-500 to-green-600">Verde</option>
-                              <option value="from-red-500 to-red-600">Rojo</option>
-                              <option value="from-purple-500 to-purple-600">Púrpura</option>
-                              <option value="from-orange-500 to-orange-600">Naranja</option>
-                              <option value="from-yellow-500 to-yellow-600">Amarillo</option>
-                            </select>
-                          </div>
                           <div className="md:col-span-2">
                             <label className="block text-sm font-medium text-gray-700 mb-1">
                               Descripción
@@ -913,18 +919,45 @@ export default function CourseManager() {
                               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                           </div>
-                          <div className="md:col-span-2">
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Imagen (URL)
-                            </label>
-                            <input
-                              type="text"
-                              value={course.image || ''}
-                              onChange={(e) => updateCourseField(course.id, 'image', e.target.value)}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                              placeholder="https://ejemplo.com/imagen.png"
-                            />
-                          </div>
+                        </div>
+                      </div>
+
+                      {/* Contenido del Curso */}
+                      <div className="mb-6">
+                        <div className="text-xs font-medium text-gray-600 mb-3">Contenido del Curso</div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <ArrayField
+                            label="Objetivos"
+                            items={course.objectives || []}
+                            onAdd={(value) => addCourseArrayItem(course.id, 'objectives', value)}
+                            onRemove={(index) => removeCourseArrayItem(course.id, 'objectives', index)}
+                            onUpdate={(index, value) => updateCourseArrayItem(course.id, 'objectives', index, value)}
+                            placeholder="Agregar objetivo..."
+                          />
+                          <ArrayField
+                            label="Beneficios"
+                            items={course.benefits || []}
+                            onAdd={(value) => addCourseArrayItem(course.id, 'benefits', value)}
+                            onRemove={(index) => removeCourseArrayItem(course.id, 'benefits', index)}
+                            onUpdate={(index, value) => updateCourseArrayItem(course.id, 'benefits', index, value)}
+                            placeholder="Agregar beneficio..."
+                          />
+                          <ArrayField
+                            label="Requisitos"
+                            items={course.requirements || []}
+                            onAdd={(value) => addCourseArrayItem(course.id, 'requirements', value)}
+                            onRemove={(index) => removeCourseArrayItem(course.id, 'requirements', index)}
+                            onUpdate={(index, value) => updateCourseArrayItem(course.id, 'requirements', index, value)}
+                            placeholder="Agregar requisito..."
+                          />
+                          <ArrayField
+                            label="Módulos"
+                            items={course.modules || []}
+                            onAdd={(value) => addCourseArrayItem(course.id, 'modules', value)}
+                            onRemove={(index) => removeCourseArrayItem(course.id, 'modules', index)}
+                            onUpdate={(index, value) => updateCourseArrayItem(course.id, 'modules', index, value)}
+                            placeholder="Agregar módulo..."
+                          />
                         </div>
                       </div>
 

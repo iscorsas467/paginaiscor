@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { 
   ChartBarIcon,
-  UsersIcon,
   DocumentTextIcon,
   CogIcon,
   BellIcon,
@@ -14,8 +13,6 @@ import {
   HomeIcon,
   AcademicCapIcon,
   ClipboardDocumentListIcon,
-  PhotoIcon,
-  GlobeAltIcon,
   ShieldCheckIcon,
   ExclamationTriangleIcon,
   Bars3Icon,
@@ -25,6 +22,7 @@ import ContentManager from '@/components/ContentManager';
 import CourseManager from '@/components/CourseManager';
 import CertificateManager from '@/components/CertificateManager';
 import FormSubmissionsManager from '@/components/FormSubmissionsManager';
+import AdminCredentialsManager from '@/components/AdminCredentialsManager';
 import NotificationsDropdown from '@/components/NotificationsDropdown';
 
 export default function AdminPage() {
@@ -138,10 +136,7 @@ export default function AdminPage() {
     { name: 'Gestión de Cursos', icon: AcademicCapIcon, id: 'courses' },
     { name: 'Solicitudes de Información', icon: DocumentTextIcon, id: 'form-submissions' },
     { name: 'Contenido del Sitio', icon: DocumentTextIcon, id: 'content' },
-    { name: 'Usuarios', icon: UsersIcon, id: 'users' },
     { name: 'Certificados', icon: ClipboardDocumentListIcon, id: 'certificates' },
-    { name: 'Galería', icon: PhotoIcon, id: 'gallery' },
-    { name: 'SEO', icon: GlobeAltIcon, id: 'seo' },
     { name: 'Configuración', icon: CogIcon, id: 'settings' },
   ];
 
@@ -227,6 +222,16 @@ export default function AdminPage() {
               <p className="text-gray-600 mt-1 text-sm sm:text-base">Administra todos los certificados emitidos por ISCOR</p>
             </div>
             <CertificateManager />
+          </div>
+        );
+      case 'settings':
+        return (
+          <div className="p-4 sm:p-6">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Configuración del Sistema</h2>
+              <p className="text-gray-600 mt-1 text-sm sm:text-base">Gestiona la configuración y credenciales del sistema</p>
+            </div>
+            <AdminCredentialsManager />
           </div>
         );
       case 'dashboard':
