@@ -50,7 +50,7 @@ const fallbackCourses = [
     certification: 'Válido 2 años',
     students: 1250,
     rating: 4.9,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Espacios Confinados',
@@ -61,7 +61,7 @@ const fallbackCourses = [
     certification: 'Válido 2 años',
     students: 980,
     rating: 4.8,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Control y Extinción de Incendios',
@@ -94,7 +94,7 @@ const fallbackCourses = [
     certification: 'Válido 2 años',
     students: 850,
     rating: 4.7,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   }
 ];
 
@@ -108,7 +108,7 @@ const courses = [
     certification: 'Válido 2 años',
     students: 1250,
     rating: 4.9,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Espacios Confinados',
@@ -119,7 +119,7 @@ const courses = [
     certification: 'Válido 2 años',
     students: 980,
     rating: 4.8,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Control y Extinción de Incendios',
@@ -196,7 +196,7 @@ const courses = [
     certification: 'Válido 2 años',
     students: 580,
     rating: 4.7,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Sistema de Gestión ISO 9001',
@@ -222,7 +222,7 @@ const courses = [
   },
   {
     name: 'Buceo Scuba Diver',
-    description: 'Certificación de buceo scuba diver, advanced y máster scuba diver con instructor internacional NAUI.',
+    description: 'Certificación en buceo recreativo: scuba diver, advanced y máster scuba diver con instructor internacional NAUI.',
     icon: GlobeAltIcon,
     gradient: 'from-cyan-500 to-blue-500',
     duration: '40 horas',
@@ -382,7 +382,7 @@ export default function ElegantCourses() {
             className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8"
           >
             Diseñados para profesionales que buscan la excelencia en 
-            <span className="font-semibold text-blue-600"> seguridad industrial</span>, 
+            <span className="font-semibold text-blue-600"> seguridad integral</span>, 
             <span className="font-semibold text-green-600"> salud ocupacional</span> y 
             <span className="font-semibold text-purple-600"> gestión de calidad</span>
           </motion.p>

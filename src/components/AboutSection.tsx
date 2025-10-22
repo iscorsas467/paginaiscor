@@ -33,7 +33,7 @@ export default function AboutSection() {
     {
       icon: GlobeAltIcon,
       title: 'Innovación Continua',
-      description: 'Adaptamos nuestras metodologías a las últimas tendencias y tecnologías en seguridad industrial.'
+      description: 'Adaptamos nuestras metodologías a las últimas tendencias y tecnologías en seguridad integral.'
     }
   ];
 
@@ -42,7 +42,7 @@ export default function AboutSection() {
       number: '18+',
       label: 'Años de Experiencia',
       icon: ClockIcon,
-      description: 'Liderando el sector desde 2005'
+      description: 'Liderando el sector desde 2004'
     },
     {
       number: '500+',
@@ -86,7 +86,7 @@ export default function AboutSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold text-slate-900 mb-6"
           >
-            Líderes en Seguridad Industrial
+            Líderes en Seguridad Integral
           </motion.h2>
           
           {/* Descripción concisa */}
@@ -146,7 +146,7 @@ export default function AboutSection() {
               </div>
               <h3 className="text-xl font-bold mb-2">Nuestra Misión</h3>
               <p className="text-blue-100 text-sm leading-relaxed">
-                Proteger vidas y optimizar operaciones mediante soluciones integrales de seguridad industrial.
+                Proteger vidas y optimizar operaciones mediante soluciones integrales de seguridad integral.
               </p>
             </div>
 

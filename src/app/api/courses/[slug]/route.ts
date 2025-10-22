@@ -98,7 +98,7 @@ export async function GET(
           ],
           benefits: [
             'Reducción significativa de accidentes por caídas',
-            'Cumplimiento de normativas de seguridad industrial',
+            'Cumplimiento de normativas de seguridad integral',
             'Mejora en la eficiencia y seguridad del trabajo',
             'Certificación reconocida a nivel nacional',
             'Actualización continua en técnicas de seguridad'
@@ -119,11 +119,11 @@ export async function GET(
             'Rescate en Altura',
             'Prácticas Supervisadas'
           ],
-          instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Industrial',
+          instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Integral',
           price: 'Consultar',
           location: 'Centro de Entrenamiento ISCOR',
           schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
-          category: 'Seguridad Industrial'
+          category: 'Seguridad Integral'
         },
         'Espacios Confinados': {
           detailedDescription: 'El curso de Espacios Confinados proporciona formación especializada en la identificación, evaluación y control de riesgos en espacios confinados. Incluye protocolos de entrada, trabajo seguro y procedimientos de rescate especializado.',
@@ -163,7 +163,7 @@ export async function GET(
           price: 'Consultar',
           location: 'Centro de Entrenamiento ISCOR',
           schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
-          category: 'Seguridad Industrial'
+          category: 'Seguridad Integral'
         },
         'Control y Extinción de Incendios': {
           detailedDescription: 'Curso especializado en control y extinción de incendios con procedimientos operativos normalizados NFPA. Incluye formación en brigadas de emergencia, manejo de equipos y técnicas de extinción.',
@@ -367,7 +367,7 @@ export async function GET(
         price: 'Consultar',
         location: 'Centro de Entrenamiento ISCOR',
         schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
-        category: 'Seguridad Industrial'
+        category: 'Seguridad Integral'
       };
 
       return courseDetails[courseName] || defaultDetails;

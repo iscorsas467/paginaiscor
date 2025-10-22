@@ -36,10 +36,17 @@ export default function CertificadosPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchResult, setSearchResult] = useState<CertificateData | null>(null);
   const [error, setError] = useState('');
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   const handleSearch = async () => {
     if (!cedula.trim()) {
       setError('Por favor ingrese el número de cédula');
+      return;
+    }
+
+    if (!acceptTerms) {
+      setError('Debe aceptar los términos y condiciones de tratamiento de datos personales');
       return;
     }
 
@@ -126,31 +133,10 @@ export default function CertificadosPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto"
             >
-              Consulte la autenticidad de certificados de seguridad industrial emitidos por ISCOR Colombia
+              Consulte la autenticidad de certificados de seguridad integral emitidos por ISCOR Colombia
             </motion.p>
           </div>
 
-          {/* Security Notice */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-sm rounded-2xl border border-amber-400/30 p-8 mb-12 shadow-xl"
-          >
-            <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0">
-                <ExclamationTriangleIcon className="h-8 w-8 text-amber-400" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-4">Aviso de Seguridad</h3>
-                <p className="text-amber-100 text-lg leading-relaxed">
-                  El acceso a la consulta de certificados por Internet es un servicio de carácter permanente que presta ISCOR COLOMBIA, 
-                  con el ánimo de poder validar la información de los certificados que expedimos. El uso de la información suministrada 
-                  por ISCOR está limitada a fines privados y personales.
-                </p>
-              </div>
-            </div>
-          </motion.div>
           
           {/* Search Form */}
           <motion.div 
@@ -188,17 +174,47 @@ export default function CertificadosPage() {
               </div>
             </div>
 
+            {/* Términos y Condiciones de Tratamiento de Datos */}
+            <div className="mb-8">
+              <div className="bg-white rounded-2xl p-6 border-2 border-slate-200 shadow-sm">
+                <div className="flex items-center space-x-4">
+                  <input
+                    type="checkbox"
+                    id="acceptTerms"
+                    checked={acceptTerms}
+                    onChange={(e) => setAcceptTerms(e.target.checked)}
+                    className="h-5 w-5 text-blue-600 border-2 border-slate-300 rounded focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200"
+                  />
+                  <label htmlFor="acceptTerms" className="flex-1 text-sm font-medium text-slate-900 cursor-pointer">
+                    <span className="font-bold text-red-600">*</span> Acepto los{' '}
+                    <button
+                      type="button"
+                      onClick={() => setShowPrivacyModal(true)}
+                      className="text-blue-600 hover:text-blue-700 underline font-semibold"
+                    >
+                      términos y condiciones de tratamiento de datos personales
+                    </button>
+                  </label>
+                </div>
+              </div>
+            </div>
+
             {/* Search Button */}
             <div className="mb-8">
               <button
                 onClick={handleSearch}
-                disabled={isSearching}
+                disabled={isSearching || !acceptTerms}
                 className="w-full bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6 text-xl font-semibold text-white rounded-2xl hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
               >
                 {isSearching ? (
                   <>
                     <div className="animate-spin rounded-full h-7 w-7 border-b-2 border-white inline mr-4"></div>
                     Verificando Certificado...
+                  </>
+                ) : !acceptTerms ? (
+                  <>
+                    <LockClosedIcon className="inline h-7 w-7 mr-4" />
+                    Acepte los términos para continuar
                   </>
                 ) : (
                   <>
@@ -207,6 +223,12 @@ export default function CertificadosPage() {
                   </>
                 )}
               </button>
+              
+              {!acceptTerms && (
+                <p className="mt-3 text-center text-sm text-red-600 font-medium">
+                  Debe aceptar los términos y condiciones para poder consultar su certificado
+                </p>
+              )}
             </div>
 
             {/* Privacy Notice */}
@@ -346,6 +368,81 @@ export default function CertificadosPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Modal de Términos y Condiciones */}
+      {showPrivacyModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+          >
+            <div className="p-8">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-slate-900 flex items-center">
+                  <ShieldCheckIcon className="h-8 w-8 text-blue-600 mr-3" />
+                  Tratamiento de Datos Personales
+                </h2>
+                <button
+                  onClick={() => setShowPrivacyModal(false)}
+                  className="text-slate-400 hover:text-slate-600 transition-colors duration-200"
+                >
+                  <XCircleIcon className="h-8 w-8" />
+                </button>
+              </div>
+
+              <div className="space-y-6 text-sm text-slate-700">
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-2">Finalidad del Tratamiento</h3>
+                  <p>Verificación de autenticidad de certificados emitidos por ISCOR Colombia.</p>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-2">Datos Recopilados</h3>
+                  <p>Número de cédula de ciudadanía únicamente para consulta.</p>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-2">Base Legal</h3>
+                  <p>Artículo 6° de la Ley 1581 de 2012 y Decreto 1377 de 2013.</p>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-2">Derechos del Titular</h3>
+                  <p>Conocer, actualizar, rectificar y suprimir sus datos personales, así como revocar la autorización.</p>
+                  <p className="mt-2">
+                    <strong>Contacto:</strong> protecciondatos@iscor.com.co
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-slate-900 mb-2">Conservación</h3>
+                  <p>Los datos se conservarán durante el tiempo necesario para cumplir con la finalidad del tratamiento.</p>
+                </div>
+
+                <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                  <h3 className="font-bold text-blue-900 mb-2">Aviso de Seguridad</h3>
+                  <p className="text-blue-800">
+                    El acceso a la consulta de certificados por Internet es un servicio de carácter permanente que presta ISCOR COLOMBIA, 
+                    con el ánimo de poder validar la información de los certificados que expedimos. El uso de la información suministrada 
+                    por ISCOR está limitada a fines privados y personales.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex justify-end">
+                <button
+                  onClick={() => setShowPrivacyModal(false)}
+                  className="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors duration-200 font-semibold"
+                >
+                  Entendido
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

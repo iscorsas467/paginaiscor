@@ -17,7 +17,9 @@ import {
   PhotoIcon,
   GlobeAltIcon,
   ShieldCheckIcon,
-  ExclamationTriangleIcon
+  ExclamationTriangleIcon,
+  Bars3Icon,
+  XMarkIcon
 } from '@heroicons/react/24/outline';
 import ContentManager from '@/components/ContentManager';
 import CourseManager from '@/components/CourseManager';
@@ -31,6 +33,7 @@ export default function AdminPage() {
   const [user, setUser] = useState<any>(null);
   const [dashboardStats, setDashboardStats] = useState<any>(null);
   const [statsLoading, setStatsLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -52,7 +55,7 @@ export default function AdminPage() {
     checkAuth();
   }, [router]);
 
-  // Cargar estadísticas del dashboard
+  // Cargar estadísticass del dashboard
   useEffect(() => {
     const loadDashboardStats = async () => {
       try {
@@ -188,65 +191,65 @@ export default function AdminPage() {
     switch (activeTab) {
       case 'courses':
         return (
-          <div className="p-6">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Gestión de Cursos</h2>
-              <p className="text-gray-600 mt-1">Administra todos los cursos y servicios de ISCOR</p>
+          <div className="p-4 sm:p-6">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Gestión de Cursos</h2>
+              <p className="text-gray-600 mt-1 text-sm sm:text-base">Administra todos los cursos y servicios de ISCOR</p>
             </div>
             <CourseManager />
           </div>
         );
       case 'content':
         return (
-          <div className="p-6">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Contenido del Sitio</h2>
-              <p className="text-gray-600 mt-1">Gestiona el contenido de las páginas principales</p>
+          <div className="p-4 sm:p-6">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Contenido del Sitio</h2>
+              <p className="text-gray-600 mt-1 text-sm sm:text-base">Gestiona el contenido de las páginas principales</p>
             </div>
             <ContentManager />
           </div>
         );
       case 'form-submissions':
         return (
-          <div className="p-6">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Solicitudes de Información</h2>
-              <p className="text-gray-600 mt-1">Gestiona las solicitudes enviadas desde los formularios de cursos</p>
+          <div className="p-4 sm:p-6">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Solicitudes de Información</h2>
+              <p className="text-gray-600 mt-1 text-sm sm:text-base">Gestiona las solicitudes enviadas desde los formularios de cursos</p>
             </div>
             <FormSubmissionsManager />
           </div>
         );
       case 'certificates':
         return (
-          <div className="p-6">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Gestión de Certificados</h2>
-              <p className="text-gray-600 mt-1">Administra todos los certificados emitidos por ISCOR</p>
+          <div className="p-4 sm:p-6">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Gestión de Certificados</h2>
+              <p className="text-gray-600 mt-1 text-sm sm:text-base">Administra todos los certificados emitidos por ISCOR</p>
             </div>
             <CertificateManager />
           </div>
         );
       case 'dashboard':
         return (
-          <div className="p-6">
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900">Dashboard</h2>
-              <p className="text-gray-600 mt-1">Resumen general del sistema de administración</p>
+          <div className="p-4 sm:p-6">
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Dashboard</h2>
+              <p className="text-gray-600 mt-1 text-sm sm:text-base">Resumen general del sistema de administración</p>
             </div>
             
-            <div className="space-y-6 lg:space-y-8">
+            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               {/* Estadísticas */}
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900">Estadísticas Generales</h3>
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900">Estadísticas Generales</h3>
                   {statsLoading && (
-                    <div className="flex items-center text-sm text-gray-500">
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                    <div className="flex items-center text-xs sm:text-sm text-gray-500">
+                      <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-blue-600 mr-2"></div>
                       Cargando...
                     </div>
                   )}
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
                   {stats.map((stat) => {
                     const IconComponent = stat.icon;
                     const getBgColor = (changeType: string) => {
@@ -268,19 +271,19 @@ export default function AdminPage() {
                     
                     return (
                       <div key={stat.name} className="bg-gradient-to-br from-white to-gray-50 overflow-hidden shadow-lg rounded-xl border border-gray-200 hover:shadow-xl transition-shadow duration-200">
-                        <div className="p-4 lg:p-6">
-                          <div className="flex items-start space-x-4">
+                        <div className="p-3 sm:p-4 lg:p-6">
+                          <div className="flex items-start space-x-3 sm:space-x-4">
                             <div className="flex-shrink-0">
-                              <div className={`w-12 h-12 ${getBgColor(stat.changeType)} rounded-xl flex items-center justify-center shadow-sm`}>
-                                <IconComponent className={`h-6 w-6 ${getIconColor(stat.changeType)}`} />
+                              <div className={`w-10 h-10 sm:w-12 sm:h-12 ${getBgColor(stat.changeType)} rounded-xl flex items-center justify-center shadow-sm`}>
+                                <IconComponent className={`h-5 w-5 sm:h-6 sm:w-6 ${getIconColor(stat.changeType)}`} />
                               </div>
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-sm font-medium text-gray-600 leading-tight mb-1">
+                              <h4 className="text-xs sm:text-sm font-medium text-gray-600 leading-tight mb-1">
                                 {stat.name}
                               </h4>
-                              <div className="flex items-baseline space-x-2">
-                                <span className="text-2xl lg:text-3xl font-bold text-gray-900">
+                              <div className="flex flex-col sm:flex-row sm:items-baseline sm:space-x-2 space-y-1 sm:space-y-0">
+                                <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
                                   {stat.value}
                                 </span>
                                 <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
@@ -409,28 +412,28 @@ export default function AdminPage() {
 
       default:
         return (
-          <div className="p-6">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
+          <div className="p-4 sm:p-6">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
                 {navigation.find(nav => nav.id === activeTab)?.name}
               </h2>
-              <p className="text-gray-600 mt-1">Funcionalidad en desarrollo</p>
+              <p className="text-gray-600 mt-1 text-sm sm:text-base">Funcionalidad en desarrollo</p>
             </div>
-            <div className="text-center py-16">
-              <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CogIcon className="h-12 w-12 text-blue-600" />
+            <div className="text-center py-12 sm:py-16">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <CogIcon className="h-10 w-10 sm:h-12 sm:w-12 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">En Desarrollo</h3>
-              <p className="text-gray-500 max-w-md mx-auto">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">En Desarrollo</h3>
+              <p className="text-gray-500 max-w-md mx-auto text-sm sm:text-base px-4">
                 Esta sección está siendo desarrollada y estará disponible próximamente. 
                 Mientras tanto, puedes usar las otras funcionalidades del panel.
               </p>
-              <div className="mt-8">
+              <div className="mt-6 sm:mt-8">
                 <button 
                   onClick={() => setActiveTab('dashboard')}
-                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+                  className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
                 >
-                  <HomeIcon className="h-5 w-5 mr-2" />
+                  <HomeIcon className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                   Volver al Dashboard
                 </button>
               </div>
@@ -445,8 +448,20 @@ export default function AdminPage() {
       {/* Header Mejorado */}
       <header className="bg-white shadow-lg border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
+          <div className="flex justify-between items-center py-4 lg:py-6">
             <div className="flex items-center space-x-4">
+              {/* Botón de menú móvil */}
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {sidebarOpen ? (
+                  <XMarkIcon className="h-6 w-6" />
+                ) : (
+                  <Bars3Icon className="h-6 w-6" />
+                )}
+              </button>
+              
               <div className="flex items-center space-x-3">
                 <div className="flex-shrink-0">
                   <Image
@@ -457,16 +472,19 @@ export default function AdminPage() {
                     className="rounded-lg"
                   />
                 </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Panel de Administración</h1>
+                <div className="hidden sm:block">
+                  <h1 className="text-xl lg:text-2xl font-bold text-gray-900">Panel de Administración</h1>
                   <p className="text-sm text-gray-500">ISCOR Colombia</p>
+                </div>
+                <div className="sm:hidden">
+                  <h1 className="text-lg font-bold text-gray-900">Admin</h1>
                 </div>
               </div>
             </div>
             
-            <div className="flex items-center space-x-6">
-              {/* Indicador de Seguridad */}
-              <div className="flex items-center space-x-2 bg-green-50 px-3 py-2 rounded-lg border border-green-200">
+            <div className="flex items-center space-x-2 lg:space-x-6">
+              {/* Indicador de Seguridad - Oculto en móviles */}
+              <div className="hidden lg:flex items-center space-x-2 bg-green-50 px-3 py-2 rounded-lg border border-green-200">
                 <ShieldCheckIcon className="h-5 w-5 text-green-600" />
                 <span className="text-sm font-medium text-green-800">Sesión Segura</span>
               </div>
@@ -474,8 +492,8 @@ export default function AdminPage() {
               {/* Notificaciones */}
               <NotificationsDropdown />
               
-              {/* Información del Usuario */}
-              <div className="flex items-center space-x-3 bg-gray-50 px-4 py-2 rounded-lg">
+              {/* Información del Usuario - Simplificada en móviles */}
+              <div className="hidden md:flex items-center space-x-3 bg-gray-50 px-4 py-2 rounded-lg">
                 <UserCircleIcon className="h-8 w-8 text-gray-400" />
                 <div className="text-sm">
                   <p className="font-medium text-gray-900">{user?.email}</p>
@@ -483,26 +501,55 @@ export default function AdminPage() {
                 </div>
               </div>
               
+              {/* Usuario simplificado para móviles */}
+              <div className="md:hidden">
+                <UserCircleIcon className="h-8 w-8 text-gray-400" />
+              </div>
+              
               {/* Botón de Cerrar Sesión */}
               <button
                 onClick={handleLogout}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+                className="inline-flex items-center px-3 lg:px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
               >
-                <ArrowRightOnRectangleIcon className="h-4 w-4 mr-2" />
-                Cerrar Sesión
+                <ArrowRightOnRectangleIcon className="h-4 w-4 lg:mr-2" />
+                <span className="hidden lg:inline">Cerrar Sesión</span>
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-8">
-          {/* Sidebar Mejorado */}
-          <div className="w-72 bg-white shadow-xl rounded-2xl border border-gray-200">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900">Navegación</h2>
-              <p className="text-sm text-gray-500 mt-1">Gestiona tu contenido</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
+        <div className="flex gap-4 lg:gap-8">
+          {/* Sidebar Mejorado - Responsive */}
+          <div className={`
+            ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+            lg:translate-x-0
+            fixed lg:static inset-y-0 left-0 z-50
+            w-72 lg:w-72
+            bg-white shadow-xl lg:rounded-2xl border border-gray-200
+            transition-transform duration-300 ease-in-out
+            lg:transition-none
+          `}>
+            {/* Overlay para móviles */}
+            <div 
+              className="lg:hidden fixed inset-0 bg-black bg-opacity-50 -z-10"
+              onClick={() => setSidebarOpen(false)}
+            />
+            
+            <div className="p-4 lg:p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg font-semibold text-gray-900">Navegación</h2>
+                  <p className="text-sm text-gray-500 mt-1">Gestiona tu contenido</p>
+                </div>
+                <button
+                  onClick={() => setSidebarOpen(false)}
+                  className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+                >
+                  <XMarkIcon className="h-5 w-5" />
+                </button>
+              </div>
             </div>
             
             <nav className="p-4">
@@ -510,7 +557,10 @@ export default function AdminPage() {
                 {navigation.map((item) => (
                   <button
                     key={item.name}
-                    onClick={() => setActiveTab(item.id)}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setSidebarOpen(false); // Cerrar sidebar en móviles al seleccionar
+                    }}
                     className={`${
                       activeTab === item.id
                         ? 'bg-blue-50 text-blue-700 border-blue-200 shadow-sm'
@@ -522,7 +572,7 @@ export default function AdminPage() {
                         activeTab === item.id ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-600'
                       } mr-3 flex-shrink-0 h-5 w-5`}
                     />
-                    {item.name}
+                    <span className="truncate">{item.name}</span>
                     {activeTab === item.id && (
                       <div className="ml-auto w-2 h-2 bg-blue-600 rounded-full"></div>
                     )}
@@ -535,7 +585,7 @@ export default function AdminPage() {
             <div className="p-4 border-t border-gray-200 mt-4">
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
                 <div className="flex items-start">
-                  <ExclamationTriangleIcon className="h-5 w-5 text-amber-600 mt-0.5 mr-2" />
+                  <ExclamationTriangleIcon className="h-5 w-5 text-amber-600 mt-0.5 mr-2 flex-shrink-0" />
                   <div className="text-sm">
                     <p className="font-medium text-amber-800">Sesión Activa</p>
                     <p className="text-amber-700 mt-1">Tu sesión expirará automáticamente por seguridad.</p>
@@ -546,7 +596,7 @@ export default function AdminPage() {
           </div>
 
           {/* Main Content */}
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 w-full lg:w-auto">
             <div className="bg-white shadow-xl rounded-2xl border border-gray-200 overflow-hidden">
               {renderContent()}
             </div>

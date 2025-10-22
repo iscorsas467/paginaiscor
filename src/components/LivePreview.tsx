@@ -39,7 +39,7 @@ export default function LivePreview({ section, subsection, data }: LivePreviewPr
                 {data.title || 'ISCOR - Ingeniería, Seguridad y Control de Riesgos'}
               </h1>
               <p className="text-xl text-blue-100 mb-8">
-                {data.subtitle || 'Soluciones integrales en seguridad industrial y capacitación profesional'}
+                {data.subtitle || 'Soluciones integrales en seguridad integral y capacitación profesional'}
               </p>
               <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
                 {data.stats && Object.entries(data.stats).map(([key, value]) => (
@@ -61,7 +61,7 @@ export default function LivePreview({ section, subsection, data }: LivePreviewPr
                 {data.title || 'Nuestros Servicios'}
               </h2>
               <p className="text-lg text-slate-600 mb-8">
-                {data.description || 'Ofrecemos una amplia gama de servicios en seguridad industrial'}
+                {data.description || 'Ofrecemos una amplia gama de servicios en seguridad integral'}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -151,7 +151,7 @@ export default function LivePreview({ section, subsection, data }: LivePreviewPr
                 {data.title || 'Sobre ISCOR'}
               </h1>
               <p className="text-xl text-purple-100 mb-4">
-                {data.subtitle || 'Líderes en seguridad industrial'}
+                {data.subtitle || 'Líderes en seguridad integral'}
               </p>
               <p className="text-lg text-purple-200 max-w-3xl mx-auto">
                 {data.description || 'ISCOR es una empresa especializada en ingeniería, seguridad y control de riesgos, comprometida con la excelencia y la innovación en el sector industrial.'}
@@ -300,7 +300,7 @@ export default function LivePreview({ section, subsection, data }: LivePreviewPr
                 {data.subtitle || 'Profesionales comprometidos'}
               </p>
               <p className="text-lg text-orange-200 mb-8 max-w-3xl mx-auto">
-                {data.description || 'Contamos con un equipo de expertos altamente calificados en seguridad industrial y capacitación profesional.'}
+                {data.description || 'Contamos con un equipo de expertos altamente calificados en seguridad integral y capacitación profesional.'}
               </p>
               <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
                 {data.stats && Object.entries(data.stats).map(([key, value]) => (
@@ -394,7 +394,7 @@ export default function LivePreview({ section, subsection, data }: LivePreviewPr
                 {data.subtitle || 'Estamos aquí para ayudarte'}
               </p>
               <p className="text-lg text-blue-200 mb-8 max-w-3xl mx-auto">
-                {data.description || 'Nuestro equipo está disponible para responder tus consultas y brindarte la mejor asesoría en seguridad industrial.'}
+                {data.description || 'Nuestro equipo está disponible para responder tus consultas y brindarte la mejor asesoría en seguridad integral.'}
               </p>
               <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
                 {data.stats && Object.entries(data.stats).map(([key, value]) => (

@@ -96,7 +96,7 @@ const coursesData = [
   },
   {
     name: 'Buceo',
-    description: 'Certificación en buceo comercial con técnicas de trabajo subacuático y protocolos de seguridad.',
+    description: 'Certificación en buceo recreativo con técnicas de buceo deportivo y protocolos de seguridad NAUI.',
     icon: '🤿',
     gradient: 'from-blue-600 to-indigo-600',
     order: 14
@@ -112,12 +112,12 @@ const coursesData = [
 
 const homeServicesData = {
   title: 'Nuestros Servicios Especializados',
-  description: 'Ofrecemos una amplia gama de programas de capacitación certificados en seguridad industrial, salud ocupacional y medio ambiente.'
+  description: 'Ofrecemos una amplia gama de programas de capacitación certificados en seguridad integral, salud ocupacional y medio ambiente.'
 };
 
 const homeHeroData = {
-  badge: 'ISCOR - Líderes en Seguridad Industrial',
-  title: 'Capacitación Especializada en Seguridad Industrial',
+  badge: 'ISCOR - Líderes en Seguridad Integral',
+  title: 'Capacitación Especializada en Seguridad Integral',
   subtitle: 'Más de 15 años formando profesionales en seguridad, salud ocupacional y medio ambiente con los más altos estándares de calidad.'
 };
 
@@ -129,7 +129,7 @@ const homeStatsData = {
 
 const contactInfoData = {
   title: 'Información de Contacto',
-  description: 'Estamos aquí para ayudarte con todas tus necesidades de capacitación en seguridad industrial.'
+  description: 'Estamos aquí para ayudarte con todas tus necesidades de capacitación en seguridad integral.'
 };
 
 const contactInfoItems = [

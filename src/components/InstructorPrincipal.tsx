@@ -19,6 +19,7 @@ const certifications = [
   {
     name: 'Ingeniero Contra Incendios NFPA',
     icon: FireIcon,
+    image: '/nfpa.jpg',
     description: 'Certificación internacional en protección contra incendios'
   },
   {
@@ -29,6 +30,7 @@ const certifications = [
   {
     name: 'Instructor Internacional NAUI',
     icon: GlobeAltIcon,
+    image: '/NAUI.png',
     description: 'National Association of Underwater Instructors'
   },
   {
@@ -44,18 +46,21 @@ const affiliations = [
     name: 'CCS',
     fullName: 'Consejo Colombiano de Seguridad',
     icon: ShieldCheckIcon,
+    image: '/CCS.png',
     gradient: 'from-blue-500 to-blue-600'
   },
   {
     name: 'NFPA',
     fullName: 'National Fire Protection Association',
     icon: FireIcon,
+    image: '/nfpa.jpg',
     gradient: 'from-blue-500 to-blue-600'
   },
   {
     name: 'NAUI',
     fullName: 'National Association of Underwater Instructors',
     icon: GlobeAltIcon,
+    image: '/NAUI.png',
     gradient: 'from-blue-500 to-blue-600'
   }
 ];
@@ -91,7 +96,7 @@ export default function InstructorPrincipal() {
             className="text-lg md:text-xl text-black leading-relaxed mb-8"
           >
             Director General de ISCOR con <span className="font-bold">20 años de experiencia</span> en Ingeniería Industrial, 
-            especializado en <span className="font-bold">seguridad industrial</span>, 
+            especializado en <span className="font-bold">seguridad integral</span>, 
             <span className="font-bold">seguridad física</span> y 
             <span className="font-bold">sistemas de gestión en SST</span>. 
             Instructor de seguridad operacional y recuperación de personal en SAR (Search and Rescue) para el suroccidente colombiano.
@@ -109,7 +114,7 @@ export default function InstructorPrincipal() {
             {/* Imagen del Director */}
             <div className="relative h-96 lg:h-auto">
               <Image
-                src="/Director.jpg"
+                src="/Dave.jpg"
                 alt="Juan Fernando Aldana - Director General de ISCOR"
                 fill
                 className="object-cover object-center"
@@ -159,7 +164,7 @@ export default function InstructorPrincipal() {
               
               <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6">
                 <p className="text-slate-700 leading-relaxed">
-                  "Nuestra misión en ISCOR es proporcionar formación de excelencia en seguridad industrial, 
+                  "Nuestra misión en ISCOR es proporcionar formación de excelencia en seguridad integral, 
                   contribuyendo al desarrollo de profesionales altamente capacitados y al fortalecimiento 
                   de la cultura de prevención en las organizaciones."
                 </p>
@@ -189,8 +194,20 @@ export default function InstructorPrincipal() {
                 transition={{ duration: 0.6, delay: 0.1 * index }}
                 className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <cert.icon className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  {cert.image ? (
+                    <Image
+                      src={cert.image}
+                      alt={cert.name}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                      <cert.icon className="h-8 w-8 text-white" />
+                    </div>
+                  )}
                 </div>
                 <h4 className="text-lg font-semibold text-slate-900 mb-2">
                   {cert.name}
@@ -223,7 +240,7 @@ export default function InstructorPrincipal() {
               'Operación segura de montacargas y maquinaria pesada',
               'Operación de grúas para izaje de cargas',
               'Seguridad en trabajos con energías peligrosas',
-              'Buceo internacional y rescate acuático',
+              'Buceo recreativo internacional NAUI y rescate acuático',
               'Supervivencia para tripulaciones aéreas de combate'
             ].map((specialty, index) => (
               <motion.div
@@ -262,8 +279,20 @@ export default function InstructorPrincipal() {
                 transition={{ duration: 0.6, delay: 0.1 * index }}
                 className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 text-center"
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${affiliation.gradient} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                  <affiliation.icon className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  {affiliation.image ? (
+                    <Image
+                      src={affiliation.image}
+                      alt={affiliation.name}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <div className={`w-16 h-16 bg-gradient-to-r ${affiliation.gradient} rounded-full flex items-center justify-center`}>
+                      <affiliation.icon className="h-8 w-8 text-white" />
+                    </div>
+                  )}
                 </div>
                 <h4 className="font-semibold text-slate-900 mb-2">{affiliation.name}</h4>
                 <p className="text-sm text-slate-600">{affiliation.fullName}</p>

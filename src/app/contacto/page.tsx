@@ -171,7 +171,7 @@ export default function Contacto() {
 
             {/* Subtitle - Estilo Siemens */}
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12">
-              ¿Necesitas servicios de seguridad industrial? Estamos aquí para proteger a tu equipo y cumplir con las normativas de seguridad.
+              ¿Necesitas servicios de seguridad integral? Estamos aquí para proteger a tu equipo y cumplir con las normativas de seguridad.
             </p>
 
             {/* Stats - Estilo Boeing */}
@@ -551,7 +551,7 @@ export default function Contacto() {
             </h2>
             
             <p className="text-xl text-slate-600 leading-relaxed">
-              Resolvemos tus inquietudes sobre nuestros servicios de seguridad industrial.
+              Resolvemos tus inquietudes sobre nuestros servicios de seguridad integral.
             </p>
           </div>
           
@@ -621,7 +621,7 @@ export default function Contacto() {
             </h2>
             
             <p className="text-xl text-gray-300 leading-relaxed mb-12">
-              Contáctanos hoy mismo y descubre cómo podemos ayudarte a implementar las mejores prácticas de seguridad industrial en tu empresa.
+              Contáctanos hoy mismo y descubre cómo podemos ayudarte a implementar las mejores prácticas de seguridad integral en tu empresa.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
@@ -640,7 +640,7 @@ export default function Contacto() {
               </a>
               
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=iscor@iscorcolombia.com.co&su=Consulta de Servicios - ISCOR Colombia&body=Estimado Director,%0D%0A%0D%0AMe pongo en contacto con usted para solicitar información sobre los servicios de seguridad industrial de ISCOR Colombia.%0D%0A%0D%0AInformación de la consulta:%0D%0A- Empresa: [Nombre de su empresa]%0D%0A- Servicio de interés: [Especifique el servicio]%0D%0A- Número de empleados: [Cantidad aproximada]%0D%0A- Ubicación: [Ciudad/Departamento]%0D%0A- Fecha estimada: [Fecha deseada para el servicio]%0D%0A%0D%0ADetalles adicionales:%0D%0A[Describa sus necesidades específicas y cualquier requerimiento especial]%0D%0A%0D%0AEspero su respuesta para coordinar una reunión o llamada.%0D%0A%0D%0ASaludos cordiales,%0D%0A[Nombre]%0D%0A[Teléfono]%0D%0A[Email]"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=iscor@iscorcolombia.com.co&su=Consulta de Servicios - ISCOR Colombia&body=Estimado Director,%0D%0A%0D%0AMe pongo en contacto con usted para solicitar información sobre los servicios de seguridad integral de ISCOR Colombia.%0D%0A%0D%0AInformación de la consulta:%0D%0A- Empresa: [Nombre de su empresa]%0D%0A- Servicio de interés: [Especifique el servicio]%0D%0A- Número de empleados: [Cantidad aproximada]%0D%0A- Ubicación: [Ciudad/Departamento]%0D%0A- Fecha estimada: [Fecha deseada para el servicio]%0D%0A%0D%0ADetalles adicionales:%0D%0A[Describa sus necesidades específicas y cualquier requerimiento especial]%0D%0A%0D%0AEspero su respuesta para coordinar una reunión o llamada.%0D%0A%0D%0ASaludos cordiales,%0D%0A[Nombre]%0D%0A[Teléfono]%0D%0A[Email]"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-10 py-5 border-2 border-white/30 text-white font-semibold rounded-xl hover:border-white/50 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm text-lg"

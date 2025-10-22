@@ -50,7 +50,7 @@ const fallbackCourses = [
     certification: 'Válido 2 años',
     students: 1250,
     rating: 4.9,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Espacios Confinados',
@@ -61,7 +61,7 @@ const fallbackCourses = [
     certification: 'Válido 2 años',
     students: 980,
     rating: 4.8,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Control y Extinción de Incendios',
@@ -86,7 +86,7 @@ const courses = [
     certification: 'Válido 2 años',
     students: 1250,
     rating: 4.9,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Espacios Confinados',
@@ -97,7 +97,7 @@ const courses = [
     certification: 'Válido 2 años',
     students: 980,
     rating: 4.8,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Control y Extinción de Incendios',
@@ -174,7 +174,7 @@ const courses = [
     certification: 'Válido 2 años',
     students: 580,
     rating: 4.7,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Sistema de Gestión ISO 9001',
@@ -200,7 +200,7 @@ const courses = [
   },
   {
     name: 'Buceo Scuba Diver',
-    description: 'Certificación de buceo scuba diver, advanced y máster scuba diver con instructor internacional NAUI.',
+    description: 'Certificación en buceo recreativo: scuba diver, advanced y máster scuba diver con instructor internacional NAUI.',
     icon: GlobeAltIcon,
     gradient: 'from-cyan-500 to-blue-500',
     duration: '40 horas',
@@ -284,7 +284,7 @@ const courses = [
     certification: 'Válido 3 años',
     students: 380,
     rating: 4.8,
-    category: 'Seguridad Industrial'
+    category: 'Seguridad Integral'
   },
   {
     name: 'Plan de Evacuación',
@@ -597,7 +597,7 @@ export default function ServiciosPage() {
 
             {/* Subtitle */}
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12">
-              Módulos especializados en seguridad industrial y control de riesgos. 
+              Módulos especializados en seguridad integral y control de riesgos. 
               Más de 29 servicios profesionales para proteger a tu equipo y cumplir con las normativas de seguridad.
             </p>
 
@@ -631,11 +631,11 @@ export default function ServiciosPage() {
             
             <h2 className="text-5xl md:text-6xl font-bold mb-8">
               <span className="text-slate-900">Servicios de </span>
-              <span className="text-blue-800">Seguridad Industrial</span>
+              <span className="text-blue-800">Seguridad Integral</span>
             </h2>
             
             <p className="text-xl text-slate-600 leading-relaxed">
-              Ofrecemos una gama completa de servicios especializados para proteger a su empresa y cumplir con las normativas de seguridad industrial.
+              Ofrecemos una gama completa de servicios especializados para proteger a su empresa y cumplir con las normativas de seguridad integral.
             </p>
           </div>
           
@@ -757,7 +757,7 @@ export default function ServiciosPage() {
             </h2>
             
             <p className="text-xl text-gray-300 leading-relaxed mb-12">
-              Contáctanos hoy mismo y descubre cómo podemos ayudarte a proteger a tu equipo y cumplir con las normativas de seguridad industrial.
+              Contáctanos hoy mismo y descubre cómo podemos ayudarte a proteger a tu equipo y cumplir con las normativas de seguridad integral.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">

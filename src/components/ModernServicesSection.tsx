@@ -61,7 +61,7 @@ const serviceCategories = [
       'Curso de primer respondiente en emergencias médicas',
       'Programa de seguridad para piscinas',
       'Entrenamiento en rescate y salvamento acuático',
-      'Certificación de buceo scuba diver',
+      'Certificación en buceo recreativo scuba diver',
       'Capacitación en primeros auxilios básicos y avanzados',
       'Curso de administración de oxígeno para emergencias',
       'Diseño, implementación y administración de sistemas de gestión SST'

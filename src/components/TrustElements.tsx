@@ -145,7 +145,7 @@ export default function TrustElements() {
         <div className="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
           <ShieldCheckIcon className="h-6 w-6 text-blue-400 mr-3" />
           <span className="text-white text-lg font-medium">
-            <strong>Comprometidos</strong> con la excelencia en seguridad industrial
+            <strong>Comprometidos</strong> con la excelencia en seguridad integral
           </span>
         </div>
       </motion.div>

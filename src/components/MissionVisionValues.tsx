@@ -12,7 +12,7 @@ const missionVisionValues = [
   {
     icon: Eye,
     title: 'Nuestra Visión',
-    description: 'Ser líderes en Colombia en servicios de seguridad industrial, reconocidos por nuestra excelencia, innovación y compromiso con la protección de las personas y el medio ambiente. Aspiramos a ser el referente nacional en consultoría y capacitación especializada.'
+    description: 'Ser líderes en Colombia en servicios de seguridad integral, reconocidos por nuestra excelencia, innovación y compromiso con la protección de las personas y el medio ambiente. Aspiramos a ser el referente nacional en consultoría y capacitación especializada.'
   },
   {
     icon: Heart,
@@ -85,7 +85,7 @@ export default function MissionVisionValues() {
               Compromiso con la Excelencia
             </h3>
             <p className="text-gray-700 leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Estos principios fundamentales nos han permitido consolidarnos como líderes en el sector de seguridad industrial, 
+              Estos principios fundamentales nos han permitido consolidarnos como líderes en el sector de seguridad integral, 
               brindando soluciones integrales que protegen vidas y optimizan operaciones en más de 500 empresas a nivel nacional.
             </p>
           </div>

@@ -132,7 +132,7 @@ export default function CourseManager() {
     detailedDescription: '',
     duration: '40 horas',
     certification: 'Válido 2 años',
-    category: 'Seguridad Industrial',
+    category: 'Seguridad Integral',
     students: 0,
     rating: 4.5,
     price: 'Consultar',
@@ -270,7 +270,7 @@ export default function CourseManager() {
       detailedDescription: '',
       duration: '40 horas',
       certification: 'Válido 2 años',
-      category: 'Seguridad Industrial',
+      category: 'Seguridad Integral',
       students: 0,
       rating: 4.5,
       price: 'Consultar',
@@ -408,7 +408,7 @@ export default function CourseManager() {
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Seguridad Industrial"
+                  placeholder="Seguridad Integral"
                 />
               </div>
               <div>
@@ -614,37 +614,37 @@ export default function CourseManager() {
               <p className="text-gray-500 italic text-center py-8">No hay cursos configurados</p>
             ) : (
               courses.map((course) => (
-                <div key={course.id} className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${course.gradient} rounded-lg flex items-center justify-center`}>
-                        <span className="text-2xl">
-                          {renderIcon(course.icon, "h-6 w-6")}
+                <div key={course.id} className="border border-gray-200 rounded-lg p-3 sm:p-4">
+                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                    <div className="flex items-start space-x-3 sm:space-x-4 flex-1 min-w-0">
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${course.gradient} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                        <span className="text-lg sm:text-2xl">
+                          {renderIcon(course.icon, "h-4 w-4 sm:h-6 sm:w-6")}
                         </span>
                       </div>
-                      <div className="flex-1">
-                        <h5 className="font-medium text-gray-900">{course.name}</h5>
-                        <p className="text-sm text-gray-600 line-clamp-2">{course.description}</p>
+                      <div className="flex-1 min-w-0">
+                        <h5 className="font-medium text-gray-900 text-sm sm:text-base truncate">{course.name}</h5>
+                        <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 break-words">{course.description}</p>
                         
-                        {/* Información básica */}
-                        <div className="flex items-center space-x-4 text-xs text-gray-500 mt-1">
-                          <span>👥 {course.students || 0} estudiantes</span>
-                          <span>⭐ {course.rating?.toFixed(1) || 'N/A'}</span>
-                          <span>📅 {course.duration || 'N/A'}</span>
-                          <span>🏷️ {course.category || 'N/A'}</span>
+                        {/* Información básica - Responsive */}
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2 text-xs text-gray-500 mt-2">
+                          <span className="truncate">👥 {course.students || 0}</span>
+                          <span className="truncate">⭐ {course.rating?.toFixed(1) || 'N/A'}</span>
+                          <span className="truncate">📅 {course.duration || 'N/A'}</span>
+                          <span className="truncate">🏷️ {course.category || 'N/A'}</span>
                         </div>
                         
-                        {/* Información adicional */}
-                        <div className="flex items-center space-x-4 text-xs text-gray-500 mt-1">
-                          {course.certification && <span>📜 {course.certification}</span>}
-                          {course.price && <span>💰 {course.price}</span>}
-                          {course.instructor && <span>👨‍🏫 {course.instructor.split(' - ')[0]}</span>}
-                          {course.location && <span>📍 {course.location}</span>}
+                        {/* Información adicional - Responsive */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1 sm:gap-2 text-xs text-gray-500 mt-1">
+                          {course.certification && <span className="truncate">📜 {course.certification}</span>}
+                          {course.price && <span className="truncate">💰 {course.price}</span>}
+                          {course.instructor && <span className="truncate">👨‍🏫 {course.instructor.split(' - ')[0]}</span>}
+                          {course.location && <span className="truncate">📍 {course.location}</span>}
                         </div>
                         
                         {/* Descripción detallada */}
                         {course.detailedDescription && course.detailedDescription.trim() ? (
-                          <p className="text-xs text-gray-500 mt-1 line-clamp-1">
+                          <p className="text-xs text-gray-500 mt-1 line-clamp-1 break-words">
                             {course.detailedDescription}
                           </p>
                         ) : (
@@ -653,59 +653,65 @@ export default function CourseManager() {
                           </p>
                         )}
                         
-                        {/* Contenido del curso */}
-                        <div className="flex items-center space-x-2 text-xs text-gray-400 mt-1">
+                        {/* Contenido del curso - Responsive */}
+                        <div className="flex flex-wrap gap-1 sm:gap-2 text-xs text-gray-400 mt-1">
                           {course.objectives && course.objectives.length > 0 && (
-                            <span>📋 {course.objectives.length} objetivos</span>
+                            <span>📋 {course.objectives.length}</span>
                           )}
                           {course.benefits && course.benefits.length > 0 && (
-                            <span>✨ {course.benefits.length} beneficios</span>
+                            <span>✨ {course.benefits.length}</span>
                           )}
                           {course.requirements && course.requirements.length > 0 && (
-                            <span>📝 {course.requirements.length} requisitos</span>
+                            <span>📝 {course.requirements.length}</span>
                           )}
                           {course.modules && course.modules.length > 0 && (
-                            <span>📚 {course.modules.length} módulos</span>
+                            <span>📚 {course.modules.length}</span>
                           )}
                         </div>
                         
-                        {/* Información técnica (solo lectura) */}
-                        <div className="flex items-center space-x-2 text-xs text-gray-300 mt-1">
+                        {/* Información técnica (solo lectura) - Responsive */}
+                        <div className="flex flex-wrap gap-1 sm:gap-2 text-xs text-gray-300 mt-1">
                           <span>🆔 {course.id}</span>
-                          <span>📊 Orden: {course.order}</span>
+                          <span>📊 {course.order}</span>
                           {course.slug && <span>🔗 {course.slug}</span>}
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-2">
+                    
+                    {/* Botones de acción */}
+                    <div className="flex items-center space-x-2 lg:flex-shrink-0">
                       {editing === course.id ? (
                         <>
                           <button
                             onClick={() => handleUpdate(course.id)}
-                            className="text-green-600 hover:text-green-800"
+                            className="p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-lg transition-colors duration-200"
+                            title="Guardar cambios"
                           >
-                            <CheckIcon className="h-5 w-5" />
+                            <CheckIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                           </button>
                           <button
                             onClick={() => setEditing(null)}
-                            className="text-gray-600 hover:text-gray-800"
+                            className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                            title="Cancelar"
                           >
-                            <XMarkIcon className="h-5 w-5" />
+                            <XMarkIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                           </button>
                         </>
                       ) : (
                         <>
                           <button
                             onClick={() => setEditing(course.id)}
-                            className="text-blue-600 hover:text-blue-800"
+                            className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                            title="Editar curso"
                           >
-                            <PencilIcon className="h-5 w-5" />
+                            <PencilIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                           </button>
                           <button
                             onClick={() => handleDelete(course.id)}
-                            className="text-red-600 hover:text-red-800"
+                            className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                            title="Eliminar curso"
                           >
-                            <TrashIcon className="h-5 w-5" />
+                            <TrashIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                           </button>
                         </>
                       )}

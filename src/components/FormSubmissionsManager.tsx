@@ -256,43 +256,43 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
         </div>
 
         {/* Estadísticas por tipo */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 sm:p-4 border border-green-200">
             <div className="flex items-center">
-              <CalendarDaysIcon className="h-8 w-8 text-green-600 mr-3" />
-              <div>
-                <p className="text-sm font-medium text-green-800">Citas Programadas</p>
-                <p className="text-2xl font-bold text-green-900">{stats.appointment}</p>
+              <CalendarDaysIcon className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 mr-2 sm:mr-3 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-medium text-green-800 truncate">Citas Programadas</p>
+                <p className="text-xl sm:text-2xl font-bold text-green-900">{stats.appointment}</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-3 sm:p-4 border border-blue-200">
             <div className="flex items-center">
-              <PhoneArrowUpRightIcon className="h-8 w-8 text-blue-600 mr-3" />
-              <div>
-                <p className="text-sm font-medium text-blue-800">Contacto General</p>
-                <p className="text-2xl font-bold text-blue-900">{stats.contact}</p>
+              <PhoneArrowUpRightIcon className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600 mr-2 sm:mr-3 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-medium text-blue-800 truncate">Contacto General</p>
+                <p className="text-xl sm:text-2xl font-bold text-blue-900">{stats.contact}</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-3 sm:p-4 border border-purple-200">
             <div className="flex items-center">
-              <AcademicCapIcon className="h-8 w-8 text-purple-600 mr-3" />
-              <div>
-                <p className="text-sm font-medium text-purple-800">Solicitudes de Cursos</p>
-                <p className="text-2xl font-bold text-purple-900">{stats.course}</p>
+              <AcademicCapIcon className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600 mr-2 sm:mr-3 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-medium text-purple-800 truncate">Solicitudes de Cursos</p>
+                <p className="text-xl sm:text-2xl font-bold text-purple-900">{stats.course}</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+          <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 sm:p-4 border border-gray-200">
             <div className="flex items-center">
-              <ClipboardDocumentListIcon className="h-8 w-8 text-gray-600 mr-3" />
-              <div>
-                <p className="text-sm font-medium text-gray-800">Total</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+              <ClipboardDocumentListIcon className="h-6 w-6 sm:h-8 sm:w-8 text-gray-600 mr-2 sm:mr-3 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-medium text-gray-800 truncate">Total</p>
+                <p className="text-xl sm:text-2xl font-bold text-gray-900">{stats.total}</p>
               </div>
             </div>
           </div>
@@ -300,20 +300,20 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
       </div>
 
       {/* Filtros */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 sm:p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Buscar
             </label>
             <div className="relative">
-              <MagnifyingGlassIcon className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <MagnifyingGlassIcon className="h-4 w-4 sm:h-5 sm:w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Buscar por nombre, email, empresa o curso..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-9 sm:pl-10 pr-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -325,7 +325,7 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Todos los tipos</option>
               <option value="appointment">Citas Programadas</option>
@@ -341,7 +341,7 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Todos los estados</option>
               <option value="nuevo">Nuevo</option>
@@ -378,54 +378,59 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
             {/* Lista de solicitudes */}
             <div className="divide-y divide-gray-200">
               {typeSubmissions.map((submission) => (
-                <div key={submission.id} className="p-6 hover:bg-gray-50 transition-colors duration-200">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-4 mb-3">
-                        <div className="flex items-center space-x-2">
-                          <UserIcon className="h-5 w-5 text-gray-400" />
-                          <span className="font-medium text-gray-900">{submission.nombre}</span>
+                <div key={submission.id} className="p-4 sm:p-6 hover:bg-gray-50 transition-colors duration-200">
+                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      {/* Información del usuario - Layout responsive */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
+                        <div className="flex items-center space-x-2 min-w-0">
+                          <UserIcon className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                          <span className="font-medium text-gray-900 truncate">{submission.nombre}</span>
                         </div>
                         
-                        <div className="flex items-center space-x-2">
-                          <EnvelopeIcon className="h-4 w-4 text-gray-400" />
-                          <span className="text-sm text-gray-600">{submission.email}</span>
+                        <div className="flex items-center space-x-2 min-w-0">
+                          <EnvelopeIcon className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                          <span className="text-sm text-gray-600 truncate">{submission.email}</span>
                         </div>
                         
-                        <div className="flex items-center space-x-2">
-                          <PhoneIcon className="h-4 w-4 text-gray-400" />
-                          <span className="text-sm text-gray-600">{submission.telefono}</span>
-                        </div>
-
-                        {submission.empresa && (
-                          <div className="flex items-center space-x-2">
-                            <BuildingOfficeIcon className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-600">{submission.empresa}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="flex items-center space-x-4 mb-3">
-                        <div className="flex items-center space-x-2">
-                          <AcademicCapIcon className="h-4 w-4 text-gray-400" />
-                          <span className="text-sm font-medium text-gray-900">{submission.courseName}</span>
-                        </div>
-                        
-                        <div className="flex items-center space-x-2">
-                          <CalendarIcon className="h-4 w-4 text-gray-400" />
-                          <span className="text-sm text-gray-600">{formatDate(submission.createdAt)}</span>
+                        <div className="flex items-center space-x-2 min-w-0">
+                          <PhoneIcon className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                          <span className="text-sm text-gray-600 truncate">{submission.telefono}</span>
                         </div>
                       </div>
 
+                      {/* Empresa si existe */}
+                      {submission.empresa && (
+                        <div className="flex items-center space-x-2 mb-3 min-w-0">
+                          <BuildingOfficeIcon className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                          <span className="text-sm text-gray-600 truncate">{submission.empresa}</span>
+                        </div>
+                      )}
+
+                      {/* Curso y fecha */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <div className="flex items-center space-x-2 min-w-0">
+                          <AcademicCapIcon className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                          <span className="text-sm font-medium text-gray-900 truncate">{submission.courseName}</span>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2 min-w-0">
+                          <CalendarIcon className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                          <span className="text-sm text-gray-600 truncate">{formatDate(submission.createdAt)}</span>
+                        </div>
+                      </div>
+
+                      {/* Mensaje */}
                       {submission.mensaje && (
                         <div className="mb-3">
                           <div className="flex items-start space-x-2">
-                            <ChatBubbleLeftRightIcon className="h-4 w-4 text-gray-400 mt-0.5" />
-                            <p className="text-sm text-gray-700 line-clamp-2">{submission.mensaje}</p>
+                            <ChatBubbleLeftRightIcon className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                            <p className="text-sm text-gray-700 line-clamp-2 break-words">{submission.mensaje}</p>
                           </div>
                         </div>
                       )}
 
+                      {/* Estado */}
                       <div className="flex items-center space-x-2">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(submission.status)}`}>
                           {getStatusName(submission.status)}
@@ -433,13 +438,14 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-2 ml-4">
+                    {/* Botones de acción */}
+                    <div className="flex items-center space-x-2 lg:ml-4 lg:flex-shrink-0">
                       <button
                         onClick={() => {
                           setSelectedSubmission(submission);
                           setIsModalOpen(true);
                         }}
-                        className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                        className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 flex-shrink-0"
                         title="Ver detalles"
                       >
                         <EyeIcon className="h-5 w-5" />
@@ -481,29 +487,29 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
       {/* Modal de detalles */}
       {isModalOpen && selectedSubmission && (
         <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
+          <div className="flex min-h-full items-center justify-center p-2 sm:p-4">
             <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
-            <div className="relative bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-6">
+            <div className="relative bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+              <div className="p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-semibold text-gray-900">Detalles de la Solicitud</h3>
                   <button
                     onClick={() => setIsModalOpen(false)}
-                    className="text-gray-400 hover:text-gray-600"
+                    className="text-gray-400 hover:text-gray-600 p-1"
                   >
                     <XCircleIcon className="h-6 w-6" />
                   </button>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
-                      <p className="text-sm text-gray-900">{selectedSubmission.nombre}</p>
+                      <p className="text-sm text-gray-900 break-words">{selectedSubmission.nombre}</p>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                      <p className="text-sm text-gray-900">{selectedSubmission.email}</p>
+                      <p className="text-sm text-gray-900 break-all">{selectedSubmission.email}</p>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
@@ -511,11 +517,11 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
-                      <p className="text-sm text-gray-900">{selectedSubmission.empresa || 'No especificada'}</p>
+                      <p className="text-sm text-gray-900 break-words">{selectedSubmission.empresa || 'No especificada'}</p>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Curso/Servicio</label>
-                      <p className="text-sm text-gray-900">{selectedSubmission.courseName}</p>
+                      <p className="text-sm text-gray-900 break-words">{selectedSubmission.courseName}</p>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Estado</label>
@@ -530,13 +536,13 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Tipo de Formulario</label>
                       <div className="flex items-center">
-                        <div className={`p-1 rounded ${getFormTypeColor(getFormType(selectedSubmission.courseName, selectedSubmission.courseSlug))} mr-2`}>
+                        <div className={`p-1 rounded ${getFormTypeColor(getFormType(selectedSubmission.courseName, selectedSubmission.courseSlug))} mr-2 flex-shrink-0`}>
                           {(() => {
                             const IconComponent = getFormTypeIcon(getFormType(selectedSubmission.courseName, selectedSubmission.courseSlug));
                             return <IconComponent className="h-4 w-4" />;
                           })()}
                         </div>
-                        <span className="text-sm text-gray-900">
+                        <span className="text-sm text-gray-900 break-words">
                           {getFormTypeName(getFormType(selectedSubmission.courseName, selectedSubmission.courseSlug))}
                         </span>
                       </div>
@@ -547,7 +553,7 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
                       <div className="bg-gray-50 rounded-lg p-3">
-                        <p className="text-sm text-gray-900 whitespace-pre-wrap">{selectedSubmission.mensaje}</p>
+                        <p className="text-sm text-gray-900 whitespace-pre-wrap break-words">{selectedSubmission.mensaje}</p>
                       </div>
                     </div>
                   )}
@@ -556,7 +562,7 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Notas del Administrador</label>
                       <div className="bg-blue-50 rounded-lg p-3">
-                        <p className="text-sm text-gray-900 whitespace-pre-wrap">{selectedSubmission.notes}</p>
+                        <p className="text-sm text-gray-900 whitespace-pre-wrap break-words">{selectedSubmission.notes}</p>
                       </div>
                     </div>
                   )}
@@ -565,7 +571,7 @@ export default function FormSubmissionsManager({ className = '' }: FormSubmissio
                 <div className="flex justify-end space-x-3 mt-6">
                   <button
                     onClick={() => setIsModalOpen(false)}
-                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors duration-200"
                   >
                     Cerrar
                   </button>

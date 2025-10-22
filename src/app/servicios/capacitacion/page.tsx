@@ -31,7 +31,7 @@ export default function CapacitacionPage() {
               Capacitación
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Programas de capacitación especializados en seguridad industrial, medio ambiente y calidad, con certificación válida
+              Programas de capacitación especializados en seguridad integral, medio ambiente y calidad, con certificación válida
             </p>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function CapacitacionPage() {
               Programas de Capacitación
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Formación especializada con certificación válida para profesionales en seguridad industrial
+              Formación especializada con certificación válida para profesionales en seguridad integral
             </p>
           </motion.div>
 

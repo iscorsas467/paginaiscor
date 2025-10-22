@@ -54,7 +54,7 @@ const socialLinks = [
   {
     name: 'YouTube',
     href: '#',
-    username: 'ISCOR Seguridad Industrial',
+    username: 'ISCOR Seguridad Integral',
     icon: (props: any) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path

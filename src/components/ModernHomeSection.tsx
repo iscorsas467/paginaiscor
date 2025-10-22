@@ -24,7 +24,7 @@ const metrics = [
     icon: Award,
     value: '18+',
     label: 'Años de Experiencia',
-    description: 'Liderando el sector desde 2005'
+    description: 'Liderando el sector desde 2004'
   },
   {
     icon: Users,

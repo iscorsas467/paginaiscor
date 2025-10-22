@@ -33,8 +33,8 @@ export async function GET() {
     // Datos por defecto si no existen en BD
     const defaultHero = {
       id: 'default-hero',
-      badge: 'ISCOR - Líderes en Seguridad Industrial',
-      title: 'Capacitación Especializada en Seguridad Industrial',
+      badge: 'ISCOR - Líderes en Seguridad Integral',
+      title: 'Capacitación Especializada en Seguridad Integral',
       subtitle: 'Más de 15 años formando profesionales en seguridad, salud ocupacional y medio ambiente con los más altos estándares de calidad.',
       home_stats: [{
         id: 'default-stats',
@@ -58,12 +58,12 @@ export async function GET() {
     const defaultServices = {
       id: 'default-services',
       title: 'Nuestros Servicios',
-      subtitle: 'Ofrecemos una amplia gama de servicios especializados en seguridad industrial',
+      subtitle: 'Ofrecemos una amplia gama de servicios especializados en seguridad integral',
       home_service_items: [
         {
           id: 'service-1',
           name: 'Capacitación Especializada',
-          description: 'Cursos certificados en seguridad industrial, salud ocupacional y medio ambiente',
+          description: 'Cursos certificados en seguridad integral, salud ocupacional y medio ambiente',
           icon: '🎓',
           order: 1
         },

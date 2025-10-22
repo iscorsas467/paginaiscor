@@ -455,153 +455,79 @@ export default function LaEmpresa() {
               </div>
             </motion.div>
 
-            {/* Misión */}
-            <motion.div 
-              className="group bg-white rounded-2xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-all duration-300 hover:scale-105"
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <FlagIcon className="w-8 h-8 text-white" />
+            </div>
+
+            {/* Sección de Misión y Visión - Diseño Premium y Profesional */}
+            <div className="mt-16 pt-16 border-t border-slate-200">
+              {/* Título Principal Impactante */}
+              <motion.div 
+                className="mx-auto max-w-3xl text-center mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 text-gray-700 text-xs font-semibold mb-6 shadow-sm">
+                  Nuestro Propósito
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                  Misión
+                
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-4">
+                  Misión y Visión
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  ISCOR S.A.S se dedica a la aplicación de servicios eficientes de consultoría, asesoría y capacitación bajo los más altos estándares nacionales e internacionales actualizados, trabajando por el desarrollo integral de la sociedad.
+                
+                <p className="text-sm md:text-base text-gray-600 max-w-xl mx-auto leading-relaxed">
+                  Los principios fundamentales que guían nuestro trabajo y definen nuestro futuro en la industria de la seguridad integral.
                 </p>
-              </div>
-            </motion.div>
-
-            {/* Visión */}
-            <motion.div 
-              className="group bg-white rounded-2xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-all duration-300 hover:scale-105"
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <EyeIcon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                  Visión
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Para el año 2025, ISCOR se proyecta como una empresa sólida, de vanguardia, con reconocimiento nacional e internacional, servidora de soluciones económicas y eficaces en materia de seguridad integral.
-                </p>
-              </div>
-            </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-        {/* Patrón de fondo sutil */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '60px 60px'
-          }}></div>
-        </div>
-
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Título Principal Impactante */}
-          <motion.div 
-            className="mx-auto max-w-3xl text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 text-gray-700 text-xs font-semibold mb-6 shadow-sm">
-              Nuestro Propósito
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-4">
-              Misión y Visión
-            </h2>
-            
-            <p className="text-sm md:text-base text-gray-600 max-w-xl mx-auto leading-relaxed mb-6">
-              Nuestros principios fundamentales que guían nuestro trabajo
-            </p>
-            
-            {/* Botón para expandir/contraer */}
-            <button
-              onClick={() => setIsMissionVisionExpanded(!isMissionVisionExpanded)}
-              className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              <span className="mr-3 text-lg">
-                {isMissionVisionExpanded ? 'Ver menos' : 'Conocer más'}
-              </span>
-              {isMissionVisionExpanded ? (
-                <ChevronUpIcon className="h-6 w-6 group-hover:-translate-y-1 transition-transform duration-200" />
-              ) : (
-                <ChevronDownIcon className="h-6 w-6 group-hover:translate-y-1 transition-transform duration-200" />
-              )}
-            </button>
-          </motion.div>
-          
-          {/* Contenido Expandible */}
-          <motion.div
-            initial={false}
-            animate={{ 
-              height: isMissionVisionExpanded ? 'auto' : 0,
-              opacity: isMissionVisionExpanded ? 1 : 0
-            }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="overflow-hidden"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto pb-8">
-            {/* Misión */}
-            <motion.div 
-              className="group bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-transform duration-300 ease-out hover:scale-105"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
-                  <FlagIcon className="h-8 w-8 text-white" />
-              </div>
+              </motion.div>
               
-                <h3 className="text-lg font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300 uppercase tracking-wide">
-                  Misión
-              </h3>
-              
-                <p className="text-sm leading-relaxed text-gray-700">
-                ISCOR S.A.S se dedica a la aplicación de servicios eficientes de consultoría, asesoría y capacitación bajo los más altos estándares nacionales e internacionales actualizados, trabajando por el desarrollo integral de la sociedad, brindando asesoría y capacitación a la comunidad en todo lo relacionado con la prevención y atención de desastres, la seguridad, la salud ocupacional y los Sistemas de Gestión para Seguridad y Salud de los Trabajadores SGSST.
-              </p>
-            </div>
-            </motion.div>
+              {/* Grid de Tarjetas Premium */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                {/* Misión */}
+                <motion.div 
+                  className="group bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-transform duration-300 ease-out hover:scale-105"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
+                      <FlagIcon className="h-8 w-8 text-white" />
+                    </div>
+                    
+                    <h4 className="text-lg font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300 uppercase tracking-wide">
+                      Misión
+                    </h4>
+                    
+                    <p className="text-sm leading-relaxed text-gray-700">
+                      ISCOR S.A.S se dedica a la aplicación de servicios eficientes de consultoría, asesoría y capacitación bajo los más altos estándares nacionales e internacionales actualizados, trabajando por el desarrollo integral de la sociedad, brindando asesoría y capacitación a la comunidad en todo lo relacionado con la prevención y atención de desastres, la seguridad, la salud ocupacional y los Sistemas de Gestión para Seguridad y Salud de los Trabajadores SGSST.
+                    </p>
+                  </div>
+                </motion.div>
 
-            {/* Visión */}
-            <motion.div 
-              className="group bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-transform duration-300 ease-out hover:scale-105"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
-                  <EyeIcon className="h-8 w-8 text-white" />
+                {/* Visión */}
+                <motion.div 
+                  className="group bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-transform duration-300 ease-out hover:scale-105"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
+                      <EyeIcon className="h-8 w-8 text-white" />
+                    </div>
+                    
+                    <h4 className="text-lg font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300 uppercase tracking-wide">
+                      Visión
+                    </h4>
+                    
+                    <p className="text-sm leading-relaxed text-gray-700">
+                      Para el año 2025, Ingeniería de Seguridad y Control de Riesgos S.A.S se proyecta como una empresa sólida, de vanguardia, con reconocimiento nacional e internacional, servidora de soluciones económicas y eficaces en materia de seguridad integral, siendo una empresa líder en la región en todo lo relacionado con la seguridad, la salud ocupacional y los Sistemas de Gestión para la Seguridad y Salud de los Trabajadores SGSST, generando en la comunidad una cultura de prevención.
+                    </p>
+                  </div>
+                </motion.div>
               </div>
-              
-                <h3 className="text-lg font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300 uppercase tracking-wide">
-                  Visión
-              </h3>
-              
-                <p className="text-sm leading-relaxed text-gray-700">
-                  Para el año 2025, Ingeniería de Seguridad y Control de Riesgos S.A.S se proyecta como una empresa sólida, de vanguardia, con reconocimiento nacional e internacional, servidora de soluciones económicas y eficaces en materia de seguridad integral, siendo una empresa líder en la región en todo lo relacionado con la seguridad, la salud ocupacional y los Sistemas de Gestión para la Seguridad y Salud de los Trabajadores SGSST, generando en la comunidad una cultura de prevención.
-              </p>
-            </div>
-            </motion.div>
             </div>
           </motion.div>
         </div>

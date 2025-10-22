@@ -18,7 +18,7 @@ const detailedCoursesData = [
     ],
     benefits: [
       'Reducción significativa de accidentes por caídas',
-      'Cumplimiento de normativas de seguridad industrial',
+      'Cumplimiento de normativas de seguridad integral',
       'Mejora en la eficiencia y seguridad del trabajo',
       'Certificación reconocida a nivel nacional',
       'Actualización continua en técnicas de seguridad'
@@ -39,7 +39,7 @@ const detailedCoursesData = [
       'Rescate en Altura',
       'Prácticas Supervisadas'
     ],
-    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Industrial',
+    instructor: 'Ing. Carlos Rodríguez - Especialista en Seguridad Integral',
     price: 'Consultar',
     location: 'Centro de Entrenamiento ISCOR',
     schedule: 'Lunes a Viernes: 8:00 AM - 5:00 PM'

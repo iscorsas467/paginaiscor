@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
     name: 'Carlos Mendoza',
     position: 'Director de Operaciones',
     company: 'Petroquímica XYZ',
-    content: 'Los programas de capacitación de ISCOR son excepcionales. Nuestros empleados han mejorado significativamente sus competencias en seguridad industrial, lo que se refleja en la reducción de incidentes.',
+    content: 'Los programas de capacitación de ISCOR son excepcionales. Nuestros empleados han mejorado significativamente sus competencias en seguridad integral, lo que se refleja en la reducción de incidentes.',
     rating: 5,
     image: '/api/placeholder/80/80'
   },

@@ -18,7 +18,7 @@ export default function MinimalHero() {
   const [currentText, setCurrentText] = useState(0);
   
   const heroTexts = [
-    'Seguridad Industrial',
+    'Seguridad Integral',
     'Capacitación Especializada',
     'Certificaciones Profesionales',
     'Consultoría en Riesgos'
@@ -50,7 +50,7 @@ export default function MinimalHero() {
             className="inline-flex items-center px-6 py-3 rounded-full bg-white/15 backdrop-blur-md border border-white/30 text-white text-sm font-semibold mb-6 shadow-lg"
           >
             <ShieldCheckIcon className="h-5 w-5 mr-3" />
-            Líder en Seguridad Industrial desde 2005
+            Líder en Seguridad Integral desde 2004
           </motion.div>
           
           {/* Main Heading */}
@@ -89,7 +89,7 @@ export default function MinimalHero() {
             className="max-w-4xl mx-auto mb-16"
           >
             <p className="text-lg md:text-xl text-white leading-relaxed font-light">
-              Protegemos vidas y optimizamos operaciones con soluciones integrales de seguridad industrial y control de riesgos.
+              Protegemos vidas y optimizamos operaciones con soluciones integrales de seguridad integral y control de riesgos.
             </p>
           </motion.div>
 

@@ -23,7 +23,7 @@ INSERT INTO team_members (
   'fernando-director-general',
   'Fernando',
   'Director General',
-  'Fernando cuenta con más de 18 años de experiencia en el sector de seguridad industrial. Ha liderado la implementación de sistemas de gestión de seguridad en más de 500 empresas a nivel nacional. Es especialista en normativas de seguridad y salud en el trabajo, con certificaciones internacionales en ISO 9001, ISO 14001 y OHSAS 18001. Su visión estratégica ha posicionado a ISCOR como líder en el sector.',
+  'Fernando cuenta con más de 18 años de experiencia en el sector de seguridad integral. Ha liderado la implementación de sistemas de gestión de seguridad en más de 500 empresas a nivel nacional. Es especialista en normativas de seguridad y salud en el trabajo, con certificaciones internacionales en ISO 9001, ISO 14001 y OHSAS 18001. Su visión estratégica ha posicionado a ISCOR como líder en el sector.',
   '+57 300 123 4567',
   'fernando@iscor.com.co',
   'https://linkedin.com/in/fernando-iscor',
@@ -85,7 +85,7 @@ INSERT INTO team_members (
   'carlos-coordinador-capacitacion',
   'Carlos',
   'Coordinador de Capacitación',
-  'Carlos es especialista en formación y desarrollo de competencias técnicas. Ha diseñado más de 29 cursos especializados en seguridad industrial y ha capacitado a más de 15,000 personas. Su metodología innovadora ha sido reconocida por organismos internacionales de certificación.',
+  'Carlos es especialista en formación y desarrollo de competencias técnicas. Ha diseñado más de 29 cursos especializados en seguridad integral y ha capacitado a más de 15,000 personas. Su metodología innovadora ha sido reconocida por organismos internacionales de certificación.',
   '+57 300 345 6789',
   'carlos@iscor.com.co',
   'https://linkedin.com/in/carlos-iscor',
@@ -153,7 +153,7 @@ INSERT INTO team_hero (
   'team-hero-main',
   'Nuestro Equipo',
   'Profesionales comprometidos con la excelencia',
-  'Conoce a los expertos que hacen posible nuestra misión de brindar soluciones integrales en seguridad industrial.',
+  'Conoce a los expertos que hacen posible nuestra misión de brindar soluciones integrales en seguridad integral.',
   NOW(),
   NOW()
 ) ON CONFLICT (id) DO UPDATE SET
