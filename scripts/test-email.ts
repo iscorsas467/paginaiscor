@@ -1,4 +1,4 @@
-import { sendContactEmail, sendConfirmationEmail } from './src/lib/email';
+import { sendContactEmail, sendConfirmationEmail } from '../src/lib/email';
 
 async function testEmailSending() {
   console.log('🧪 Probando envío de emails...');
