@@ -89,7 +89,7 @@ export default function MinimalHero() {
             className="max-w-4xl mx-auto mb-16"
           >
             <p className="text-lg md:text-xl text-white leading-relaxed font-light">
-              Protegemos vidas y optimizamos operaciones con soluciones integrales de seguridad integral y control de riesgos.
+              Protegemos vidas y optimizamos operaciones con soluciones de seguridad integral y control de riesgos.
             </p>
           </motion.div>
 

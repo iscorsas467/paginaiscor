@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { sendContactEmail, sendConfirmationEmail } from '@/lib/email';
 
 // GET - Obtener todas las solicitudes de formularios con paginación y filtros
 export async function GET(request: NextRequest) {
@@ -128,6 +129,28 @@ export async function POST(request: NextRequest) {
         mensaje: mensaje || null
       }
     });
+
+    // 📧 ENVIAR EMAILS
+    try {
+      // Email al admin con todos los datos del formulario
+      await sendContactEmail({
+        ...nuevaSolicitud,
+        servicio: courseName
+      });
+
+      // Email de confirmación al cliente
+      await sendConfirmationEmail({
+        nombre,
+        email,
+        servicio: courseName,
+        mensaje
+      });
+
+      console.log('✅ Emails enviados exitosamente');
+    } catch (emailError) {
+      console.error('❌ Error enviando emails:', emailError);
+      // No fallar la solicitud si el email falla
+    }
 
     // Crear notificación
     try {

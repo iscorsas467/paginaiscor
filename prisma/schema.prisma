@@ -139,6 +139,8 @@ model contact_faq {
   createdAt         DateTime            @default(now())
   updatedAt         DateTime
   contact_faq_items contact_faq_items[]
+
+  @@map("contact_faq")
 }
 
 model contact_faq_items {
@@ -150,6 +152,8 @@ model contact_faq_items {
   updatedAt   DateTime
   faqId       String
   contact_faq contact_faq @relation(fields: [faqId], references: [id], onDelete: Cascade)
+
+  @@map("contact_faq_items")
 }
 
 model contact_form {
@@ -219,14 +223,20 @@ model global_company {
 }
 
 model global_contact {
-  id            String         @id
-  phone         String
-  email         String
-  address       String
-  whatsapp      String
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime
-  global_social global_social?
+  id                  String         @id
+  phone               String
+  email               String
+  address             String
+  whatsapp            String
+  phone_title         String?
+  phone_description   String?
+  email_title         String?
+  email_description   String?
+  social_title        String?
+  social_description  String?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime
+  global_social       global_social?
 }
 
 model global_seo {
@@ -507,3 +517,4 @@ model notifications {
 
   @@map("notifications")
 }
+

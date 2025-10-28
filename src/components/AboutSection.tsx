@@ -146,7 +146,7 @@ export default function AboutSection() {
               </div>
               <h3 className="text-xl font-bold mb-2">Nuestra Misión</h3>
               <p className="text-blue-100 text-sm leading-relaxed">
-                Proteger vidas y optimizar operaciones mediante soluciones integrales de seguridad integral.
+                Protegemos vidas y optimizamos operaciones con soluciones de seguridad integral y control de riesgos
               </p>
             </div>
 

@@ -48,7 +48,8 @@ export async function POST(request: NextRequest) {
             description: item.description,
             icon: item.icon,
             gradient: item.gradient,
-            order: index
+            order: index,
+            updatedAt: new Date()
           }))
         }
       },
@@ -99,7 +100,8 @@ export async function PUT(request: NextRequest) {
           description: item.description,
           icon: item.icon,
           gradient: item.gradient,
-          order: index
+          order: index,
+          updatedAt: new Date()
         }))
       });
     }

@@ -16,10 +16,10 @@ export default function DirectorSection() {
           className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            Conoce a Nuestro Director
+            BIENVENIDO
           </h2>
           <p className="text-lg text-white/80">
-            Un mensaje personal de Fernando, Director General de ISCOR S.A.S.
+            Te damos la bienvenida a ISCOR S.A.S., tu aliado en seguridad y salud ocupacional
           </p>
         </motion.div>
 

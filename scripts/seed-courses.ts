@@ -134,32 +134,25 @@ const contactInfoData = {
 
 const contactInfoItems = [
   {
-    title: 'Teléfono Principal',
-    description: '+57 (1) 234-5678',
+    title: 'Línea Nacional',
+    description: '314 807 08 53',
     icon: '📞',
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: 'from-blue-500 to-blue-600',
     order: 1
   },
   {
     title: 'Correo Electrónico',
-    description: 'info@iscor.com.co',
-    icon: '📧',
-    gradient: 'from-blue-500 to-cyan-500',
+    description: 'iscor@iscorcolombia.com.co',
+    icon: '✉️',
+    gradient: 'from-blue-500 to-blue-600',
     order: 2
   },
   {
-    title: 'Dirección',
-    description: 'Calle 123 #45-67, Bogotá, Colombia',
-    icon: '📍',
-    gradient: 'from-red-500 to-pink-500',
+    title: 'Sitio Web',
+    description: 'www.iscorcolombia.com.co',
+    icon: '🌐',
+    gradient: 'from-blue-500 to-blue-600',
     order: 3
-  },
-  {
-    title: 'Horario de Atención',
-    description: 'Lunes a Viernes: 8:00 AM - 6:00 PM',
-    icon: '🕒',
-    gradient: 'from-purple-500 to-indigo-500',
-    order: 4
   }
 ];
 

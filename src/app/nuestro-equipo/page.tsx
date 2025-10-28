@@ -314,7 +314,7 @@ export default function NuestroEquipo() {
       <CallModal
         isOpen={isCallModalOpen}
         onClose={() => setIsCallModalOpen(false)}
-        phoneNumber="3148070853"
+        phoneNumber="3126567077"
       />
     </div>
   );

@@ -28,26 +28,35 @@ export default function Contacto() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [contactData, setContactData] = useState<any>(null);
+  const [faqData, setFaqData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
-  // Cargar datos de contacto desde la API
+  // Cargar datos de contacto y FAQ desde la API
   useEffect(() => {
-    const loadContactData = async () => {
+    const loadData = async () => {
       try {
-        const response = await fetch('/api/page-content?page=contact');
-        if (response.ok) {
-          const data = await response.json();
-          setContactData(data.data);
+        // Cargar datos de contacto
+        const contactResponse = await fetch('/api/page-content?page=contact');
+        if (contactResponse.ok) {
+          const contactData = await contactResponse.json();
+          setContactData(contactData.data);
+        }
+
+        // Cargar datos de FAQ
+        const faqResponse = await fetch('/api/contact-faq');
+        if (faqResponse.ok) {
+          const faqData = await faqResponse.json();
+          setFaqData(faqData.data);
         }
       } catch (error) {
-        console.error('Error loading contact data:', error);
+        console.error('Error loading data:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    loadContactData();
+    loadData();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -467,27 +476,13 @@ export default function Contacto() {
                       },
                       {
                         id: 2,
-                        title: 'Bogotá',
-                        description: 'Cl. 95 #20-28 Torre 1 Of. 702',
-                        icon: '📍',
-                        gradient: 'from-blue-500 to-blue-600'
-                      },
-                      {
-                        id: 3,
-                        title: 'Cali',
-                        description: 'Cl. 58 norte #5 BN 75 Torre 7 Of. 503',
-                        icon: '📍',
-                        gradient: 'from-blue-500 to-blue-600'
-                      },
-                      {
-                        id: 4,
                         title: 'Correo Electrónico',
                         description: 'iscor@iscorcolombia.com.co',
                         icon: '✉️',
                         gradient: 'from-blue-500 to-blue-600'
                       },
                       {
-                        id: 5,
+                        id: 3,
                         title: 'Sitio Web',
                         description: 'www.iscorcolombia.com.co',
                         icon: '🌐',
@@ -547,17 +542,17 @@ export default function Contacto() {
             </div>
             
             <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-8">
-              ¿Tienes dudas?
+              {faqData?.title || '¿Tienes dudas?'}
             </h2>
             
             <p className="text-xl text-slate-600 leading-relaxed">
-              Resolvemos tus inquietudes sobre nuestros servicios de seguridad integral.
+              {faqData?.description || 'Resolvemos tus inquietudes sobre nuestros servicios de seguridad integral.'}
             </p>
           </div>
           
           <div className="mx-auto mt-8 max-w-2xl lg:max-w-none">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none lg:grid-cols-2">
-              {[
+              {(faqData?.contact_faq_items || [
                 {
                   question: '¿Cuánto tiempo toma implementar un programa de seguridad?',
                   answer: 'El tiempo varía según el alcance del programa. Capacitaciones básicas pueden tomar 1-2 días, mientras que programas completos de seguridad pueden requerir 2-4 semanas de implementación.',
@@ -574,7 +569,7 @@ export default function Contacto() {
                   question: '¿Cuál es el proceso de implementación de seguridad?',
                   answer: 'Nuestro proceso incluye: evaluación inicial de riesgos, diseño del programa, capacitación del personal, implementación de protocolos y seguimiento continuo.',
                 },
-              ].map((faq, index) => (
+              ]).map((faq: any, index: number) => (
                 <div
                   key={faq.question}
                   className="group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200"

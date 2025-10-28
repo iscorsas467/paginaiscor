@@ -10,76 +10,140 @@ import {
 } from '@heroicons/react/24/outline';
 
 interface Testimonial {
-  id: number;
+  id: string;
   name: string;
   position: string;
   company: string;
   content: string;
   rating: number;
-  image: string;
+  order: number;
 }
 
-const testimonials: Testimonial[] = [
+interface TestimonialsData {
+  id: string;
+  title: string;
+  description: string;
+  home_testimonial_items: Testimonial[];
+}
+
+// Datos por defecto (iguales a los actuales)
+const defaultTestimonials: Testimonial[] = [
   {
-    id: 1,
+    id: '1',
     name: 'María González',
     position: 'Gerente de Seguridad',
     company: 'Constructora ABC',
     content: 'ISCOR ha sido fundamental en la implementación de nuestros protocolos de seguridad. Su profesionalismo y conocimiento técnico nos han ayudado a mantener un ambiente de trabajo seguro y cumplir con todas las normativas.',
     rating: 5,
-    image: '/api/placeholder/80/80'
+    order: 0
   },
   {
-    id: 2,
+    id: '2',
     name: 'Carlos Mendoza',
     position: 'Director de Operaciones',
     company: 'Petroquímica XYZ',
     content: 'Los programas de capacitación de ISCOR son excepcionales. Nuestros empleados han mejorado significativamente sus competencias en seguridad integral, lo que se refleja en la reducción de incidentes.',
     rating: 5,
-    image: '/api/placeholder/80/80'
+    order: 1
   },
   {
-    id: 3,
+    id: '3',
     name: 'Ana Rodríguez',
     position: 'Coordinadora de Calidad',
     company: 'Manufacturas del Norte',
     content: 'La certificación ISO 9001 que obtuvimos con el apoyo de ISCOR ha elevado nuestros estándares de calidad. Su metodología y seguimiento son impecables.',
     rating: 5,
-    image: '/api/placeholder/80/80'
+    order: 2
   },
   {
-    id: 4,
+    id: '4',
     name: 'Roberto Silva',
     position: 'Supervisor de Seguridad',
     company: 'Minería del Sur',
     content: 'ISCOR nos ha proporcionado las herramientas y conocimientos necesarios para operar de manera segura en ambientes de alto riesgo. Su experiencia es invaluable.',
     rating: 5,
-    image: '/api/placeholder/80/80'
+    order: 3
   }
 ];
 
+const defaultData: TestimonialsData = {
+  id: 'home-testimonials-1',
+  title: 'Lo que dicen nuestros clientes',
+  description: 'La confianza de nuestros clientes es nuestro mayor logro. Conoce las experiencias de quienes han confiado en ISCOR.',
+  home_testimonial_items: defaultTestimonials
+};
+
 export default function TestimonialsSection() {
+  const [testimonialsData, setTestimonialsData] = useState<TestimonialsData | null>(null);
+  const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
-    if (isAutoPlaying) {
+    fetchTestimonialsData();
+  }, []);
+
+  const fetchTestimonialsData = async () => {
+    try {
+      const response = await fetch('/api/home-testimonials');
+      const result = await response.json();
+      
+      if (result.success && result.data) {
+        setTestimonialsData(result.data);
+      } else {
+        // Si no hay datos en BD, usar datos por defecto
+        setTestimonialsData(defaultData);
+      }
+    } catch (error) {
+      console.error('Error fetching testimonials data:', error);
+      setTestimonialsData(defaultData);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Usar datos de BD o fallback
+  const data = testimonialsData || defaultData;
+  const testimonials = data.home_testimonial_items || [];
+
+  useEffect(() => {
+    if (isAutoPlaying && testimonials.length > 0) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
       }, 6000);
       return () => clearInterval(interval);
     }
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, testimonials.length]);
 
   const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    if (testimonials.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }
   };
 
   const prevTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+    if (testimonials.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+    }
   };
 
-  const currentTestimonial = testimonials[currentIndex];
+  const currentTestimonial = testimonials.length > 0 ? testimonials[currentIndex] : null;
+
+  if (loading) {
+    return (
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex items-center justify-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!currentTestimonial) {
+    return null;
+  }
 
   return (
     <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -101,7 +165,7 @@ export default function TestimonialsSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-6xl font-bold text-slate-900 mb-8"
           >
-            Lo que dicen nuestros clientes
+            {data.title || 'Lo que dicen nuestros clientes'}
           </motion.h2>
           
           <motion.p 
@@ -110,7 +174,7 @@ export default function TestimonialsSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl text-slate-600 leading-relaxed"
           >
-            La confianza de nuestros clientes es nuestro mayor logro. Conoce las experiencias de quienes han confiado en ISCOR.
+            {data.description || 'La confianza de nuestros clientes es nuestro mayor logro. Conoce las experiencias de quienes han confiado en ISCOR.'}
           </motion.p>
         </div>
 
